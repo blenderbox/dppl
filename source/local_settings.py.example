@@ -36,4 +36,4 @@ CACHES = {
 }
 
 # DB backed sessions for testing since cache dumps itself
-SESSION_ENGINE = "django.contrib.session.backends.db"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"

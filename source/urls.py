@@ -16,9 +16,15 @@ urlpatterns = patterns('',
 
 if getattr(settings, "DEBUG", False):
     # Load template urls for reference
-    h = lambda x: direct_to_template(template="html/%s" % x)
+    def h(*args, **kwargs):
+        t = "%s/%s" % (kwargs['base'], kwargs['template'])
+        if t.endswith('/'):
+            t = "%sindex.html" % t
+        kwargs['template'] = t
+        return direct_to_template(*args, **kwargs)
+
     urlpatterns = patterns('',
-        url(r"^html/(?P<template>.*)$", h),
+        url(r"^(?P<base>html)/(?P<template>.*)$", h),
     ) + urlpatterns
 
 if getattr(settings, "LOCAL_SERVE", False):
