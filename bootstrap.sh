@@ -1,14 +1,8 @@
 #!/bin/bash
 proj="dppl"
 
-function bootstrap {
+function db {
     local py=`which python`
-
-    echo "---"
-    echo "Installing Packages"
-    echo "---"
-    pip install -r "requirements.pip";
-    echo ""
 
     echo "---"
     echo "Updating local_settings.py"
@@ -25,7 +19,22 @@ function bootstrap {
     echo "---"
     mysql -u $username -p$password -e "CREATE DATABASE ${proj};"
     $py "source/manage.py" syncdb --settings=source.settings
+}
+
+function bootstrap {
+    echo "---"
+    echo "Installing Packages"
+    echo "---"
+    pip install -r "requirements.pip";
     echo ""
+
+    echo "Do you want to use mysql?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) db; break;;
+            No ) break;;
+        esac
+    done
 
     echo ""
     echo "Finished."
