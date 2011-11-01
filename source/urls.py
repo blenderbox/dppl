@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^news/', include('news.foo.urls')),
 
-    (r'^commander/', include(admin.site.urls)),
+    (r"^commander/", include(admin.site.urls)),
 )
 
 if getattr(settings, "DEBUG", False):
