@@ -92,22 +92,23 @@ for root, dirs, files in os.walk(PROJECT_PATH):
 
 # Keeping these seperate for running tests
 PROJECT_APPS = (
-
+    "apps.accounts",
 )
 
 INSTALLED_APPS = (
     # Django Applications
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.admin",
+    "django.contrib.admindocs",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 
     # Third Party Django Applications
-    'django_extensions',
+    "django_extensions",
+    "south",
 ) + PROJECT_APPS
 
 TEMPLATE_TAGS = (
@@ -131,6 +132,9 @@ LOGGING = {
         },
     }
 }
+
+# Users
+AUTH_PROFILE_MODULE = "accounts.Profile"
 
 try:
     from local_settings import *
