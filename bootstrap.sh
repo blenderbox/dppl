@@ -18,7 +18,8 @@ function db {
     echo "Creating Database"
     echo "---"
     mysql -u $username -p$password -e "CREATE DATABASE ${proj};"
-    $py "source/manage.py" syncdb --settings=source.settings
+	 $py "source/manage.py" syncdb --migrate --no-input
+	 $py "source/manage.py" createsuperuser
 }
 
 function bootstrap {
