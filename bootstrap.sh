@@ -26,24 +26,30 @@ function bootstrap {
 	 echo "---"
 	 echo "Checking for Jpeg support"
 	 echo "---"
-	 if [ -f "/usr/lib/libjpeg.so" ]; then
-		 echo "Libjpeg installed."
-	 else
-		 echo ""
-		 echo "You need to install libjpeg before going any further:"
-		 echo "    sudo apt-get install libjpeg libjpeg-dev"
-		 echo "If you think you've already installed it, try:"
-		 echo "    pip uninstall pil"
-		 echo "Then add these symlinks:"
-		 echo "(substitute 'i386' for 'x84_64' where necessary)"
-		 echo "    sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib/"
-		 echo "    sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/"
-		 echo "    sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib/"
-		 echo "And then:"
-		 echo "    pip install pil"
-		 echo "Finally, re-run this script to finish the setup."
-		 echo ""
-		 exit;
+	 local libjpeg="`whereis libjpeg`"
+	 if [ "$libjpeg" = "" ]; then
+		 echo "It seems that you don't have libjpeg installed, would you like to continue anyway?"
+		 select yn in "Yes" "No"; do
+			case $yn in
+				Yes ) break;
+				No ) 
+					echo ""
+					echo "You need to install libjpeg before going any further:"
+					echo "    sudo apt-get install libjpeg libjpeg-dev"
+					echo "If you think you've already installed it, try:"
+					echo "    pip uninstall pil"
+					echo "Then add these symlinks:"
+					echo "(substitute 'i386' for 'x84_64' where necessary)"
+					echo "    sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib/"
+					echo "    sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/"
+					echo "    sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib/"
+					echo "And then:"
+					echo "    pip install pil"
+					echo "Finally, re-run this script to finish the setup."
+					echo ""
+					exit;
+	else
+		echo "Libjpeg installed."
 	fi
 
 	 echo ""
