@@ -12,8 +12,9 @@ from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^news/', include('news.foo.urls')),
+
+    # /
+    (r'^$', include('apps.homepage.urls')),
 
     (r"^commander/", include(admin.site.urls)),
     
