@@ -160,9 +160,10 @@ header h1, header h2 { font-family:'AlfaSlabRegular'; font-weight:normal !import
 
 /* LAYOUT */
 #container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
+header { padding:36px 0 31px; width:320px; }
 header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; }
 header h2 { color:#fff; font-size:51px; line-height:1; padding:0; }
-header nav { border-top:5px solid #fff; border-bottom:1px solid #fff; }
+header nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px; }
 header ul { line-height:30px; margin:0; padding:0; }
 header li { float:left; line-height:30px; margin:0; padding:0; text-transform:uppercase; }
 header a { color:#6e6d67; display:block; font-size:18px; padding:0 11px; }
@@ -185,7 +186,7 @@ footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding-top:24px; posi
   
 }
 @media (max-width:980px) {
-  body { padding-top:0; }
+  
 }
 @media (min-width:980px) {
   
