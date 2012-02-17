@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     # (r'^news/', include('news.foo.urls')),
 
     (r"^commander/", include(admin.site.urls)),
+    
+    # Django Filer
+    url(r'^', include('filer.server.urls')),
 )
 
 if getattr(settings, "DEBUG", False):

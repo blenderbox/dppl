@@ -5,4 +5,8 @@ South==0.7.3
 Werkzeug==0.8.1
 django-debug-toolbar==0.8.5
 django-extensions==0.7.1
+-e git://github.com/stefanfoulis/django-filer.git@19c416905cf1dfe492aed6ae8f1963cccb5517e5#egg=django_filer-develop
+django-mptt==0.5.2
+django-polymorphic==0.2
+easy-thumbnails==1.0-alpha-21
 wsgiref==0.1.2
