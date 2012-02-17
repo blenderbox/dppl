@@ -171,8 +171,12 @@ article {  }
 section {  }
 aside {  }
 
-footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding-top:24px; position:relative; text-align:right; width:980px; }
-
+footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding-top:24px; position:relative; text-align:right; width:940px; }
+footer .ir { background:url(../images/backgrounds/footer.png); float:right; }
+footer .bbox { background-position:-125px 0; height:13px; margin:2px 0 0 8px; width:73px; }
+footer .bbox:hover { background-position:-125px -38px; }
+footer .thomp { height:29px; margin:-7px 16px 0 8px; width:84px; }
+footer .thomp:hover { background-position:0 -38px; }
 
 
 
