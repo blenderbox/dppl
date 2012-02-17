@@ -12,3 +12,4 @@
 # ignore environment and local settings files
 local_settings.py
 media/
+source/static/

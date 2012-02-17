@@ -1,4 +1,4 @@
-<!doctype html>
+{% load compress %}<!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -14,7 +14,9 @@
     <link href="favicon.ico" rel="shortcut icon" />
     <link href="apple-touch-icon.png" rel="apple-touch-icon" /> -->
     <script src="{{ STATIC_URL }}javascripts/libs/modernizr.min.js"></script>
-    {% block stylesheets %}<link href="{{ STATIC_URL }}stylesheets/all.css" rel="stylesheet" />{% endblock stylesheets %}
+    {% compress css %}
+    {% block stylesheets %}<link href="{{ STATIC_URL }}stylesheets/all.css.scss" rel="stylesheet" />{% endblock stylesheets %}
+    {% endcompress %}
 </head>
 <body>
     {% if messages %}{% include "messages.html" %}{% endif %}

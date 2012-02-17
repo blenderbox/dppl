@@ -103,6 +103,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'app_utils.extra_context.extra_context',
 )
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
 if USE_I18N:
     TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.i18n',)
 
@@ -189,6 +196,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Third Party Django Applications
+    'compressor',
     'django_extensions',
     'easy_thumbnails',
     'filer',
@@ -205,6 +213,12 @@ TEMPLATE_TAGS = (
 ########################
 # APPLICATION SETTINGS #
 ########################
+
+COMPRESS_ENABLED = True
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+)
 
 FILER_URL = MEDIA_URL + 'filer_thumbnails/'
 

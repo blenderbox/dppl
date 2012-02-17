@@ -1,2 +1,8 @@
 First, install virtualenvwrapper and enter your environment: http://www.doughellmann.com/docs/virtualenvwrapper/
 Then, run ./bootstrap.sh if you're on Linux or (hopefully) Mac to install packages, and setup a mysql database.
+
+You need to have sass installed.  
+gem install sass
+
+Damon, can you add this to the bootstrap?  I don't feel like doing it.
+

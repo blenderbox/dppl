@@ -127,20 +127,7 @@ td { vertical-align:top; }
 a:focus, button:focus, input:focus, label:focus, select:focus, textarea:focus { outline:1px dotted #c01339; }
 
 /* Put all the transition elements here */
-a {
-     -o-transition-duration:.15s;
-   -moz-transition-duration:.15s;
--webkit-transition-duration:.15s;
-        transition-duration:.15s;
-     -o-transition-timing-function:ease-in;
-   -moz-transition-timing-function:ease-in;
--webkit-transition-timing-function:ease-in;
-        transition-timing-function:ease-in;
-     -o-transition-property:color, background-color;
-   -moz-transition-property:color, background-color;
--webkit-transition-property:color, background-color;
-        transition-property:color, background-color;
-}
+a { @include transition; @include transition-property('color, background-color'); }
 
 /* CLASSES */
 /* For image replacement */
