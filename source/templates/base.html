@@ -5,38 +5,49 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>Page Title</title>
+    <title>{% block title %}{% endblock %}PiXEL PONG</title>
     <meta name="description" content="" />
     {% block meta %}{% endblock %}
     <meta name="viewport" content="width=device-width" />
     <!--[if ie]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <!-- place these files in the root dir
-    <link href="favicon.ico" rel="shortcut icon" />
-    <link href="apple-touch-icon.png" rel="apple-touch-icon" /> -->
     <script src="{{ STATIC_URL }}javascripts/libs/modernizr.min.js"></script>
     {% compress css %}
-    {% block stylesheets %}<link href="{{ STATIC_URL }}stylesheets/all.css.scss" rel="stylesheet" />{% endblock stylesheets %}
+    <link href="{{ STATIC_URL }}stylesheets/all.css.scss" rel="stylesheet" />
+    {% block stylesheets %}{% endblock stylesheets %}
     {% endcompress %}
 </head>
 <body>
     {% if messages %}{% include "messages.html" %}{% endif %}
     <div id="container">
         <header>
+          <a href="/">
           <h1>PiXEL</h1>
-          <h2>PONG<h2>
+          <h2>PONG</h2>
+          </a>
+          <nav>
+            <ul class="clearfix">
+              <li><a href="#" title="Schedule">Schedule</a></li>
+              <li><a href="#" title="Scores">Scores</a></li>
+              <li><a href="#" title="Teams">Teams</a></li>
+              <li><a href="#" title="Rules">Rules</a></li>
+            </ul>
+          </nav>
         </header>
         {% block content %}{% endblock content %}
+    </div><!-- /container -->
         <footer>
-            Sponsored by
+            Sponsored by <a href="http://thompsonpunke.com" title="Thompson Punke">Thompson Punke</a>
             
             Built and designed by <a href="http://www.blenderbox.com" title="Blenderbox">Blenderbox</a>
         </footer>
-    </div><!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>!window.jQuery && document.write('<script src="javascripts/libs/jquery-1.7.1.min.js"><\/script>')</script>
 <!-- scripts -->
+{% compress js %}
+<script>var STATIC_URL='{{ STATIC_URL }}';</script>
 <script src="{{ STATIC_URL }}javascripts/app/application.js"></script>
 {% block javascripts %}{% endblock javascripts %}
+{% endcompress %}
 <!--[if lt IE 9 ]>
 <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>

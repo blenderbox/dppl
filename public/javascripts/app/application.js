@@ -12,13 +12,13 @@ var APP = (function($) {
     function init() {
         $('a[href=#]').attr('href', 'javascript:;');
         // Open links starting with "http(s)://" in a new window unless they're targeted at this host.
-        $("a[href^=http://],a[href^=https://]").click(open);
+        $("a[href^=http]").click(open);
         // Set up the global ajax
         $.ajaxSetup({ cache: false, error: function errorLog(x, e) { log(x, e); }, type: 'POST' });
         if (!Modernizr.input.placeholder) { placeholder(); }
         yepnope([{
             test:Modernizr.csstransitions,
-            nope:'javascripts/app/css3.js'
+            nope:STATIC_URL + 'javascripts/app/css3.js'
         }]);
     }
     function open(e) {

@@ -39,9 +39,10 @@ audio, canvas, video { display:inline-block; *display:inline; *zoom:1; }
 audio:not([controls]) { display:none; }
 [hidden] { display:none; }
 /* Base */
+html, body { height:100%; }
 html { font-size:100%; overflow-y:auto; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body { background:#cccbc2 url(../images/backgrounds/body.gif); margin:0; }
-body, button, input, select, textarea { color:#444; font:15px 'PassionRegular', sans-serif; line-height:1.22; }
+body, button, input, select, textarea { color:#45443f; font:15px 'PassionRegular', sans-serif; line-height:1.22; }
 /* Links */
 a { color:#f47a4d; text-decoration:none; }
 a:visited { color:#551a8b; }
@@ -127,7 +128,22 @@ td { vertical-align:top; }
 a:focus, button:focus, input:focus, label:focus, select:focus, textarea:focus { outline:1px dotted #c01339; }
 
 /* Put all the transition elements here */
-a { @include transition; @include transition-property('color, background-color'); }
+a {
+     -o-transition-duration:.15s;
+   -moz-transition-duration:.15s;
+-webkit-transition-duration:.15s;
+        transition-duration:.15s;
+     -o-transition-timing-function:ease-in;
+   -moz-transition-timing-function:ease-in;
+-webkit-transition-timing-function:ease-in;
+        transition-timing-function:ease-in;
+     -o-transition-property:color, background-color;
+   -moz-transition-property:color, background-color;
+-webkit-transition-property:color, background-color;
+        transition-property:color, background-color;
+}
+
+header h1, header h2 { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
 
 /* CLASSES */
 /* For image replacement */
@@ -143,12 +159,18 @@ a { @include transition; @include transition-property('color, background-color')
 .alert { color:#ff0000; }
 
 /* LAYOUT */
-#container { margin:0 auto; width:980px; }
-header {  }
+#container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
+header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; }
+header h2 { color:#fff; font-size:51px; line-height:1; padding:0; }
+header nav { border-top:5px solid #fff; border-bottom:1px solid #fff; }
+header ul { line-height:30px; margin:0; padding:0; }
+header li { float:left; line-height:30px; margin:0; padding:0; text-transform:uppercase; }
+header a { color:#6e6d67; display:block; font-size:18px; padding:0 11px; }
 article {  }
 section {  }
 aside {  }
-footer {  }
+
+footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding-top:24px; position:relative; text-align:right; width:980px; }
 
 
 
