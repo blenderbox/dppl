@@ -40,8 +40,8 @@ audio:not([controls]) { display:none; }
 [hidden] { display:none; }
 /* Base */
 html { font-size:100%; overflow-y:auto; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
-body { background:#fff; margin:0; }
-body, button, input, select, textarea { color:#444; font:15px arial, verdana, sans-serif; line-height:1.22; }
+body { background:#cccbc2 url(../images/backgrounds/body.gif); margin:0; }
+body, button, input, select, textarea { color:#444; font:15px 'PassionRegular', sans-serif; line-height:1.22; }
 /* Links */
 a { color:#f47a4d; text-decoration:none; }
 a:visited { color:#551a8b; }
@@ -156,23 +156,12 @@ a {
 .alert { color:#ff0000; }
 
 /* LAYOUT */
-#container { background:#fff; height:auto !important; height:500px; margin:0 auto; min-height:500px; text-align:left; width:960px; }
+#container { margin:0 auto; width:980px; }
 header {  }
 article {  }
 section {  }
 aside {  }
 footer {  }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
