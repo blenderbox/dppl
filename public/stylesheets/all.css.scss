@@ -42,11 +42,11 @@ audio:not([controls]) { display:none; }
 html, body { height:100%; }
 html { font-size:100%; overflow-y:auto; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body { background:#cccbc2 url(../images/backgrounds/body.gif); margin:0; }
-body, button, input, select, textarea { color:#45443f; font:15px 'PassionRegular', sans-serif; font-weight:normal !important; line-height:1.22; }
+body, button, input, select, textarea { color:#5e5d57; font:15px 'PassionRegular', sans-serif; font-weight:normal !important; line-height:1.22; }
 /* Links */
-a { color:#f47a4d; text-decoration:none; }
+a { color:#3c6e88; text-decoration:none; }
 a:visited {  }
-a:hover { color:#c01339; text-decoration:none; }
+a:hover { color:#195879; text-decoration:none; }
 a:focus { outline:thin dotted; }
 a:hover, a:active { outline:0; }
 
@@ -70,7 +70,7 @@ small { font-size:85%; }
 sub, sup { font-size:75%; line-height:0; position:relative; vertical-align:baseline; }
 sup { top:-0.5em; }
 sub { bottom:-0.25em; }
-h1, h2, h3, h4, h5, h6 { color:#000; font-weight:bold; margin:0; padding:10px 0; text-rendering:optimizeLegibility; }
+h1, h2, h3, h4, h5, h6 { color:#45443f; margin:0; padding:10px 0; text-rendering:optimizeLegibility; }
 h1, h1 a { font-size:26px; padding-top:0; }
 h2, h2 a { font-size:24px; }
 h3, h3 a { font-size:22px; }
@@ -159,8 +159,27 @@ input {
         transition-property:box-shadow;
 }
 
-header h1, header h2, label, #sign-in .flag { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
+h1, h2, h3, h4, h5, h6, label, #sign-in .flag { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
 b, strong, .intro, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a { font-family:'PassionBold'; font-weight:normal !important; }
+
+/* Let's get this party started */
+::-webkit-scrollbar { width:12px; }
+/* Track */
+::-webkit-scrollbar-track { 
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    background:#fff;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    background:rgb(126,159,177); 
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive { background:#6FFF00; }
+
 
 /* CLASSES */
 /* For image replacement */
@@ -175,7 +194,7 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 .clear { clear:both; display:block; overflow:hidden; visibility:hidden; width:0; height:0; }
 .alert { color:#ff0000; }
 
-.cols { background:url(../images/grids.png) repeat-y; }
+.cols {  }
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12{ display:inline; float:left; margin:0 10px; position:relative; }
 .cols .col-1 {width:60px;}
 .cols .col-2 {width:140px;}
@@ -191,7 +210,7 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 .cols .col-12 {width:940px;}
 .alpha { margin-left:0; }
 .alpha { margin-right:0; }
-.grid { background-image:url(../images/backgrounds/grid.png); }
+.grid { background:#fff url(../images/backgrounds/grid.png); }
 
 /* LAYOUT */
 #container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
@@ -216,15 +235,21 @@ nav li ul li { margin-bottom:2px; }
 nav li ul a { color:#fff; font-size:14px; display:block; }
 nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 
-#schedule:hover { color:#778c39; }
-#scores:hover { color:#1a9a86; }
-#teams:hover { color:#3c6e88; }
-#rules:hover { color:#ce5811; }
+#schedule > a:hover { color:#778c39; }
+#scores > a:hover { color:#1a9a86; }
+#teams > a:hover { color:#3c6e88; }
+#rules > a:hover { color:#ce5811; }
+
+#schedule ul { background-color:#778c39; left:0; }
+#scores ul { background-color:#1a9a86; }
+#teams ul { background-color:#3c6e88; }
+#rules ul { background-color:#ce5811; }
+
 #sign-in { height:195px; position:absolute; right:0; top:0; width:340px; }
 #sign-in .ir { height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000; }
 #sign-in .ir:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
-#sign-in .flag { color:#fff; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:18px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
-#sign-in .flag.on { opacity:1;
+#sign-in .flag { color:#fff; display:none; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:18px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
+#sign-in .flag.on { display:block; opacity:1;
      -o-transition-property:opacity;
    -moz-transition-property:opacity;
 -webkit-transition-property:opacity;
@@ -258,7 +283,10 @@ footer .thomp:hover { background-position:0 -78px; }
 
 
 
-
+.col-3.rankings {  }
+.col-3.players {}
+.col-2.week { background-color:#cac9bf; width:140px; }
+.col-2.schedule { background-color:#efba00; }
 
 
 

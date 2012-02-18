@@ -26,7 +26,7 @@
           </a>
           <nav>
             <ul class="clearfix">
-              <li><a href="#" class="on" id="schedule" title="Schedule">Schedule</a>
+              <li id="schedule"><a href="#" class="on" title="Schedule">Schedule</a>
                   <ul>
                     <li><a href="#">Blenderbox</a></li>
                     <li><a href="#">Blenderbox</a></li>
@@ -34,7 +34,7 @@
                     <li><a href="#">Blenderbox</a></li>
                   </ul>
               </li>
-              <li><a href="#" id="scores" title="Scores">Scores</a>
+              <li id="scores"><a href="#" title="Scores">Scores</a>
                   <ul>
                     <li><a href="#">Blenderbox</a></li>
                     <li><a href="#">Blenderbox</a></li>
@@ -43,7 +43,7 @@
                     <li><a href="#">Blenderbox</a></li>
                   </ul>
               </li>
-              <li><a href="#" id="teams" title="Teams">Teams</a>
+              <li id="teams"><a href="#" title="Teams">Teams</a>
                   <ul>
                     <li><a href="#">Blenderbox</a></li>
                     <li><a href="#">Blenderbox</a></li>
@@ -55,7 +55,7 @@
                     <li><a href="#">Blenderbox</a></li>
                   </ul>
               </li>
-              <li><a href="#" id="rules" title="Rules">Rules</a>
+              <li id="rules"><a href="#" title="Rules">Rules</a>
                   <ul>
                     <li><a href="#">Blenderbox</a></li>
                     <li><a href="#">Blenderbox</a></li>
@@ -80,6 +80,19 @@
           </div>
         </header>
         {% block content %}{% endblock content %}
+        <div class="col-3 grid rankings">
+          <h3><span class="highlight">ELO</span> Rankings</h3>
+        </div>
+        <div class="col-3 grid players">
+          <h3>Players</h3>
+        </div>
+        <div class="col-2 grid week">
+          <h3>Week 3</h3>
+        </div>
+        <div class="col-2 grid schedule">
+          <h3>Schedule &amp; Scores</h3>
+        </div>
+        
     </div><!-- /container -->
     <footer>
         Sponsored by <a href="http://thompsonpunke.com" class="ir thomp" title="Thompson Punke">Thompson Punke</a>
