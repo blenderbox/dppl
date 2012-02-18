@@ -24,6 +24,9 @@ var APP = (function($) {
             .click(toggleSignInForm)
             .mouseenter(onSignInOver)
             .mouseleave(onSignOut);
+        $('.col-2 a.more')
+            .mouseenter(onMoreOver)
+            .mouseleave(onMouseOut);
     }
     function open(e) {
         e.preventDefault();
@@ -57,6 +60,8 @@ var APP = (function($) {
           $signIn.addClass(on);
         }
     }
+    function onMoreOver(e) { $(e.currentTarget).parent().addClass(on); }
+    function onMouseOut(e) { $(e.currentTarget).parent().removeClass(on); }
     function onSignInOver(e) { $flag.addClass(on); }
     function onSignOut(e) { $flag.removeClass(on); }
     

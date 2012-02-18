@@ -73,7 +73,7 @@ sub { bottom:-0.25em; }
 h1, h2, h3, h4, h5, h6 { color:#45443f; margin:0; padding:10px 0; text-rendering:optimizeLegibility; }
 h1, h1 a { font-size:26px; padding-top:0; }
 h2, h2 a { font-size:24px; }
-h3, h3 a { font-size:22px; }
+h3, h3 a { font-size:21px; }
 h4, h4 a { font-size:18px; }
 h5, h5 a { font-size:16px; }
 h6, h6 a { font-size:14px; }
@@ -133,7 +133,7 @@ td { vertical-align:top; }
 ::-moz-placeholder { color:#a2a19a; text-transform:uppercase; }
 
 /* Put all the transition elements here */
-a, button, input, #sign-in form, #sign-in .flag {
+a, button, input, #sign-in form, #sign-in .flag, .col-2.week {
      -o-transition-duration:.15s;
    -moz-transition-duration:.15s;
 -webkit-transition-duration:.15s;
@@ -285,8 +285,31 @@ footer .thomp:hover { background-position:0 -78px; }
 
 .col-3.rankings {  }
 .col-3.players {}
-.col-2.week { background-color:#cac9bf; width:140px; }
+
+.col-2.week { background-color:#cac9bf; margin-top:21px; padding:8px; width:140px;
+     -o-transition-property:background-color, box-shadow;
+   -moz-transition-property:background-color, box-shadow;
+-webkit-transition-property:background-color, box-shadow;
+        transition-property:background-color, box-shadow;
+}
+.col-2.week.on { background-color:#94aa54;
+   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+-webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+}
+.col-2.week h3 { background:#fff; height:39px; line-height:39px; margin:-21px 8px 10px; padding:0 0 0 10px; }
+.col-2.week ul, .col-2.week li { background:none; margin:0; padding:0; }
+.col-2.week ul { float:left; margin-bottom:10px; width:97px; }
+.col-2.week li a { background:#fff; color:#45443f; display:block; border-top:1px solid #efba00; height:30px; line-height:30px; padding:0 0 0 8px; }
+.col-2.week li a:hover { color:#3c6e88; }
+.col-2.week ul li:first-child a { border-top:0; }
+
+.ir.division { background-color:#efba00; background-image:url(../images/backgrounds/divisions.png); background-position:8px center; height:150px; float:left; width:28px; }
+.ir.badger { background-color:#45443f; background-position:-42px center; }
+
 .col-2.schedule { background-color:#efba00; }
+a.more { color:#45443f; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
+a.more:hover { color:#fff; }
 
 
 
