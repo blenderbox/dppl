@@ -27,6 +27,10 @@ var APP = (function($) {
         $('a.more')
             .mouseenter(onMoreOver)
             .mouseleave(onMouseOut);
+        $('.bar').each(function(idx, el){
+            $el = $(el);
+            $el.delay(150).width(($el.data('percent') / 100) * 170);
+        });
     }
     function open(e) {
         e.preventDefault();

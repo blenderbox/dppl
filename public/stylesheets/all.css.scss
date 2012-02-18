@@ -49,7 +49,6 @@ a:visited {  }
 a:hover { color:#195879; text-decoration:none; }
 a:focus { outline:thin dotted; }
 a:hover, a:active { outline:0; }
-
 p { margin:0; padding:10px 0; }
 /* Typography */
 abbr[title] { border-bottom:1px dotted; }
@@ -71,8 +70,8 @@ sub, sup { font-size:75%; line-height:0; position:relative; vertical-align:basel
 sup { top:-0.5em; }
 sub { bottom:-0.25em; }
 h1, h2, h3, h4, h5, h6 { color:#45443f; margin:0; padding:10px 0; text-rendering:optimizeLegibility; }
-h1, h1 a { font-size:26px; padding-top:0; }
-h2, h2 a { font-size:24px; }
+h1, h1 a { color:#fff; font-size:36px; padding-top:0; text-transform:uppercase; }
+h2, h2 a { color:#fff; font-size:24px; }
 h3, h3 a { font-size:21px; }
 h4, h4 a { font-size:18px; }
 h5, h5 a { font-size:16px; }
@@ -133,7 +132,7 @@ td { vertical-align:top; }
 ::-moz-placeholder { color:#a2a19a; text-transform:uppercase; }
 
 /* Put all the transition elements here */
-a, button, input, #sign-in form, #sign-in .flag, .col-2, .col-6 {
+a, button, input, #sign-in form, #sign-in .flag, .col-2, .col-6, .standings .bar {
      -o-transition-duration:.15s;
    -moz-transition-duration:.15s;
 -webkit-transition-duration:.15s;
@@ -159,8 +158,8 @@ input {
         transition-property:box-shadow;
 }
 
-h1, h2, h3, h4, h5, h6, label, #sign-in .flag { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
-b, strong, .intro, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a { font-family:'PassionBold'; font-weight:normal !important; }
+h1, h2, h3, h4, h5, h6, label, #sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
+b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy { font-family:'PassionBold'; font-weight:normal !important; }
 
 /* Let's get this party started */
 ::-webkit-scrollbar { width:12px; }
@@ -195,6 +194,7 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 .clear { clear:both; display:block; overflow:hidden; visibility:hidden; width:0; height:0; }
 .alert { color:#ff0000; }
 
+/* These have been tweaked */
 .cols {  }
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12{ display:inline; float:left; margin:0 10px; position:relative; }
 .cols .col-1 {width:60px;}
@@ -204,11 +204,11 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 .cols .col-5 {width:380px;}
 .cols .col-6 {width:460px;}
 .cols .col-7 {width:540px;}
-.cols .col-8 {width:620px;}
+.cols .col-8 {width:640px; margin-right:-10px; }
 .cols .col-9 {width:700px;}
 .cols .col-10 {width:780px;}
 .cols .col-11 {width:860px;}
-.cols .col-12 {width:940px;}
+.cols .col-12 {width:980px; margin-left:0; margin-right:0;}
 .alpha { margin-left:0; }
 .alpha { margin-right:0; }
 .grid { background:#fff url(../images/backgrounds/grid.png); }
@@ -216,10 +216,13 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 a.more { color:#45443f; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
 a.more:hover { color:#fff; }
 
+.ir.division { background-color:#efba00; background-image:url(../images/backgrounds/divisions.png); background-position:8px center; height:150px; float:left; width:28px; }
+.ir.badger { background-color:#45443f; background-position:-42px center; }
+
 /* LAYOUT */
 #container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
 header { padding:36px 0 31px; width:320px; }
-header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; }
+header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; text-transform:none; }
 header h2 { color:#fff; font-size:51px; line-height:1; padding:0;
 text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px; }
 /* Look at all these selectors!  Can we optimize this? */
@@ -322,9 +325,6 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-2.week li a:hover, .col-2.schedule li a:hover { color:#3c6e88; }
 .col-2.week ul li:first-child a { border-top:0; }
 
-.ir.division { background-color:#efba00; background-image:url(../images/backgrounds/divisions.png); background-position:8px center; height:150px; float:left; width:28px; }
-.ir.badger { background-color:#45443f; background-position:-42px center; }
-
 .col-2.schedule { background-color:#efba00; padding:8px; }
 .col-2.schedule.on { background-color:#45443f; }
 .col-2.schedule h3 { color:#fff; font-size:18px; text-transform:uppercase; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
@@ -333,24 +333,24 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-2.schedule a.more { color:#fff; }
 .col-2.schedule a.badger { color:#8f8e88; }
 
-.scoreboard { background-color:#cac9c0; margin-bottom:20px; padding:30px 10px 10px; position:relative;
+.col-6.scoreboard { background-color:#cac9c0; margin-bottom:20px; padding:30px 10px 10px; position:relative;
      -o-transition-property:background-color, box-shadow;
    -moz-transition-property:background-color, box-shadow;
 -webkit-transition-property:background-color, box-shadow;
         transition-property:background-color, box-shadow;
 }
-.scoreboard.on { background-color:#6ccabd;
+.col-6.scoreboard.on { background-color:#6ccabd;
    -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
         box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 }
-.scoreboard.on a.more { color:#6ccabd; }
-.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
-.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
-.scoreboard .division { height:114px; }
-.scoreboard ul, .scoreboard li { background:none; margin:0; padding:0; }
-.scoreboard > ul { background:#fff; float:left; height:114px; margin-bottom:10px; padding:19px 0 0 10px; width:413px; }
-.scoreboard > ul > li { float:left; height:76px; margin-right:4px; width:76px; }
+.col-6.scoreboard.on a.more { color:#6ccabd; }
+.col-6.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
+.col-6.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
+.col-6.scoreboard .division { height:114px; }
+.col-6.scoreboard ul, .scoreboard li { background:none; margin:0; padding:0; }
+.col-6.scoreboard > ul { background:#fff; float:left; height:114px; margin-bottom:10px; padding:19px 0 0 10px; width:413px; }
+.col-6.scoreboard > ul > li { float:left; height:76px; margin-right:4px; width:76px; }
 
 /* Mmmmmmmmm pie. */
 .pie { position:relative; }
@@ -399,11 +399,60 @@ footer .thomp:hover { background-position:0 -78px; }
        transform:rotate(90deg);
 }
 .crc { background:#fff; height:64px; line-height:0.9; padding:12px 0 0 0; position:absolute; left:6px; text-align:center; top:6px; width:64px; z-index:10;
-  -moz-border-radius:64px;
-  -webkit-border-radius:64px;
-  border-radius:64px;
+   -moz-border-radius:64px;
+-webkit-border-radius:64px;
+        border-radius:64px;
 }
 .crc .loser { color:#9e9d97; display:inline-block; text-align:center; }
+
+.standings { background-color:#7a7a69; margin-bottom:20px; padding:30px 14px; }
+.standings h2 { border-bottom:4px solid #9e9e93; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0 0 10px 4px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
+.standings .left { float:left; width:315px; }
+.standings .right { float:left; width:295px; }
+.standings header { color:#fff; font-size:16px; padding:0; text-transform:uppercase; }
+.standings span { display:block; float:left; height:26px; line-height:26px; }
+.standings .rank { padding-left:10px; width:34px; }
+.standings .team { width:43px; }
+.standings .wins { width:23px; }
+.standings .losses { margin-right:1px; width:23px; }
+.standings ul, .standings li { background:none; clear:both; margin:0; padding:0; }
+.standings li { height:27px; }
+.standings li span { background:#fff; color:#8f8e88; }
+.standings li .team { color:#45443f; }
+.standings .bar { background:#efba00; color:#fff; float:left; height:26px; line-height:26px; text-indent:10px; width:0;
+     -o-transition-duration:.5s;
+   -moz-transition-duration:.5s;
+-webkit-transition-duration:.5s;
+        transition-duration:.5s;
+     -o-transition-property:width;
+   -moz-transition-property:width;
+-webkit-transition-property:width;
+        transition-property:width;
+}
+.standings .badger .bar { background:#45443f; }
+
+.schedule { background-color:#94aa54; margin-bottom:20px; padding:0 20px 20px; }
+.schedule h1 { background:#fff; color:#45443f; display:inline-block; font-size:36px; height:70px; line-height:70px; margin:-20px 0 20px 0; padding:0 18px;
+   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+-webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);}
+
+.rules h1, .scoreboard h1, .teams h1 { text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
+
+.scoreboard { background-color:#6ccabd; margin-bottom:20px; padding:20px 10px; }
+.scoreboard h1 { line-height:1; padding:20px; }
+
+
+.teams { background-color:#518391; margin-bottom:20px; }
+
+.rules { background-color:#ce5811; margin-bottom:40px; padding:20px; }
+.rules h1 { font-size:48px; height:68px; line-height:68px; padding:0 0 0 18px; }
+.rules .copy { background:#fff; line-height:1.33; padding:39px 39px 60px; font-size:21px; }
+.rules .copy strong { font-size:34px; margin-right:8px; }
+.rules .copy p { padding:0 0 30px; }
+
+
+
 
 @media (max-width:480px) { }
 @media (max-width:768px) { }
