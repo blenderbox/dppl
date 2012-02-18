@@ -133,7 +133,7 @@ td { vertical-align:top; }
 ::-moz-placeholder { color:#a2a19a; text-transform:uppercase; }
 
 /* Put all the transition elements here */
-a, button, input, #sign-in form, #sign-in .flag, .col-2 {
+a, button, input, #sign-in form, #sign-in .flag, .col-2, .col-6 {
      -o-transition-duration:.15s;
    -moz-transition-duration:.15s;
 -webkit-transition-duration:.15s;
@@ -280,11 +280,10 @@ footer .bbox:hover { background-position:-125px -78px; }
 footer .thomp { background-position:0px -40px; height:29px; margin:0 16px 0 8px; width:84px; }
 footer .thomp:hover { background-position:0 -78px; }
 
+/* HOME */
 .intro { color:#fff; font-size:24px; line-height:1.25; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 
-
-
-
+/* MODULES */
 .col-3.rankings { padding:30px 10px 10px; }
 .col-3.rankings h3 { border-bottom:4px solid #8f8e88; line-height:1; margin:0 0 10px; padding:0 0 10px 4px; text-transform:uppercase; }
 .col-3.rankings .highlight { color:#3c6e88; }
@@ -334,16 +333,77 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-2.schedule a.more { color:#fff; }
 .col-2.schedule a.badger { color:#8f8e88; }
 
+.scoreboard { background-color:#cac9c0; margin-bottom:20px; padding:30px 10px 10px; position:relative;
+     -o-transition-property:background-color, box-shadow;
+   -moz-transition-property:background-color, box-shadow;
+-webkit-transition-property:background-color, box-shadow;
+        transition-property:background-color, box-shadow;
+}
+.scoreboard.on { background-color:#6ccabd;
+   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+-webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+}
+.scoreboard.on a.more { color:#6ccabd; }
+.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
+.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
+.scoreboard .division { height:114px; }
+.scoreboard ul, .scoreboard li { background:none; margin:0; padding:0; }
+.scoreboard > ul { background:#fff; float:left; height:114px; margin-bottom:10px; padding:19px 0 0 10px; width:413px; }
+.scoreboard > ul > li { float:left; height:76px; margin-right:4px; width:76px; }
 
-
-
-
-
-
-
-
-
-
+/* Mmmmmmmmm pie. */
+.pie { position:relative; }
+.pie p { height:76px; margin:0; padding:0; position:absolute; top:0; left:0; width:76px; }
+.pie span { display:block; height:76px; width:38px; }
+.pie-left {
+       -moz-border-radius-topleft:38px;
+    -moz-border-radius-bottomleft:38px;
+-webkit-border-bottom-left-radius:38px;
+   -webkit-border-top-left-radius:38px;
+           border-top-left-radius:38px;
+        border-bottom-left-radius:38px;
+}
+.pie-right { margin-left:38px;
+       -moz-border-radius-topright:38px;
+    -moz-border-radius-bottomright:38px;
+   -webkit-border-top-right-radius:38px;
+-webkit-border-bottom-right-radius:38px;
+           border-top-right-radius:38px;
+        border-bottom-right-radius:38px;
+}
+.c1-l span, .c1-r span { background:#dad9d1; }
+.c2-l span, .c2-r span { background:#45443f; }
+.pie ul :nth-child(1) p {
+   -moz-transform:rotate(180deg);
+     -o-transform:rotate(180deg);
+-webkit-transform:rotate(180deg);
+        transform:rotate(180deg);
+}
+.pie ul :nth-child(2) p {
+   -moz-transform:rotate(180deg);
+     -o-transform:rotate(180deg);
+-webkit-transform:rotate(180deg);
+        transform:rotate(180deg);
+}
+.pie ul :nth-child(3) p {
+   -moz-transform:rotate(180deg);
+     -o-transform:rotate(180deg);
+-webkit-transform:rotate(180deg);
+        transform:rotate(180deg);
+}
+.pie ul :nth-child(4) p {
+   -moz-transform:rotate(90deg);
+     -o-transform:rotate(90deg);
+-webkit-transform:rotate(90deg);
+       transform:rotate(90deg);
+}
+.crc { background:#fff; height:64px; line-height:0.9; padding:12px 0 0 0; position:absolute; left:6px; text-align:center; top:6px; width:64px; z-index:10;
+  -moz-border-radius:64px;
+  -webkit-border-radius:64px;
+  border-radius:64px;
+}
+.crc .loser { color:#9e9d97; display:inline-block; text-align:center; }
 
 @media (max-width:480px) { }
 @media (max-width:768px) { }
