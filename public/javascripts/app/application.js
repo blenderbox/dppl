@@ -24,7 +24,7 @@ var APP = (function($) {
             .click(toggleSignInForm)
             .mouseenter(onSignInOver)
             .mouseleave(onSignOut);
-        $('.col-2 a.more')
+        $('a.more')
             .mouseenter(onMoreOver)
             .mouseleave(onMouseOut);
     }

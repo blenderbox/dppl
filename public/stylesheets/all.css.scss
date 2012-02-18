@@ -133,7 +133,7 @@ td { vertical-align:top; }
 ::-moz-placeholder { color:#a2a19a; text-transform:uppercase; }
 
 /* Put all the transition elements here */
-a, button, input, #sign-in form, #sign-in .flag, .col-2.week {
+a, button, input, #sign-in form, #sign-in .flag, .col-2 {
      -o-transition-duration:.15s;
    -moz-transition-duration:.15s;
 -webkit-transition-duration:.15s;
@@ -175,7 +175,8 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius:10px;
     border-radius:10px;
-    background:rgb(126,159,177); 
+    background:rgb(126,159,177);
+    cursor:pointer;
     -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5); 
 }
 ::-webkit-scrollbar-thumb:window-inactive { background:#6FFF00; }
@@ -211,6 +212,9 @@ b, strong, .intro, button, input[type="button"], input[type="reset"], input[type
 .alpha { margin-left:0; }
 .alpha { margin-right:0; }
 .grid { background:#fff url(../images/backgrounds/grid.png); }
+
+a.more { color:#45443f; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
+a.more:hover { color:#fff; }
 
 /* LAYOUT */
 #container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
@@ -248,13 +252,12 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 #sign-in { height:195px; position:absolute; right:0; top:0; width:340px; }
 #sign-in .ir { height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000; }
 #sign-in .ir:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
-#sign-in .flag { color:#fff; display:none; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:18px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
-#sign-in .flag.on { display:block; opacity:1;
+#sign-in .flag { color:#fff; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:-200px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px;
      -o-transition-property:opacity;
    -moz-transition-property:opacity;
 -webkit-transition-property:opacity;
-        transition-property:opacity;
-}
+        transition-property:opacity; }
+#sign-in .flag.on { opacity:1; top:18px; }
 #sign-in form { background-color:#994148; height:100%; padding:20px; position:absolute; right:0; top:-200px; width:100%; z-index:1900;
    -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
@@ -282,11 +285,27 @@ footer .thomp:hover { background-position:0 -78px; }
 
 
 
+.col-3.rankings { padding:30px 10px 10px; }
+.col-3.rankings h3 { border-bottom:4px solid #8f8e88; line-height:1; margin:0 0 10px; padding:0 0 10px 4px; text-transform:uppercase; }
+.col-3.rankings .highlight { color:#3c6e88; }
+.col-3.rankings ul, .col-3.rankings li { background:none; margin:0; padding:0; }
+.col-3.rankings ul { height:390px; overflow-y:auto; }
+.col-3.rankings li { border-top:1px solid #8f8e88; padding:14px 10px 14px 0; }
+.col-3.rankings li:first-child { border-top:0; padding-top:1px; }
+.col-3.rankings .img-wrap { background:#fff; float:left; height:50px; margin-right:5px; width:50px;
+-webkit-border-radius:50px;
+        border-radius:50px;
+}
+.col-3.rankings img { margin:3px;
+-webkit-border-radius:46px;
+        border-radius:46px;
+}
+.col-3.rankings .right { float:left; width:124px; }
+.col-3.rankings a { text-transform:uppercase; }
 
-.col-3.rankings {  }
-.col-3.players {}
+.col-3.players ul { height:310px; }
 
-.col-2.week { background-color:#cac9bf; margin-top:21px; padding:8px; width:140px;
+.col-2.week { background-color:#cac9bf; margin-top:21px; padding:0 8px 8px; width:140px;
      -o-transition-property:background-color, box-shadow;
    -moz-transition-property:background-color, box-shadow;
 -webkit-transition-property:background-color, box-shadow;
@@ -300,16 +319,20 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-2.week h3 { background:#fff; height:39px; line-height:39px; margin:-21px 8px 10px; padding:0 0 0 10px; }
 .col-2.week ul, .col-2.week li { background:none; margin:0; padding:0; }
 .col-2.week ul { float:left; margin-bottom:10px; width:97px; }
-.col-2.week li a { background:#fff; color:#45443f; display:block; border-top:1px solid #efba00; height:30px; line-height:30px; padding:0 0 0 8px; }
-.col-2.week li a:hover { color:#3c6e88; }
+.col-2.week li a, .col-2.schedule li a { background:#fff; color:#45443f; display:block; border-top:1px solid #efba00; height:30px; line-height:30px; padding:0 0 0 8px; }
+.col-2.week li a:hover, .col-2.schedule li a:hover { color:#3c6e88; }
 .col-2.week ul li:first-child a { border-top:0; }
 
 .ir.division { background-color:#efba00; background-image:url(../images/backgrounds/divisions.png); background-position:8px center; height:150px; float:left; width:28px; }
 .ir.badger { background-color:#45443f; background-position:-42px center; }
 
-.col-2.schedule { background-color:#efba00; }
-a.more { color:#45443f; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
-a.more:hover { color:#fff; }
+.col-2.schedule { background-color:#efba00; padding:8px; }
+.col-2.schedule.on { background-color:#45443f; }
+.col-2.schedule h3 { color:#fff; font-size:18px; text-transform:uppercase; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
+.col-2.schedule ul, .col-2.schedule li { background:none; margin:0; padding:0; }
+.col-2.schedule ul { margin-bottom:10px; }
+.col-2.schedule a.more { color:#fff; }
+.col-2.schedule a.badger { color:#8f8e88; }
 
 
 

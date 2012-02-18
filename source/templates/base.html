@@ -18,7 +18,7 @@
 </head>
 <body>
     {% if messages %}{% include "messages.html" %}{% endif %}
-    <div id="container" class="cols">
+    <div id="container" class="cols clearfix">
         <header>
           <a href="/" id="logo">
           <h1>PiXEL</h1>
@@ -82,9 +82,73 @@
         {% block content %}{% endblock content %}
         <div class="col-3 grid rankings">
           <h3><span class="highlight">ELO</span> Rankings</h3>
+          <ul>
+            <li class="clearfix">
+              <div class="img-wrap">
+                <img src="{{ STATIC_URL }}images/temp.jpg" alt="John Doe" height="46" width="46" />
+              </div>
+              <div class="right">
+                2299<br/>
+                Rachel Schartzenhaller<br/>
+                <a href="#">The Barbarian Group (TBG)</a>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="img-wrap">
+                <img src="{{ STATIC_URL }}images/temp.jpg" alt="John Doe" height="46" width="46" />
+              </div>
+              <div class="right">
+                2299<br/>
+                Rachel Schartzenhaller<br/>
+                <a href="#">The Barbarian Group (TBG)</a>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="img-wrap">
+                <img src="{{ STATIC_URL }}images/temp.jpg" alt="John Doe" height="46" width="46" />
+              </div>
+              <div class="right">
+                2299<br/>
+                Rachel Schartzenhaller<br/>
+                <a href="#">The Barbarian Group (TBG)</a>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="img-wrap">
+                <img src="{{ STATIC_URL }}images/temp.jpg" alt="John Doe" height="46" width="46" />
+              </div>
+              <div class="right">
+                2299<br/>
+                Rachel Schartzenhaller<br/>
+                <a href="#">The Barbarian Group (TBG)</a>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="col-3 grid players">
+        <div class="col-3 grid rankings players">
           <h3>Players</h3>
+          <ul>
+            <li class="clearfix">
+              <div class="img-wrap">
+                <img src="{{ STATIC_URL }}images/temp.jpg" alt="John Doe" height="46" width="46" />
+              </div>
+              <div class="right">
+                2299<br/>
+                Rachel Schartzenhaller<br/>
+                <a href="#">The Barbarian Group (TBG)</a>
+              </div>
+            </li>
+            <li class="clearfix">
+              <div class="img-wrap">
+                <img src="{{ STATIC_URL }}images/temp.jpg" alt="John Doe" height="46" width="46" />
+              </div>
+              <div class="right">
+                2299<br/>
+                Rachel Schartzenhaller<br/>
+                <a href="#">The Barbarian Group (TBG)</a>
+              </div>
+            </li>
+          </ul>
         </div>
         <div class="col-2 grid week">
           <h3>Week 3</h3>
@@ -110,6 +174,20 @@
         </div>
         <div class="col-2 grid schedule">
           <h3>Schedule &amp; Scores</h3>
+          <ul>
+            <li><a href="#">BBX 4 RGA 2</a></li>
+            <li><a href="#" class="badger">RGA 3 LBi 1</a></li>
+            <li><a href="#">UC @ TBG</a></li>
+            <li><a href="#">BS @ HGE</a></li>
+            <li><a href="#" class="badger">UC @ TBG</a></li>
+            <li><a href="#">BBX @ RGA</a></li>
+            <li><a href="#">RGA @ LBi</a></li>
+            <li><a href="#">UC @ TBG</a></li>
+            <li><a href="#">BS @ HGE</a></li>
+            <li><a href="#">UC @ TBG</a></li>
+          </ul>
+          <a href="#" class="more">Full schedule &raquo;</a>
+          <a href="#" class="more">Scoreboard &raquo;</a>
         </div>
         
     </div><!-- /container -->
