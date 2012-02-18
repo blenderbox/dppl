@@ -18,7 +18,7 @@
 </head>
 <body>
     {% if messages %}{% include "messages.html" %}{% endif %}
-    <div id="container">
+    <div id="container" class="cols">
         <header>
           <a href="/" id="logo">
           <h1>PiXEL</h1>
@@ -32,6 +32,16 @@
               <li><a href="#" title="Rules">Rules</a></li>
             </ul>
           </nav>
+          <div id="sign-in">
+            <a href="#" class="ir">Sign in</a>
+            <span class="flag">Pros only</span>
+            <form class="grid">
+              <label for="username">Your Serve.</label>
+              <input id="username" type="email" placeholder="Username" required="required" />
+              <input id="password" type="password" placeholder ="Password" required="required" />
+              <button type="submit">Enter</button>
+            </form>
+          </div>
         </header>
         {% block content %}{% endblock content %}
     </div><!-- /container -->

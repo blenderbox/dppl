@@ -5,7 +5,7 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 (function(){try{console.log();return window.console;}catch(a){return (window.console={});}}());
 
 var APP = (function($) {
-    var app = {}, $el;
+    var app = {}, $el, $signIn = $('#sign-in form'), $flag = $('#sign-in .flag'), on = 'on';
     // Public functions
     // app.foo = function() {  };
     // Private functions
@@ -20,6 +20,10 @@ var APP = (function($) {
             test:Modernizr.csstransitions,
             nope:STATIC_URL + 'javascripts/app/css3.js'
         }]);
+        $('#sign-in a')
+            .click(toggleSignInForm)
+            .mouseenter(onSignInOver)
+            .mouseleave(onSignOut);
     }
     function open(e) {
         e.preventDefault();
@@ -44,6 +48,16 @@ var APP = (function($) {
             $el.blur();
         });
     }
+    function toggleSignInForm(e) {
+        if ($signIn.hasClass(on)) { $signIn.removeClass(on); }
+        else {
+          $signIn.find('input:first').focus();
+          $signIn.addClass(on);
+        }
+    }
+    function onSignInOver(e) { $flag.addClass(on); }
+    function onSignOut(e) { $flag.removeClass(on); }
+    
     // Call the init function on load
     $(init);
     return app;
