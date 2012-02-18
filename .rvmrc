@@ -3,6 +3,8 @@
 ruby_string="ruby-1.9.3"
 gemset_name="ddpl"
 
+workon dppl
+
 if rvm list strings | grep -q "${ruby_string}" ; then
 
   # Load or create the specified environment

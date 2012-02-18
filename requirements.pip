@@ -3,6 +3,8 @@ MySQL-python==1.2.3
 PIL==1.1.7
 South==0.7.3
 Werkzeug==0.8.1
+django-appconf==0.4.1
+django-compressor==1.1.2
 django-debug-toolbar==0.8.5
 django-extensions==0.7.1
 -e git://github.com/stefanfoulis/django-filer.git@19c416905cf1dfe492aed6ae8f1963cccb5517e5#egg=django_filer-develop

@@ -49,8 +49,10 @@ var APP = (function($) {
         });
     }
     function toggleSignInForm(e) {
-        if ($signIn.hasClass(on)) { $signIn.removeClass(on); }
-        else {
+        e.stopPropagation();
+        if ($signIn.hasClass(on)) {
+          $signIn.removeClass(on);
+        } else {
           $signIn.find('input:first').focus();
           $signIn.addClass(on);
         }
