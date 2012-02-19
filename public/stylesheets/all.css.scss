@@ -222,6 +222,7 @@ header { padding:36px 0 31px; width:320px; }
 header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; text-transform:none; }
 header h2 { color:#fff; font-size:51px; line-height:1; padding:0;
 text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px; }
+
 /* Look at all these selectors!  Can we optimize this? */
 nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px; }
 nav > ul { line-height:30px; margin:0; padding:0; position:relative; }
@@ -230,7 +231,7 @@ nav > ul > li > a { color:#6e6d67; display:block; font-size:18px; padding:0 19px
 nav > ul > li > a.on { color:#fff; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 nav > ul > li:hover ul { display:block; }
 nav > ul > li :last-child a { padding:0 10px 0 18px; }
-nav li ul { background:#5a839a url(../images/backgrounds/grid.png); display:none; padding:13px 10px; position:absolute; width:220px; left:-10px; top:30px; z-index:200;
+nav li ul { background:#5a839a url(../images/backgrounds/grid.png); display:none; padding:13px 10px; position:absolute; width:220px; left:-10px; top:30px; z-index:9999;
    -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
         box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
@@ -492,7 +493,6 @@ footer .thomp:hover { background-position:0 -78px; }
         border-radius:60px;
 }
 
-
 .teams { background-color:#518391; margin-bottom:20px; }
 .teams .left { float:left; padding:0 0 20px 10px; width:220px; }
 .teams h1 { border-bottom:4px solid #d0cfcc; margin:0 10px 11px 0; padding:24px 10px 6px 6px; }
@@ -514,6 +514,57 @@ footer .thomp:hover { background-position:0 -78px; }
 .rules .copy { background:#fff; line-height:1.33; padding:39px 39px 60px; font-size:21px; }
 .rules .copy strong { font-size:34px; margin-right:8px; }
 .rules .copy p { padding:0 0 30px; }
+
+.dots a { display:block; margin-bottom:20px; position:relative; }
+.dots a, .dots .ir { background-position:0 -125px; height:79px; width:79px; }
+.dots .ir.back { background-position:-125px -125px; }
+.dots .score-dot .ir { background-position:0 -225px; }
+.dots .score-dot .ir.back { background-position:-125px -225px; }
+.dots .merch-dot .ir { background-position:0 -325px; }
+.dots .merch-dot .ir.back { background-position:-125px -325px; }
+
+.dots a .front { left:0; position:absolute; top:0; z-index:900;
+    -webkit-transform:rotateY(0deg);
+-webkit-transform-style:preserve-3d;
+ -webkit-backface-visibility:hidden;
+
+    -moz-transform:rotateY(0deg);
+-moz-transform-style:preserve-3d;
+ -moz-backface-visibility:hidden;
+
+     -o-transition:all .4s ease-in-out;
+    -ms-transition:all .4s ease-in-out;
+   -moz-transition:all .4s ease-in-out;
+-webkit-transition:all .4s ease-in-out;
+        transition:all .4s ease-in-out;
+}
+.dots a:hover .front { z-index:900;
+-webkit-transform:rotateY(180deg);
+   -moz-transform:rotateY(180deg);
+}
+
+.dots a .back { left:0; position:absolute; top:0; z-index:800;
+ -webkit-transform:rotateY(-180deg);
+-webkit-transform-style:preserve-3d;
+ -webkit-backface-visibility:hidden;
+
+ -moz-transform:rotateY(-180deg);
+-moz-transform-style:preserve-3d;
+ -moz-backface-visibility:hidden;
+
+     -o-transition:all .4s ease-in-out;
+    -ms-transition:all .4s ease-in-out;
+   -moz-transition:all .4s ease-in-out;
+-webkit-transition:all .4s ease-in-out;
+        transition:all .4s ease-in-out;
+}
+
+.dots a:hover .back { z-index:1000;
+-webkit-transform:rotateY(0deg);
+   -moz-transform:rotateY(0deg);
+}
+
+
 
 
 
