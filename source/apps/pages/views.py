@@ -10,4 +10,4 @@ def index(request):
     """
     today = datetime.date.today()
 
-    return render_response(request, 'homepage/index.html', {})
+    return render_response(request, 'pages/index.html', {})

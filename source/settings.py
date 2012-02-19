@@ -182,7 +182,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 PROJECT_APPS = (
     'apps.accounts',
-    'apps.homepage',
+    'apps.pages',
 )
 
 INSTALLED_APPS = (

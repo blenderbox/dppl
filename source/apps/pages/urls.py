@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.conf.urls.defaults import patterns, url
 
 
-urlpatterns = patterns('apps.homepage.views',
+urlpatterns = patterns('apps.pages.views',
     # /
-    url(r'^$', 'index', name='homepage_index'),
+    url(r'^$', 'index', name='pages_index'),
 )
