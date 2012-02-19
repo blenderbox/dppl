@@ -302,7 +302,7 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-border-radius:46px;
         border-radius:46px;
 }
-.col-3.rankings .right { float:left; width:124px; }
+.col-3.rankings .right { float:left; width:122px; }
 .col-3.rankings a { text-transform:uppercase; }
 
 .col-3.players ul { height:310px; }
@@ -355,7 +355,8 @@ footer .thomp:hover { background-position:0 -78px; }
 /* Mmmmmmmmm pie. */
 .pie { position:relative; }
 .pie p { height:76px; margin:0; padding:0; position:absolute; top:0; left:0; width:76px; }
-.pie span { display:block; height:76px; width:38px; }
+.pie ul { height:76px; margin:0; overflow:hidden; padding:0; width:76px; }
+.pie li span { display:block; height:76px; width:38px; }
 .pie-left {
        -moz-border-radius-topleft:38px;
     -moz-border-radius-bottomleft:38px;
@@ -398,10 +399,10 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-transform:rotate(90deg);
        transform:rotate(90deg);
 }
-.crc { background:#fff; height:64px; line-height:0.9; padding:12px 0 0 0; position:absolute; left:6px; text-align:center; top:6px; width:64px; z-index:10;
-   -moz-border-radius:64px;
--webkit-border-radius:64px;
-        border-radius:64px;
+.crc { background:#fff; height:62px; line-height:0.9; padding:12px 0 0 0; position:absolute; left:7px; text-align:center; top:7px; width:62px; z-index:10;
+   -moz-border-radius:62px;
+-webkit-border-radius:62px;
+        border-radius:62px;
 }
 .crc .loser { color:#9e9d97; display:inline-block; text-align:center; }
 
@@ -448,12 +449,45 @@ footer .thomp:hover { background-position:0 -78px; }
 
 .rules h1, .scoreboard h1, .teams h1 { text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 
-.scoreboard { background-color:#6ccabd; margin-bottom:20px; padding:20px 10px; }
-.scoreboard h1 { line-height:1; padding:20px; }
-.scoreboard .copy { background:#fff; padding:30px 20px; }
-.scoreboard .row { height:115px; }
-.scoreboard .row ul { float:left; }
-.scoreboard .row ul > li { border-bottom:1px solid #d0cfcc; float:left; height:115px; padding:19px 0; width:84px; }
+.col-12.scoreboard { background-color:#6ccabd; margin-bottom:20px; padding:20px 10px; }
+.col-12.scoreboard h1 { line-height:1; padding:6px 20px 16px 20px; }
+.col-12.scoreboard .copy { background:#fff; padding:30px 20px; }
+.col-12.scoreboard .row { border-bottom:1px solid #d0cfcc; height:115px; padding-top:19px; overflow:hidden; width:410px; }
+.col-12.scoreboard .weeks { float:left; margin-right:20px; width:59px; }
+.col-12.scoreboard .weeks h3 { border-bottom:1px solid #d0cfcc; height:115px; padding:36px 0 0 9px; }
+.col-12.scoreboard .weeks span { background:#d0cfcc; color:#fff; display:block; height:40px; line-height:40px; text-align:center; width:40px;
+   -moz-border-radius:40px;
+-webkit-border-radius:40px;
+        border-radius:40px;
+}
+.col-12.scoreboard .honey { float:left; margin-right:20px; }
+.col-12.scoreboard .badger { float:left; }
+.col-12.scoreboard .pie { float:left; margin-right:8px; }
+.col-12.scoreboard .pie p { height:74px; width:74px; }
+.col-12.scoreboard .pie ul { height:74px; width:74px; }
+.col-12.scoreboard .pie li span { height:74px; width:37px; }
+.col-12.scoreboard .pie-left {
+       -moz-border-radius-topleft:37px;
+    -moz-border-radius-bottomleft:37px;
+-webkit-border-bottom-left-radius:37px;
+   -webkit-border-top-left-radius:37px;
+           border-top-left-radius:37px;
+        border-bottom-left-radius:37px;
+}
+.col-12.scoreboard .pie-right { margin-left:37px;
+       -moz-border-radius-topright:37px;
+    -moz-border-radius-bottomright:37px;
+   -webkit-border-top-right-radius:37px;
+-webkit-border-bottom-right-radius:37px;
+           border-top-right-radius:37px;
+        border-bottom-right-radius:37px;
+}
+.col-12.scoreboard .crc { height:60px; left:7px; top:7px; width:60px;
+   -moz-border-radius:60px;
+-webkit-border-radius:60px;
+        border-radius:60px;
+}
+
 
 .teams { background-color:#518391; margin-bottom:20px; }
 .teams .left { float:left; padding:0 0 20px 10px; width:220px; }
