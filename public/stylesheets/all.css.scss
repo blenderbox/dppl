@@ -446,11 +446,14 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-12.schedule .header { float:none; margin-left:28px; width:856px; }
 .col-12.schedule .header li { float:left; margin-right:10px; width:97px; }
 
-
 .rules h1, .scoreboard h1, .teams h1 { text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 
 .scoreboard { background-color:#6ccabd; margin-bottom:20px; padding:20px 10px; }
 .scoreboard h1 { line-height:1; padding:20px; }
+.scoreboard .copy { background:#fff; padding:30px 20px; }
+.scoreboard .row { height:115px; }
+.scoreboard .row ul { float:left; }
+.scoreboard .row ul > li { border-bottom:1px solid #d0cfcc; float:left; height:115px; padding:19px 0; width:84px; }
 
 .teams { background-color:#518391; margin-bottom:20px; }
 .teams .left { float:left; padding:0 0 20px 10px; width:220px; }
