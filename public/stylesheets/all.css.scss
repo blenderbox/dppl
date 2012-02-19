@@ -159,7 +159,7 @@ input {
 }
 
 h1, h2, h3, h4, h5, h6, label, #sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
-b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy { font-family:'PassionBold'; font-weight:normal !important; }
+b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2 { font-family:'PassionBold'; font-weight:normal !important; }
 
 /* Let's get this party started */
 ::-webkit-scrollbar { width:12px; }
@@ -215,9 +215,6 @@ b, strong, button, input[type="button"], input[type="reset"], input[type="submit
 
 a.more { color:#45443f; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
 a.more:hover { color:#fff; }
-
-.ir.division { background-color:#efba00; background-image:url(../images/backgrounds/divisions.png); background-position:8px center; height:150px; float:left; width:28px; }
-.ir.badger { background-color:#45443f; background-position:-42px center; }
 
 /* LAYOUT */
 #container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
@@ -320,7 +317,10 @@ footer .thomp:hover { background-position:0 -78px; }
 }
 .col-2.week h3 { background:#fff; height:39px; line-height:39px; margin:-21px 8px 10px; padding:0 0 0 10px; }
 .col-2.week ul, .col-2.week li { background:none; margin:0; padding:0; }
-.col-2.week ul { float:left; margin-bottom:10px; width:97px; }
+.col-2.week .honey, .col-2.week .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:10px; width:125px; }
+.col-2.week .badger { background-color:#45443f; background-position:-42px center; }
+
+.col-2.week ul { float:right; width:97px; }
 .col-2.week li a, .col-2.schedule li a { background:#fff; color:#45443f; display:block; border-top:1px solid #efba00; height:30px; line-height:30px; padding:0 0 0 8px; }
 .col-2.week li a:hover, .col-2.schedule li a:hover { color:#3c6e88; }
 .col-2.week ul li:first-child a { border-top:0; }
@@ -347,15 +347,16 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-6.scoreboard.on a.more { color:#6ccabd; }
 .col-6.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
 .col-6.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
-.col-6.scoreboard .division { height:114px; }
-.col-6.scoreboard ul, .scoreboard li { background:none; margin:0; padding:0; }
-.col-6.scoreboard > ul { background:#fff; float:left; height:114px; margin-bottom:10px; padding:19px 0 0 10px; width:413px; }
-.col-6.scoreboard > ul > li { float:left; height:76px; margin-right:4px; width:76px; }
+.col-6.scoreboard .honey, .col-6.scoreboard .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:10px; width:440px; }
+.col-6.scoreboard .badger { background-color:#45443f; background-position:-42px center; }
+.col-6.scoreboard .charts { background:#fff; float:right; padding:19px 0 19px 10px; width:415px; }
+.col-6.scoreboard .pie { float:left; margin-right:5px; }
 
 /* Mmmmmmmmm pie. */
 .pie { position:relative; }
 .pie p { height:76px; margin:0; padding:0; position:absolute; top:0; left:0; width:76px; }
 .pie ul { height:76px; margin:0; overflow:hidden; padding:0; width:76px; }
+.pie li { background:none; }
 .pie li span { display:block; height:76px; width:38px; }
 .pie-left {
        -moz-border-radius-topleft:38px;
@@ -438,7 +439,7 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
         box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);}
 .col-12.schedule .copy { background:#fff; padding:20px 29px; }
-.col-12.schedule .honey, .col-12.schedule .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:20px; padding:10px 0 10px 28px; }
+.col-12.schedule .honey, .col-12.schedule .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:20px; padding:10px 0 10px 26px; }
 .col-12.schedule ul { float:left; margin:0 10px 0 0; padding:0; width:97px; }
 .col-12.schedule li { background:#fff; height:33px; line-height:33px; margin-bottom:1px; padding-left:10px; }
 .col-12.schedule ul.past li { background:#e1e1de; color:#8f8e88; }
@@ -460,8 +461,11 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-border-radius:40px;
         border-radius:40px;
 }
+.col-12.scoreboard h2 { border-bottom:4px solid #d0cfcc; color:#d0cfcc; font-size:26px; line-height:1; padding:0 0 7px; text-transform:uppercase; }
 .col-12.scoreboard .honey { float:left; margin-right:20px; }
+.col-12.scoreboard .honey h2 { border-color:#efba00; color:#efba00; }
 .col-12.scoreboard .badger { float:left; }
+.col-12.scoreboard .badger h2 { border-color:#45443f45443f; color:#45443f; }
 .col-12.scoreboard .pie { float:left; margin-right:8px; }
 .col-12.scoreboard .pie p { height:74px; width:74px; }
 .col-12.scoreboard .pie ul { height:74px; width:74px; }
