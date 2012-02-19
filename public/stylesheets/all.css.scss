@@ -436,6 +436,13 @@ footer .thomp:hover { background-position:0 -78px; }
    -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
         box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);}
+.col-12.schedule .copy { background:#fff; padding:20px 29px; }
+.col-12.schedule .honey, .col-12.schedule .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:20px; padding:10px 0 10px 28px; }
+.col-12.schedule ul { float:left; margin:0 10px 0 0; padding:0; width:97px; }
+.col-12.schedule li { background:#fff; height:33px; line-height:33px; margin-bottom:1px; padding-left:10px; }
+.col-12.schedule ul.past li { background:#e1e1de; color:#8f8e88; }
+.col-12.schedule .badger { background-color:#45443f; background-position:-42px center; margin:0; }
+
 
 .rules h1, .scoreboard h1, .teams h1 { text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 

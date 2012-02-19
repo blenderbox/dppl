@@ -11,3 +11,10 @@ def index(request):
     today = datetime.date.today()
 
     return render_response(request, 'pages/index.html', {})
+
+
+def rules(request):
+    """ Display a list of places.
+    """
+
+    return render_response(request, 'pages/rules.html', {})
