@@ -20,6 +20,7 @@
     {% if messages %}{% include "messages.html" %}{% endif %}
     <div id="container" class="cols clearfix">
         <header>
+          <div id="ball"></div>
           <a href="/" id="logo">
           <h1>PiXEL</h1>
           <h2>PONG</h2>
@@ -58,17 +59,17 @@
               <li id="rules-nav"><a href="/rules" title="Rules">Rules</a></li>
             </ul>
           </nav>
-          <div id="sign-in">
-            <a href="#" class="ir">Sign in</a>
-            <span class="flag">Pros only</span>
-            <form class="grid">
-              <label for="username">Your Serve.</label>
-              <input id="username" type="email" placeholder="Username" required="required" />
-              <input id="password" type="password" placeholder ="Password" required="required" />
-              <button type="submit">Enter</button>
-            </form>
-          </div>
         </header>
+        <div id="sign-in">
+          <a href="#" class="ir">Sign in</a>
+          <span class="flag">Pros only</span>
+          <form class="grid">
+            <label for="username">Your Serve.</label>
+            <input id="username" type="email" placeholder="Username" required="required" />
+            <input id="password" type="password" placeholder ="Password" required="required" />
+            <button type="submit">Enter</button>
+          </form>
+        </div>
         <div class="col-2 dots">
           <a href="#" class="rule-dot" title="Rules">
             <span class="front ir">Rules</span>

@@ -218,10 +218,45 @@ a.more:hover { color:#fff; }
 
 /* LAYOUT */
 #container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
-header { padding:36px 0 31px; width:320px; }
-header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; text-transform:none; }
+header { padding:36px 0 31px; position:relative; width:320px; }
+
+@-moz-keyframes bounce {
+  0% { top:-45px; -moz-animation-timing-function: ease-in; }
+ 20% { top:88px; -moz-animation-timing-function: ease-out; }
+ 50% { top:34px; -moz-animation-timing-function: ease-in; }
+ 70% { top:88px; -moz-animation-timing-function: ease-out; }
+ 90% { top:70px; -moz-animation-timing-function: ease-in; }
+100% { top:88px; -moz-animation-timing-function: ease-out; }
+}
+@-webkit-keyframes bounce {
+  0% { top:-45px; -webkit-animation-timing-function: ease-in; }
+ 20% { top:88px; -webkit-animation-timing-function: ease-out; }
+ 50% { top:34px; -webkit-animation-timing-function: ease-in; }
+ 70% { top:88px; -webkit-animation-timing-function: ease-out; }
+ 90% { top:70px; -webkit-animation-timing-function: ease-in; }
+100% { top:88px; -webkit-animation-timing-function: ease-out; }
+}
+#ball { position:absolute; width:38px; height:38px; border-radius:19px; background:#fff; left:180px; top:-45px;
+   -moz-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
+-webkit-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
+        box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
+-moz-animation-name:bounce;
+-moz-animation-delay:1s;
+-moz-animation-duration:1s;
+-moz-animation-fill-mode:forwards;
+-webkit-animation-name:bounce;
+-webkit-animation-delay:1s;
+-webkit-animation-duration:1s;
+-webkit-animation-fill-mode:forwards;
+}
+header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; text-transform:none;
+color: rgba(69,68,63, 0.8);
+text-shadow: 1px 4px 6px #c9c8bf, 0 0 0 #000, 1px 4px 6px #c9c8bf;
+}
 header h2 { color:#fff; font-size:51px; line-height:1; padding:0;
-text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px; }
+text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px, rgba(6,4,6,0.25) -3px 3px; }
+
+
 
 /* Look at all these selectors!  Can we optimize this? */
 nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px; }
