@@ -327,14 +327,6 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-3.rankings ul { height:390px; overflow-y:auto; }
 .col-3.rankings li { border-top:1px solid #8f8e88; padding:14px 10px 14px 0; }
 .col-3.rankings li:first-child { border-top:0; padding-top:1px; }
-.col-3.rankings .img-wrap { background:#fff; float:left; height:50px; margin-right:5px; width:50px;
--webkit-border-radius:50px;
-        border-radius:50px;
-}
-.col-3.rankings img { margin:3px;
--webkit-border-radius:46px;
-        border-radius:46px;
-}
 .col-3.rankings .right { float:left; width:122px; }
 .col-3.rankings a { text-transform:uppercase; }
 
@@ -577,7 +569,6 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-transform:rotateY(180deg);
    -moz-transform:rotateY(180deg);
 }
-
 .dots a .back { left:0; position:absolute; top:0; z-index:800;
  -webkit-transform:rotateY(-180deg);
 -webkit-transform-style:preserve-3d;
@@ -599,6 +590,61 @@ footer .thomp:hover { background-position:0 -78px; }
    -moz-transform:rotateY(0deg);
 }
 
+.team-token { background:#fff; display:block; float:left; height:50px; margin-right:5px; position:relative; width:50px;
+-webkit-border-radius:50px;
+        border-radius:50px;
+}
+.team-token img { left:0; margin:3px; position:absolute; top:0;
+-webkit-border-radius:46px;
+        border-radius:46px;
+}
+.team-token .front { z-index:900;
+/*    -webkit-transform:rotateY(0deg);*/
+-webkit-transform-style:preserve-3d;
+ -webkit-backface-visibility:hidden;
+
+/*    -moz-transform:rotateY(0deg);*/
+-moz-transform-style:preserve-3d;
+ -moz-backface-visibility:hidden;
+
+     -o-transition:all .4s ease-in-out;
+    -ms-transition:all .4s ease-in-out;
+   -moz-transition:all .4s ease-in-out;
+-webkit-transition:all .4s ease-in-out;
+        transition:all .4s ease-in-out;
+        
+        -webkit-transform: rotate3d(45,45,0,0deg);
+			-moz-transform: rotate3d(45,45,0,0deg);
+}
+.team-token:hover .front { z-index:900;
+/*-webkit-transform:rotateY(180deg);
+   -moz-transform:rotateY(180deg);*/
+   -webkit-transform: rotate3d(45,45,0,180deg);
+			-moz-transform: rotate3d(45,45,0,180deg);
+}
+.team-token .back { z-index:800;
+/* -webkit-transform:rotateY(-180deg);*/
+-webkit-transform-style:preserve-3d;
+ -webkit-backface-visibility:hidden;
+
+/* -moz-transform:rotateY(-180deg);*/
+-moz-transform-style:preserve-3d;
+ -moz-backface-visibility:hidden;
+
+     -o-transition:all .4s ease-in-out;
+    -ms-transition:all .4s ease-in-out;
+   -moz-transition:all .4s ease-in-out;
+-webkit-transition:all .4s ease-in-out;
+        transition:all .4s ease-in-out;
+        -webkit-transform: rotate3d(45,45,0,-180deg);
+			-moz-transform: rotate3d(45,45,0,-180deg);
+}
+.team-token:hover .back { z-index:1000;
+/*-webkit-transform:rotateY(0deg);
+   -moz-transform:rotateY(0deg);*/
+   -webkit-transform: rotate3d(45,45,0,0deg);
+			-moz-transform: rotate3d(45,45,0,0deg);
+}
 
 
 
