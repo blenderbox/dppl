@@ -19,3 +19,10 @@ def schedule(request):
     today = datetime.date.today()
 
     return render_response(request, 'theleague/schedule.html', {})
+
+
+def teams(request):
+    """ Display the teams
+    """
+
+    return render_response(request, 'theleague/teams.html', {})

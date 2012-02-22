@@ -26,6 +26,7 @@ class Game(CommonModel):
     """ The game.
     """
     WINNER_CHOICES = ((1, "Player 1",), (2, "Player 2"),)
+
     winner = models.CharField(_("Winner"), choices=WINNER_CHOICES, max_length=1,
                               null=True, blank=True)
     # Relations

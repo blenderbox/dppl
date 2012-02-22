@@ -7,4 +7,6 @@ urlpatterns = patterns('apps.theleague.views',
     url(r'^schedule/$', 'schedule', name='theleague_schedule'),
     # /scoreboard
     url(r'^scoreboard/$', 'scoreboard', name='theleague_scoreboard'),
+    # /scoreboard
+    url(r'^teams/$', 'teams', name='theleague_teams'),
 )

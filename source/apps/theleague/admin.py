@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.theleague.models import Division, League, Match, Season, Team
+from apps.theleague.models import Division, Game, League, Match, Season, Team
 
 
 class DivisionAdmin(admin.ModelAdmin):
@@ -13,6 +13,16 @@ class DivisionAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     save_on_top = True
 admin.site.register(Division, DivisionAdmin)
+
+
+class GameAdmin(admin.ModelAdmin):
+    """ A class for the admin
+    """
+    list_display = ('player1', 'player2', 'date_created', 'date_modified')
+    list_display_links = ('player1', 'player2',)
+    list_filter = ('date_created', 'date_modified')
+    save_on_top = True
+admin.site.register(Game, GameAdmin)
 
 
 class LeagueAdmin(admin.ModelAdmin):
