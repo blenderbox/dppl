@@ -183,6 +183,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 PROJECT_APPS = (
     'apps.accounts',
     'apps.pages',
+    'apps.theleague',
 )
 
 INSTALLED_APPS = (
