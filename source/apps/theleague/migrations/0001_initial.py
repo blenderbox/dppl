@@ -14,7 +14,7 @@ class Migration(SchemaMigration):
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=255, db_index=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=255, db_index=True)),
             ('league', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['theleague.League'])),
         ))
         db.send_create_signal('theleague', ['Division'])
@@ -100,7 +100,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'league': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['theleague.League']"}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '255', 'db_index': 'True'})
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_index': 'True'})
         },
         'theleague.league': {
             'Meta': {'ordering': "('name',)", 'object_name': 'League'},

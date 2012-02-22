@@ -4,19 +4,18 @@ from django.utils.translation import ugettext_lazy as _
 from apps.abstract.models import CommonModel
 
 
-
 class Division(CommonModel):
     """ The division.  Right now, there are two, Honey and Badger.
     """
     name = models.CharField(_("Name"), max_length=255)
-    slug = models.SlugField(_("Slug"), max_length=255, unique=True)
-
+    # Don't make this unique because leagues can have divisions w/ the same name.
+    slug = models.SlugField(_("Slug"), max_length=255)
 
     # Relations
-    league = models.ForeignKey('League')
+    league = models.ForeignKey("League")
 
     class Meta:
-        ordering = ('name',)
+        ordering = ("name",)
 
     def __unicode__(self):
         return self.name
@@ -30,7 +29,7 @@ class League(CommonModel):
     slug = models.SlugField(_("Slug"), max_length=255, unique=True)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ("name",)
 
     def __unicode__(self):
         return self.name
@@ -44,12 +43,12 @@ class Match(CommonModel):
     team2_score = models.IntegerField(blank=True, null=True)
 
     # Relations
-    season = models.ForeignKey('Season')
-    team1 = models.ForeignKey('Team', related_name="team1")
-    team2 = models.ForeignKey('Team', related_name="team2")
+    season = models.ForeignKey("Season")
+    team1 = models.ForeignKey("Team", related_name="team1")
+    team2 = models.ForeignKey("Team", related_name="team2")
 
     class Meta:
-        ordering = ('date',)
+        ordering = ("date",)
         verbose_name_plural = "Matches"
 
     def __unicode__(self):
@@ -64,7 +63,7 @@ class Season(CommonModel):
     slug = models.SlugField(_("Slug"), max_length=255)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ("name",)
 
     def __unicode__(self):
         return self.name
@@ -89,7 +88,7 @@ class Team(CommonModel):
     division = models.ForeignKey(Division)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ("name",)
 
     def __unicode__(self):
         return self.name
