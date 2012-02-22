@@ -45,11 +45,12 @@ class Match(CommonModel):
 
     # Relations
     season = models.ForeignKey('Season')
-    first_division_team = models.ForeignKey('Team', related_name="first_division_team")
-    second_division_team = models.ForeignKey('Team', related_name="second_division_team")
+    team1 = models.ForeignKey('Team', related_name="team1")
+    team2 = models.ForeignKey('Team', related_name="team2")
 
     class Meta:
         ordering = ('date',)
+        verbose_name_plural = "Matches"
 
     def __unicode__(self):
         return self.name
@@ -59,7 +60,8 @@ class Season(CommonModel):
     """ The season.
     """
     name = models.CharField(_("Name"), max_length=255)
-    slug = models.SlugField(_("Slug"), max_length=255, unique=True)
+    # Don't make this unique because leagues can have seasons w/ the same name.
+    slug = models.SlugField(_("Slug"), max_length=255)
 
     class Meta:
         ordering = ('name',)

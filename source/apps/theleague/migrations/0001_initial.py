@@ -38,8 +38,8 @@ class Migration(SchemaMigration):
             ('team1_score', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
             ('team2_score', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
             ('season', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['theleague.Season'])),
-            ('first_division_team', self.gf('django.db.models.fields.related.ForeignKey')(related_name='first_division_team', to=orm['theleague.Team'])),
-            ('second_division_team', self.gf('django.db.models.fields.related.ForeignKey')(related_name='second_division_team', to=orm['theleague.Team'])),
+            ('team1', self.gf('django.db.models.fields.related.ForeignKey')(related_name='team1', to=orm['theleague.Team'])),
+            ('team2', self.gf('django.db.models.fields.related.ForeignKey')(related_name='team2', to=orm['theleague.Team'])),
         ))
         db.send_create_signal('theleague', ['Match'])
 
@@ -49,7 +49,7 @@ class Migration(SchemaMigration):
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=255, db_index=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=255, db_index=True)),
         ))
         db.send_create_signal('theleague', ['Season'])
 
@@ -115,11 +115,11 @@ class Migration(SchemaMigration):
             'date': ('django.db.models.fields.DateTimeField', [], {}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'first_division_team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'first_division_team'", 'to': "orm['theleague.Team']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'season': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['theleague.Season']"}),
-            'second_division_team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'second_division_team'", 'to': "orm['theleague.Team']"}),
+            'team1': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'team1'", 'to': "orm['theleague.Team']"}),
             'team1_score': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'team2': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'team2'", 'to': "orm['theleague.Team']"}),
             'team2_score': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
         },
         'theleague.season': {
@@ -128,7 +128,7 @@ class Migration(SchemaMigration):
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '255', 'db_index': 'True'})
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_index': 'True'})
         },
         'theleague.team': {
             'Meta': {'ordering': "('name',)", 'object_name': 'Team'},
