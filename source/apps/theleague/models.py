@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -19,6 +20,18 @@ class Division(CommonModel):
 
     def __unicode__(self):
         return self.name
+
+
+class Game(CommonModel):
+    """ The game.
+    """
+    WINNER_CHOICES = ((1, "Player 1",), (2, "Player 2"),)
+    winner = models.CharField(_("Winner"), choices=WINNER_CHOICES, max_length=1,
+                              null=True, blank=True)
+    # Relations
+    match = models.ForeignKey("Match")
+    player1 = models.ForeignKey(User, related_name="user1")
+    player2 = models.ForeignKey(User, related_name="user2")
 
 
 class League(CommonModel):
