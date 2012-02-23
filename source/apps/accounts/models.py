@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from apps.abstract.models import CommonModel
+from apps.theleague.models import Team
 
 
 class Profile(CommonModel):
@@ -16,6 +17,8 @@ class Profile(CommonModel):
     facebook = models.CharField(blank=True, null=True, max_length=50)
     linked_in = models.CharField(blank=True, null=True, max_length=50)
     website = models.URLField(blank=True, null=True, verify_exists=False)
+
+    team = models.ForeignKey(Team, related_name="profile_team")
 
     class Meta:
         ordering = ('-rating',)
