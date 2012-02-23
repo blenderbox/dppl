@@ -102,6 +102,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     # Project Context Processors
     'app_utils.extra_context.extra_context',
+    'app_utils.extra_context.team_nav',
 )
 
 STATICFILES_FINDERS = (

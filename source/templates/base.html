@@ -27,7 +27,7 @@
           </a>
           <nav>
             <ul class="clearfix">
-              <li id="schedule-nav"><a href="/schedule" class="on" title="Schedule">Schedule</a>
+              <li id="schedule-nav"><a href="/schedule"{% active request '/schedule' %} title="Schedule">Schedule</a>
                   <ul>
                     <li><a href="#">Blenderbox</a></li>
                     <li><a href="#">Blenderbox</a></li>
@@ -35,7 +35,7 @@
                     <li><a href="#">Blenderbox</a></li>
                   </ul>
               </li>
-              <li id="scores-nav"><a href="/scoreboard" title="Scores">Scores</a>
+              <li id="scores-nav"><a href="/scoreboard"{% active request '/scoreboard' %} title="Scores">Scores</a>
                   <ul>
                     <li><a href="#">Blenderbox</a></li>
                     <li><a href="#">Blenderbox</a></li>
@@ -44,19 +44,14 @@
                     <li><a href="#">Blenderbox</a></li>
                   </ul>
               </li>
-              <li id="teams-nav"><a href="/teams" title="Teams">Teams</a>
+              <li id="teams-nav"><a href="/teams"{% active request '/teams' %} title="Teams">Teams</a>
                   <ul>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
+                  {% for team in TEAMS %}
+                    <li><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></li>
+                  {% endfor %}
                   </ul>
               </li>
-              <li id="rules-nav"><a href="/rules" title="Rules">Rules</a></li>
+              <li id="rules-nav"><a href="/rules"{% active request '/rules' %} title="Rules">Rules</a></li>
             </ul>
           </nav>
         </header>
