@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="col-4 intro">
-  Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. 
-</div>
+  <div class="col-4 intro">
+    Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. 
+  </div>
+  {% include "theleague/widgets/standings.html" %}
+  {% include "widgets/dots.html" %}
+  {% include "theleague/widgets/scoreboard.html" %}
+  {% include "theleague/widgets/rankings.html" %}
+  {% include "theleague/widgets/week.html" %}
 {% endblock content %}

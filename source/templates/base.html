@@ -66,11 +66,6 @@
           </form>
         </div>
         {% block content %}{% endblock content %}
-        {% include "widgets/dots.html" %}
-        {% include "theleague/widgets/standings.html" %}
-        {% include "theleague/widgets/scoreboard.html" %}
-        {% include "theleague/widgets/rankings.html" %}
-        {% include "theleague/widgets/week.html" %}
     </div><!-- /container -->
     <footer>
         Sponsored by <a href="http://thompsonpunke.com" class="ir thomp" title="Thompson Punke">Thompson Punke</a>
@@ -79,7 +74,6 @@
     </footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>!window.jQuery && document.write('<script src="javascripts/libs/jquery-1.7.1.min.js"><\/script>')</script>
-<!-- scripts -->
 {% compress js %}
 <script>var STATIC_URL='{{ STATIC_URL }}';</script>
 <script src="{{ STATIC_URL }}javascripts/app/application.js"></script>

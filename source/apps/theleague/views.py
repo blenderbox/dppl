@@ -49,7 +49,7 @@ def team(request, team_slug):
     teams = Team.objects.all()
     team = get_object_or_404(Team, slug=team_slug)
 
-    return render_response(request, 'theleague/teams.html', {
+    return render_response(request, 'theleague/team.html', {
         'teams': teams,
         'team': team,
     })
