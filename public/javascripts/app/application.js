@@ -31,6 +31,13 @@ var APP = (function($) {
             $el = $(el);
             $el.delay(150).width(($el.data('percent') / 100) * 170);
         });
+        emails();
+    }
+    function emails() {
+        $el = $('span.e');
+        var e = $el.text().split('//').join('.').split('/').join('@');
+        $el.after('<a href="mailto:' + e + '">' + e + '</a>');
+        $el.remove();
     }
     function open(e) {
         e.preventDefault();

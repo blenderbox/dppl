@@ -224,6 +224,7 @@ b, strong, button, input[type="button"], input[type="reset"], input[type="submit
 .alert { color:#ff0000; }
 a.more { color:#45443f; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
 a.more:hover { color:#fff; }
+.edit-link a { font-size:11px; }
 
 /* These have been tweaked from the standard 960gs */
 .cols {  }
@@ -542,6 +543,8 @@ footer .thomp:hover { background-position:0 -78px; }
 .teams .nav li a.on { background:#fff; }
 .teams .copy { background:#fff; float:left; height:100%; padding:20px; width:760px; }
 .teams .copy h2 { color:#45443f; padding:0 0 30px 20px; }
+.teams .copy h2 a { color:#45443f; }
+.teams .copy h2 a:hover { color:#195879; }
 .teams .copy h4 { font-size:14px; padding:0; text-transform:uppercase; }
 .teams .copy { font-size:16px; line-height:1.375; }
 .teams .copy .info { font-size:18px; padding-bottom:20px; }

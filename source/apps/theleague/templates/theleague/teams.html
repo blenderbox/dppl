@@ -7,42 +7,46 @@
   <div class="left">
     <h1>Teams</h1>
     <ul class="nav">
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#" class="on">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
-      <li><a href="#">Blenderbox (BBX)</a></li>
+      {% for t in teams %}
+      <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name }} ({{ t.abbr }})</a></li>
+      {% endfor %}
     </ul>
   </div>
   <div class="copy clearfix">
-      <h2>Blenderbox (BBX)</h2>
+      {% spaceless %}
+      <h2>
+      {% if team.website %}
+          {% external_link team.website team.name %}
+      {% else %}
+          {{ team.name }}
+      {% endif %} ({{ team.abbr }})
+      {% if request.user.is_staff %} <span class="edit-link"><a href="{% url admin:theleague_team_change team.pk %}">(EDIT)</a></span>{% endif %}
+      </h2>
+      {% endspaceless %}
       <div class="col-4">
+          {% if team.address or team.city or team.state or team.zip_code %}
           <h4>address: </h4>
           <address>
-              <a href="#">26 Dobbins Street, 3rd Floor. <br/>
-              Brooklyn, NY 11222. Directions »</a>
+              <a href="http://maps.google.com/maps?q={{ team.address }}+{{ team.city }}+{{ team.state }}+{{ team.zip_code }}&hl=en&hnear={{ team.address }}+{{ team.city }}+{{ team.state }}+{{ team.zip_code }}">
+              {% if team.address %}{{ team.address }}. <br/>{% endif %}
+              {{ team.city }}{% if team.state and team.city %}, {% endif %}{{ team.state }} {{ team.zip_code }}. Directions »</a>
           </address>
+          {% endif %}
+          {% if team.contact_name or team.contact_email %}
           <h4>contact:</h4>
           <p class="info">
-              Damon Jablons<br/>
-              <a href="mailto:djablons@blenderbox.com">djablons@blenderbox.com</a>
+              {% if team.contact_name %}{{ team.contact_name }}<br/>{% endif %}
+              {% if team.contact_email %}{% email_link team.contact_email %}{% endif %}
           </p>
+          {% endif %}
+          {% if team.description %}
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          {{ team.description }}
           </p>
+          {% endif %}
       </div>
-  
-        {% include "theleague/widgets/players.html" %}
-        {% include "theleague/widgets/schedule.html" %}
+      {% include "theleague/widgets/players.html" %}
+      {% include "theleague/widgets/schedule.html" %}
   </div>
 </section>
 {% endblock %}

@@ -106,3 +106,9 @@ class Team(CommonModel):
 
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('theleague_team', [str(self.slug)])
+
+

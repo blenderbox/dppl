@@ -60,7 +60,8 @@ TEMPLATE_DEBUG = DEBUG
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader',
+#    'django.template.loaders.eggs.Loader',
+#    'django.template.loaders.app_directories.load_template_source',
 )
 
 if USE_I18N:
@@ -181,6 +182,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 ################
 
 PROJECT_APPS = (
+    'app_utils.bootstrap',
     'apps.accounts',
     'apps.pages',
     'apps.theleague',
@@ -210,6 +212,7 @@ TEMPLATE_TAGS = (
     # Third Party
     'easy_thumbnails.templatetags.thumbnail',
     # Project
+    'templatetags.helper_tags',
 )
 ########################
 # APPLICATION SETTINGS #
@@ -222,6 +225,8 @@ COMPRESS_PRECOMPILERS = (
 )
 
 FILER_URL = MEDIA_URL + 'filer_thumbnails/'
+
+LEAGUE_ID=1
 
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
