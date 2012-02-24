@@ -12,6 +12,7 @@ from app_utils.image_processors import Pixelate
 class Profile(CommonModel):
     """ This represents a user's profile. """
     user = models.OneToOneField(User, unique=True)
+    slug = models.SlugField("Slug", max_length=255)
     bio = models.TextField(blank=True, null=True)
     rating = models.IntegerField(default=1600)
 

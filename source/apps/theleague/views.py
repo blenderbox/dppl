@@ -53,3 +53,18 @@ def team(request, team_slug):
         'teams': teams,
         'team': team,
     })
+
+def team_member(request, team_slug, team_member_slug):
+    """ Display the team
+    """
+    league = League.objects.get(pk=settings.LEAGUE_ID)
+    # TODO: make this actually pull in teams just from the league.
+    teams = Team.objects.all()
+    team = get_object_or_404(Team, slug=team_slug)
+
+    return render_response(request, 'theleague/team_member.html', {
+        'teams': teams,
+        'team': team,
+    })
+
+
