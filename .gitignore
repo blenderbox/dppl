@@ -1,5 +1,4 @@
 *.pyc
-
 # ignore emacs and vim tmp files
 .ropeproject
 .*.*.sw*
@@ -12,4 +11,6 @@
 # ignore environment and local settings files
 local_settings.py
 media/
+!media/avatars/default.jpg
 source/static/
+static/CACHE/
