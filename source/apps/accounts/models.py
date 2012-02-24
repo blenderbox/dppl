@@ -46,6 +46,12 @@ class Profile(CommonModel):
     def __unicode__(self):
         return self.user.username
 
+    @property
+    def full_name(self):
+        if self.user.first_name == "":
+            return self.user.username
+        return ("%s %s" % (user.first_name, user.last_name)).strip()
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     """ This creates a user profile on invocation. """

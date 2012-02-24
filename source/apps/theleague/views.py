@@ -61,10 +61,12 @@ def team_member(request, team_slug, team_member_slug):
     # TODO: make this actually pull in teams just from the league.
     teams = Team.objects.all()
     team = get_object_or_404(Team, slug=team_slug)
+    team_member = team.profile_team.get(slug=team_member_slug)
 
     return render_response(request, 'theleague/team_member.html', {
         'teams': teams,
         'team': team,
+        'team_member': team_member,
     })
 
 

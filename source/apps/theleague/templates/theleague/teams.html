@@ -26,6 +26,7 @@
       </h2>
       {% endspaceless %}
       <div class="col-4">
+      {% block copy %}
           {% if team.address or team.city or team.state or team.zip_code %}
           <h4>address: </h4>
           <address>
@@ -46,7 +47,8 @@
           {{ team.description }}
           </p>
           {% endif %}
-          &nbsp;
+      {% endblock copy %}
+      &nbsp;
       </div>
       {% include "theleague/widgets/players.html" %}
       {% include "theleague/widgets/schedule.html" %}
