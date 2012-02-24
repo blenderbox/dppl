@@ -1,6 +1,8 @@
-{% extends "base.html" %}
+{% extends "base_with_standing.html" %}
 
 {% block title %}Scoreboard | {% endblock %}
+
+{% block body_class %} class="scoreboard-page"{% endblock %}
 
 {% block content %}
 <section class="col-12 grid scoreboard">
@@ -302,4 +304,9 @@
       </div>
   </div>
 </section>
+{{ block.super }}
 {% endblock content %}
+
+{% block paddle_quote %}Calculation of Magnus force<br/>
+\vec{F_M} = S (\vec{\omega}\times\vec{v})<br/>
+Source: Wikipedia{% endblock %}

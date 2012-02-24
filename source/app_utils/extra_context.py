@@ -19,7 +19,7 @@ def team_nav(request):
     """
     teams = Team.objects.all()
     # TODO: set the logic for whether the season is live or not.
-    we_live_yo = True
+    we_live_yo = False
     return {
         'TEAMS': teams,
         'we_live_yo': we_live_yo,

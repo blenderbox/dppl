@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_with_standing.html" %}
 
 {% block title %}Teams | {% endblock %}
 
@@ -52,17 +52,7 @@
       {% include "theleague/widgets/schedule.html" %}
   </div>
 </section>
-
-{% include "widgets/dots.html" with class=" alpha" %}
-{% if we_live_yo %}
-  {% include "theleague/widgets/rankings.html" %}
-{% else %}
-  {% include "theleague/widgets/ranking_explanation.html" %}
-{% endif %}
-<div class="col-8">
-  {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
-  <div class="paddle">
-    <h3>ROBO-PONG<br/>What every agency needs to stay competitive</h3>
-  </div>
-</div>
+{{ block.super }}
 {% endblock %}
+
+{% block paddle_quote %}ROBO-PONG<br/>What every agency needs to stay competitive{% endblock %}

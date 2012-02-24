@@ -485,7 +485,7 @@ footer .thomp:hover { background-position:0 -78px; }
 }
 .standings .badger .bar { background:#45443f; }
 /* the schedule */
-.col-12.schedule { background-color:#94aa54; margin:20px 0 0; padding:0 20px 20px; }
+.col-12.schedule { background-color:#94aa54; margin:20px 0 40px; padding:0 20px 20px; }
 .col-12.schedule h1 { background:#fff; color:#45443f; display:inline-block; font-size:36px; height:70px; line-height:70px; margin:-20px 0 20px 0; padding:0 18px;
    -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
@@ -501,7 +501,7 @@ footer .thomp:hover { background-position:0 -78px; }
 /* the big pages */
 .rules h1, .scoreboard h1, .teams h1 { text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 /* the scoreboard */
-.col-12.scoreboard { background-color:#6ccabd; margin-bottom:20px; padding:20px 10px; }
+.col-12.scoreboard { background-color:#6ccabd; margin-bottom:40px; padding:20px 10px; }
 .col-12.scoreboard h1 { line-height:1; padding:6px 20px 16px 20px; }
 .col-12.scoreboard .copy { background:#fff; padding:30px 20px; }
 .col-12.scoreboard .row { border-bottom:1px solid #d0cfcc; height:115px; padding-top:19px; overflow:hidden; width:410px; }
@@ -539,7 +539,7 @@ footer .thomp:hover { background-position:0 -78px; }
 }
 .col-12.scoreboard .crc { height:60px; left:7px; top:7px; width:60px; }
 /* teams */
-.teams { background-color:#518391; margin-bottom:20px; }
+.teams { background-color:#518391; margin-bottom:40px; }
 .teams .left { float:left; padding:0 0 20px 10px; width:220px; }
 .teams h1 { border-bottom:4px solid #d0cfcc; margin:0 10px 11px 0; padding:24px 10px 6px 6px; }
 .teams .nav, .teams .nav li { background:none; margin:0; padding:0; }
@@ -661,7 +661,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .home .dots { margin-left:-10px; }
 .home .week { float:right; margin-bottom:40px; }
 
-.teams-page .dots { margin-right:30px; }
+.teams-page .dots, .scoreboard-page .dots, .schedule-page .dots { margin-right:30px; }
 .teams-page .paddle { padding-left:90px; }
 
 

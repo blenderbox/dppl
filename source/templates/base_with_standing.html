@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "widgets/dots.html" with class=" alpha" %}
+{% if we_live_yo %}
+  {% include "theleague/widgets/rankings.html" %}
+{% else %}
+  {% include "theleague/widgets/ranking_explanation.html" %}
+{% endif %}
+<div class="col-8">
+  {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
+  <div class="paddle">
+    <h3>{% block paddle_quote %}{% endblock %}</h3>
+  </div>
+</div>
+{% endblock %}
