@@ -132,7 +132,7 @@ label { color:#fff; cursor:pointer; display:block; font-size:18px; margin-bottom
 legend { border:0; *margin-left:-7px; padding:0; }
 button, input, select, textarea { font-size:100%; margin:0; vertical-align:baseline; *vertical-align:middle; }
 button, input { line-height:normal; *overflow:visible; }
-button:active, .button:active { position:relative; top:1px; }
+button:active, .button:active, a.more:active, .dots a:active, .team-token:active { position:relative; top:1px; }
 /* Reintroduce inner spacing in 'table' to avoid overlap and whitespace issues in IE6/7 */
 table button, table input { *overflow:auto; }
 button, select, input[type="button"], input[type="reset"], input[type="submit"], input[type='file'] { cursor:pointer; }
@@ -270,6 +270,7 @@ text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px, rgba(6,4,6,0.2
     -ms-animation:fade-in 0.5s 0.9s 1 normal forwards;
 -webkit-animation:fade-in 0.5s 0.9s 1 normal forwards;
 }
+#logo:active h1, #logo:active h2 { position:relative; top:1px; }
 .no-csstransitions header h1, .no-csstransitions header h2 { opacity:1; }
 .no-csstransitions #ball { top:88px; }
 /* Look at all these selectors!  Can we optimize this? */
@@ -277,6 +278,7 @@ nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px; 
 nav > ul { line-height:30px; margin:0; padding:0; position:relative; }
 nav > ul > li { float:left; line-height:30px; margin:0; padding:0; position:relative; text-transform:uppercase; }
 nav > ul > li > a { color:#6e6d67; display:block; font-size:18px; padding:0 19px 0 10px; }
+nav > ul > li > a:active { position:relative; top:1px; }
 nav > ul > li > a.on { color:#fff; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 nav > ul > li:hover ul { display:block; }
 nav > ul > li :last-child a { padding:0 10px 0 18px; }
@@ -302,6 +304,7 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 #sign-in { height:195px; position:absolute; right:0; top:0; width:340px; }
 #sign-in .ir { height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000; }
 #sign-in .ir:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
+#sign-in .ir:active { background-position:0 0; top:11px; }
 #sign-in .flag { color:#fff; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:-200px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px;
      -o-transition-property:opacity;
    -moz-transition-property:opacity;
@@ -537,6 +540,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .teams .nav, .teams .nav li { background:none; margin:0; padding:0; }
 .teams .nav li a { color:#45443f; display:block; height:26px; line-height:26px; padding-left:14px; text-transform:uppercase; }
 .teams .nav li a:hover { background:#7b9cae; }
+.teams .nav li a:active { position:relative; top:1px; }
 .teams .nav li a.on { background:#fff; }
 .teams .copy { background:#fff; float:left; height:100%; padding:20px; width:760px; }
 .teams .copy h2 { color:#45443f; padding:0 0 30px 20px; }
