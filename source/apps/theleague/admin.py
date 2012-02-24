@@ -15,6 +15,12 @@ class DivisionAdmin(admin.ModelAdmin):
 admin.site.register(Division, DivisionAdmin)
 
 
+class GameInline(admin.StackedInline):
+    extra = 4
+    max_num = 4
+    model = Game
+
+
 class GameAdmin(admin.ModelAdmin):
     """ A class for the admin
     """
@@ -48,6 +54,10 @@ class MatchAdmin(admin.ModelAdmin):
     list_filter = ('date_created', 'date_modified')
     search_fields = ('date',)
     save_on_top = True
+    
+    inlines = [
+        GameInline,
+    ]
 admin.site.register(Match, MatchAdmin)
 
 

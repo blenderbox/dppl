@@ -5,6 +5,7 @@ from imagekit.models import ImageSpec
 from imagekit.processors.resize import SmartResize
 
 from apps.abstract.models import CommonModel
+from apps.theleague.models import Team
 from app_utils.image_processors import Pixelate
 
 
@@ -35,6 +36,8 @@ class Profile(CommonModel):
     facebook = models.CharField(blank=True, null=True, max_length=50)
     linked_in = models.CharField(blank=True, null=True, max_length=50)
     website = models.URLField(blank=True, null=True, verify_exists=False)
+
+    team = models.ForeignKey(Team, related_name="profile_team")
 
     class Meta:
         ordering = ('-rating',)

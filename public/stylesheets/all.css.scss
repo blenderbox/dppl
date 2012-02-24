@@ -132,7 +132,7 @@ label { color:#fff; cursor:pointer; display:block; font-size:18px; margin-bottom
 legend { border:0; *margin-left:-7px; padding:0; }
 button, input, select, textarea { font-size:100%; margin:0; vertical-align:baseline; *vertical-align:middle; }
 button, input { line-height:normal; *overflow:visible; }
-button:active, .button:active { position:relative; top:1px; }
+button:active, .button:active, a.more:active, .dots a:active, .team-token:active { position:relative; top:1px; }
 /* Reintroduce inner spacing in 'table' to avoid overlap and whitespace issues in IE6/7 */
 table button, table input { *overflow:auto; }
 button, select, input[type="button"], input[type="reset"], input[type="submit"], input[type='file'] { cursor:pointer; }
@@ -197,7 +197,7 @@ input {
 }
 
 h1, h2, h3, h4, h5, h6, label, #sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
-b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2 { font-family:'PassionBold'; font-weight:normal !important; }
+b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2, .paddle h3 { font-family:'PassionBold'; font-weight:normal !important; }
 
 /* Let's get this party started */
 ::-webkit-scrollbar { width:12px; }
@@ -246,9 +246,13 @@ a.more:hover { color:#fff; }
 .grid { background:#fff url(../images/backgrounds/grid.png); }
 
 /* LAYOUT */
-#container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
-header { padding:36px 0 31px; position:relative; width:320px; }
+#container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; z-index:100; }
 
+#paddle-dots { background:url(../images/backgrounds/dotted.png) no-repeat center 0; height:100%; position:absolute; width:100%; top:0; }
+.paddle { background:transparent url(../images/backgrounds/paddle.png) no-repeat; position:relative; }
+.paddle h3 { color:#fff; font-size:24px; line-height:1.25; }
+
+header { padding:36px 0 31px; position:relative; width:320px; }
 #ball { position:absolute; width:38px; height:38px; border-radius:19px; background:#fff; left:180px; top:-45px;
    -moz-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
 -webkit-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
@@ -270,6 +274,7 @@ text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px, rgba(6,4,6,0.2
     -ms-animation:fade-in 0.5s 0.9s 1 normal forwards;
 -webkit-animation:fade-in 0.5s 0.9s 1 normal forwards;
 }
+#logo:active h1, #logo:active h2 { position:relative; top:1px; }
 .no-csstransitions header h1, .no-csstransitions header h2 { opacity:1; }
 .no-csstransitions #ball { top:88px; }
 /* Look at all these selectors!  Can we optimize this? */
@@ -277,6 +282,7 @@ nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px; 
 nav > ul { line-height:30px; margin:0; padding:0; position:relative; }
 nav > ul > li { float:left; line-height:30px; margin:0; padding:0; position:relative; text-transform:uppercase; }
 nav > ul > li > a { color:#6e6d67; display:block; font-size:18px; padding:0 19px 0 10px; }
+nav > ul > li > a:active { position:relative; top:1px; }
 nav > ul > li > a.on { color:#fff; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 nav > ul > li:hover ul { display:block; }
 nav > ul > li :last-child a { padding:0 10px 0 18px; }
@@ -302,6 +308,7 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 #sign-in { height:195px; position:absolute; right:0; top:0; width:340px; }
 #sign-in .ir { height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000; }
 #sign-in .ir:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
+#sign-in .ir:active { background-position:0 0; top:11px; }
 #sign-in .flag { color:#fff; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:-200px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px;
      -o-transition-property:opacity;
    -moz-transition-property:opacity;
@@ -325,15 +332,13 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 }
 #sign-in form.on { top:0; }
 
-footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding-top:24px; position:relative; text-align:right; width:940px; }
-footer .ir { display:inline-block; }
+footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px; position:relative; text-align:right; width:940px; }
+footer .ir, footer p { float:left; padding:0; }
 footer .bbox { background-position:-125px -40px; height:13px; margin:2px 0 0 8px; width:73px; }
 footer .bbox:hover { background-position:-125px -78px; }
-footer .thomp { background-position:0px -40px; height:29px; margin:0 16px 0 8px; width:84px; }
+footer .thomp { background-position:0px -40px; height:29px; margin:-5px 16px 0 8px; width:84px; }
 footer .thomp:hover { background-position:0 -78px; }
 
-/* HOME */
-.intro { color:#fff; font-size:24px; line-height:1.25; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 
 /* MODULES */
 .col-3.rankings { padding:30px 10px 10px; }
@@ -345,6 +350,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-3.rankings li:first-child { border-top:0; padding-top:1px; }
 .col-3.rankings .right { float:left; width:122px; }
 .col-3.rankings a { text-transform:uppercase; }
+.col-3.rankings.explanation p { font-size:16px; line-height:1.375; }
 
 .col-3.players ul { height:310px; }
 
@@ -390,12 +396,16 @@ footer .thomp:hover { background-position:0 -78px; }
         box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 }
 .col-6.scoreboard.on a.more { color:#6ccabd; }
-.col-6.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
+.col-6.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0 0 6px 4px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
 .col-6.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
+.col-6.scoreboard a.more:active { top:33px; }
 .col-6.scoreboard .honey, .col-6.scoreboard .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:10px; width:440px; }
 .col-6.scoreboard .badger { background-color:#45443f; background-position:-42px center; }
 .col-6.scoreboard .charts { background:#fff; float:right; padding:19px 0 19px 10px; width:415px; }
 .col-6.scoreboard .pie { float:left; margin-right:5px; }
+
+.col-6.scoreboard.upcoming { background-color:#6ccabd; height:354px; }
+.col-6.scoreboard.upcoming h3 { color:#fff; font-size:26px; line-height:1.46; padding:0 10px; }
 
 /* Mmmmmmmmm pie. */
 .pie { position:relative; }
@@ -478,7 +488,7 @@ footer .thomp:hover { background-position:0 -78px; }
 }
 .standings .badger .bar { background:#45443f; }
 /* the schedule */
-.col-12.schedule { background-color:#94aa54; margin-bottom:20px; padding:0 20px 20px; }
+.col-12.schedule { background-color:#94aa54; margin:20px 0 0; padding:0 20px 20px; }
 .col-12.schedule h1 { background:#fff; color:#45443f; display:inline-block; font-size:36px; height:70px; line-height:70px; margin:-20px 0 20px 0; padding:0 18px;
    -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
 -webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
@@ -530,9 +540,7 @@ footer .thomp:hover { background-position:0 -78px; }
            border-top-right-radius:37px;
         border-bottom-right-radius:37px;
 }
-.col-12.scoreboard .crc { height:60px; left:7px; top:7px; width:60px;
-
-}
+.col-12.scoreboard .crc { height:60px; left:7px; top:7px; width:60px; }
 /* teams */
 .teams { background-color:#518391; margin-bottom:20px; }
 .teams .left { float:left; padding:0 0 20px 10px; width:220px; }
@@ -540,6 +548,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .teams .nav, .teams .nav li { background:none; margin:0; padding:0; }
 .teams .nav li a { color:#45443f; display:block; height:26px; line-height:26px; padding-left:14px; text-transform:uppercase; }
 .teams .nav li a:hover { background:#7b9cae; }
+.teams .nav li a:active { position:relative; top:1px; }
 .teams .nav li a.on { background:#fff; }
 .teams .copy { background:#fff; float:left; height:100%; padding:20px; width:760px; }
 .teams .copy h2 { color:#45443f; padding:0 0 30px 20px; }
@@ -645,6 +654,13 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-transform:rotate3d(45,45,0,0deg);
 }
 
+/* HOME */
+.home .rankings { float:right; }
+.intro { color:#fff; font-size:24px; line-height:1.25; padding:0 0 40px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
+.home .dots { margin-left:-10px; }
+.home .week { float:right; margin-bottom:40px; }
+.home .paddle { clear:both; height:249px; margin:38px 0 0 120px; padding:47px 0 0 110px; width:500px; }
+.home .paddle h3 { padding:0; width:400px; }
 
 
 

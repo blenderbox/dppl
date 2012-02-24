@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 
+{% block body_class %} class="home"{% endblock %}
+
 {% block content %}
-  <div class="col-4 intro">
-    Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. 
+  <div class="col-4">
+    <p class="intro">Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. </p>
+  {% include "widgets/dots.html" with class=" alpha" %}
+  {% if we_live_yo %}
+    {% include "theleague/widgets/rankings.html" with class=" omega" %}
+  {% else %}
+    {% include "theleague/widgets/ranking_explanation.html" with class=" omega" %}
+  {% endif %}
   </div>
-  {% include "theleague/widgets/standings.html" %}
-  {% include "widgets/dots.html" %}
-  {% include "theleague/widgets/scoreboard.html" %}
-  {% include "theleague/widgets/rankings.html" %}
-  {% include "theleague/widgets/week.html" %}
+  <div class="col-8">
+  {% if we_live_yo %}
+    {% include "theleague/widgets/scoreboard.html" with class=" alpha" %}
+  {% else %}
+    {% include "theleague/widgets/scoreboard_upcoming.html" with class=" alpha" %}
+  {% endif %}
+  {% include "theleague/widgets/week.html" with class=" omega" %}
+  {% if we_live_yo %}
+    {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
+  {% else %}
+    <div class="paddle">
+      <h3>Season has started!<br/>Got your push, chops, loops, smash, lobs, and flicks in order?</h3>
+    </div>
+  {% endif %}
+  </div>
 {% endblock content %}
+
+{% block paddle %}
+{% if we_live_yo %}
+{% else %}
+  <div id="paddle-dots"></div>
+{% endif %}
+{% endblock paddle %}
