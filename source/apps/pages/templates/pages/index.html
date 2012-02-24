@@ -6,20 +6,20 @@
   <div class="col-4">
     <p class="intro">Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. </p>
   {% include "widgets/dots.html" with class=" alpha" %}
-  {% if we_live_yo %}
+  {% if WE_LIVE_YO %}
     {% include "theleague/widgets/rankings.html" with class=" omega" %}
   {% else %}
     {% include "theleague/widgets/ranking_explanation.html" with class=" omega" %}
   {% endif %}
   </div>
   <div class="col-8">
-  {% if we_live_yo %}
+  {% if WE_LIVE_YO %}
     {% include "theleague/widgets/scoreboard.html" with class=" alpha" %}
   {% else %}
     {% include "theleague/widgets/scoreboard_upcoming.html" with class=" alpha" %}
   {% endif %}
   {% include "theleague/widgets/week.html" with class=" omega" week_num=1 %}
-  {% if we_live_yo %}
+  {% if WE_LIVE_YO %}
     {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
   {% else %}
     <div class="paddle">

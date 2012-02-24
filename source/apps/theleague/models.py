@@ -75,7 +75,7 @@ class Season(CommonModel):
     name = models.CharField(_("Name"), max_length=255)
     # Don't make this unique because leagues can have seasons w/ the same name.
     slug = models.SlugField(_("Slug"), max_length=255)
-    go_live_date = models.DateField(_("Go Live Date"), blank=True, null=True)
+    go_live_date = models.DateField(_("Go Live Date"))
     go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
 
     class Meta:
