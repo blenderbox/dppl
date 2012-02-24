@@ -18,7 +18,7 @@
   {% else %}
     {% include "theleague/widgets/scoreboard_upcoming.html" with class=" alpha" %}
   {% endif %}
-  {% include "theleague/widgets/week.html" with class=" omega" %}
+  {% include "theleague/widgets/week.html" with class=" omega" week_num=1 %}
   {% if we_live_yo %}
     {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
   {% else %}
@@ -28,10 +28,3 @@
   {% endif %}
   </div>
 {% endblock content %}
-
-{% block paddle %}
-{% if we_live_yo %}
-{% else %}
-  <div id="paddle-dots"></div>
-{% endif %}
-{% endblock paddle %}

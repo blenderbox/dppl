@@ -10,11 +10,8 @@ def index(request):
     """ Display a list of places.
     """
     today = datetime.date.today()
-    # TODO: set the logic for whether the season is live or not.
-    we_live_yo = False
-    return render_response(request, 'pages/index.html', {
-        'we_live_yo': we_live_yo
-    })
+    
+    return render_response(request, 'pages/index.html', {  })
 
 
 def rules(request):
