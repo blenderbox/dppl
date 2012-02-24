@@ -50,7 +50,7 @@
       {% endblock copy %}
       &nbsp;
       </div>
-      {% include "theleague/widgets/players.html" %}
+      {% include "theleague/widgets/players.html" with players=team.profile_team.all %}
       {% include "theleague/widgets/schedule.html" %}
   </div>
 </section>
