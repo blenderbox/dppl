@@ -3,12 +3,22 @@
 {% block body_class %} class="home"{% endblock %}
 
 {% block content %}
-  <div class="col-4 intro">
-    <p>Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. </p>
+  <div class="col-4">
+    <p class="intro">Passion One Bold 24/30px is upon us. Donut tart soufflé jelly. Tiramisu jelly-o donut croissant dragée cupcake applicake soufflé. Lollipop macaroon biscuit applicake gummies soufflé jujubes. </p>
   {% include "widgets/dots.html" with class=" alpha" %}
-  {% include "theleague/widgets/rankings.html" with class=" omega" %}
+  {% if we_live_yo %}
+    {% include "theleague/widgets/rankings.html" with class=" omega" %}
+  {% else %}
+    {% include "theleague/widgets/ranking_explanation.html" with class=" omega" %}
+  {% endif %}
   </div>
-  {% include "theleague/widgets/scoreboard.html" %}
+  {% if we_live_yo %}
+    {% include "theleague/widgets/scoreboard.html" %}
+  {% else %}
+    {% include "theleague/widgets/scoreboard_upcoming.html" %}
+  {% endif %}
   {% include "theleague/widgets/week.html" with class=" omega" %}
-  {% include "theleague/widgets/standings.html" %}
+  {% if we_live_yo %}
+    {% include "theleague/widgets/standings.html" %}
+  {% endif %}
 {% endblock content %}
