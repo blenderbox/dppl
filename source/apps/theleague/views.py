@@ -2,6 +2,7 @@ import datetime
 
 from django.conf import settings
 from django.contrib import messages
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from app_utils.tools import render_response
@@ -61,7 +62,11 @@ def team_member(request, team_slug, team_member_slug):
     # TODO: make this actually pull in teams just from the league.
     teams = Team.objects.all()
     team = get_object_or_404(Team, slug=team_slug)
-    team_member = team.profile_team.get(slug=team_member_slug)
+
+    try:
+        team_member = team.profile_team.get(slug=team_member_slug)
+    except Poll.DoesNotExist:
+        raise Http404
 
     return render_response(request, 'theleague/team_member.html', {
         'teams': teams,

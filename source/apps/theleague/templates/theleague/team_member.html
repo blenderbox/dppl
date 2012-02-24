@@ -3,6 +3,10 @@
 {% block title %}{{ team_member.full_name }} on {{ team.name }} - Teams | {% endblock %}
 
 {% block copy %}
+  <span class="team-token">
+    <img src="{{ STATIC_URL }}images/temp.jpg" alt="{{ profile.full_name }}" class="front" height="46" width="46" />
+    <img src="{{ STATIC_URL }}images/temp2.jpg" alt="{{ profile.full_name }}" class="back" height="46" width="46" />
+  </span>
   <h3>{{ team_member.full_name }} - {{ team_member.rating }}</h3>
   {% if team_member.bio %}{{ team_member.bio }}{% endif %}
   {% external_link team_member.website %}
