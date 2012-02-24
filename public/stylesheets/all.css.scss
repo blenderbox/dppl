@@ -328,12 +328,13 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 }
 #sign-in form.on { top:0; }
 
-footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding-top:24px; position:relative; text-align:right; width:940px; }
-footer .ir { display:inline-block; }
+footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px; position:relative; text-align:right; width:940px; }
+footer .ir, footer p { float:left; padding:0; }
 footer .bbox { background-position:-125px -40px; height:13px; margin:2px 0 0 8px; width:73px; }
 footer .bbox:hover { background-position:-125px -78px; }
-footer .thomp { background-position:0px -40px; height:29px; margin:0 16px 0 8px; width:84px; }
+footer .thomp { background-position:0px -40px; height:29px; margin:-5px 16px 0 8px; width:84px; }
 footer .thomp:hover { background-position:0 -78px; }
+
 
 /* MODULES */
 .col-3.rankings { padding:30px 10px 10px; }
@@ -392,6 +393,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-6.scoreboard.on a.more { color:#6ccabd; }
 .col-6.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
 .col-6.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
+.col-6.scoreboard a.more:active { top:33px; }
 .col-6.scoreboard .honey, .col-6.scoreboard .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:10px; width:440px; }
 .col-6.scoreboard .badger { background-color:#45443f; background-position:-42px center; }
 .col-6.scoreboard .charts { background:#fff; float:right; padding:19px 0 19px 10px; width:415px; }
