@@ -197,7 +197,7 @@ input {
 }
 
 h1, h2, h3, h4, h5, h6, label, #sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
-b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2 { font-family:'PassionBold'; font-weight:normal !important; }
+b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2, .paddle h3 { font-family:'PassionBold'; font-weight:normal !important; }
 
 /* Let's get this party started */
 ::-webkit-scrollbar { width:12px; }
@@ -246,9 +246,13 @@ a.more:hover { color:#fff; }
 .grid { background:#fff url(../images/backgrounds/grid.png); }
 
 /* LAYOUT */
-#container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; }
-header { padding:36px 0 31px; position:relative; width:320px; }
+#container { min-height:100%; margin:0 auto; padding-bottom:60px; position:relative; width:980px; z-index:100; }
 
+#paddle-dots { background:url(../images/backgrounds/dotted.png) no-repeat center 0; height:100%; position:absolute; width:100%; top:0; }
+.paddle { background:transparent url(../images/backgrounds/paddle.png) no-repeat; position:relative; }
+.paddle h3 { color:#fff; font-size:24px; line-height:1.25; }
+
+header { padding:36px 0 31px; position:relative; width:320px; }
 #ball { position:absolute; width:38px; height:38px; border-radius:19px; background:#fff; left:180px; top:-45px;
    -moz-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
 -webkit-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
@@ -655,6 +659,9 @@ footer .thomp:hover { background-position:0 -78px; }
 .intro { color:#fff; font-size:24px; line-height:1.25; padding:0 0 40px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
 .home .dots { margin-left:-10px; }
 .home .week { float:right; margin-bottom:40px; }
+.home .paddle { height:249px; margin:38px 0 0 130px; padding:47px 0 0 110px; width:500px; }
+.home .paddle h3 { padding:0; width:400px; }
+
 
 
 
