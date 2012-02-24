@@ -46,6 +46,16 @@ class Profile(CommonModel):
     def __unicode__(self):
         return self.user.username
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('theleague_team_member', [str(self.team.slug), str(self.slug)])
+
+    @property
+    def full_name(self):
+        if self.user.first_name == "":
+            return self.user.username
+        return ("%s %s" % (user.first_name, user.last_name)).strip()
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     """ This creates a user profile on invocation. """

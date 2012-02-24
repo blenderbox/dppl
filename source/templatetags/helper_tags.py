@@ -15,10 +15,15 @@ def active(request, pattern):
 
 @register.simple_tag
 def external_link(url, text=""):
+    if url is None:
+        return ""
+
     text = url.replace('http://', '').replace('https://', '')\
                    .replace('www.', '') if text == "" else text
+
     if url.find('http') < 0:
         url = 'http://' + url
+
     return "<a href=\"%s\" title=\"%s\">%s</a>" % (url, text, text)
 
 
