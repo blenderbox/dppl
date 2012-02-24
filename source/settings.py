@@ -144,9 +144,12 @@ DATABASES = {
 # PATHS #
 #########
 
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+def get_path(*args):
+    return os.path.realpath(os.path.join(*args))
 
-LOG_ROOT = os.path.join(PROJECT_DIR, '../logs')
+PROJECT_DIR = get_path(os.path.dirname(__file__))
+
+LOG_ROOT = get_path(PROJECT_DIR, '../logs')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -155,21 +158,21 @@ MEDIA_URL = '/media/'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_DIR, MEDIA_URL.strip("/"))
+MEDIA_ROOT = get_path(PROJECT_DIR, "../", MEDIA_URL.strip("/"))
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECT_DIR, STATIC_URL.strip("/"))
+STATIC_ROOT = get_path(PROJECT_DIR, "../", STATIC_URL.strip("/"))
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don"t forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, "../public"),
+    get_path(PROJECT_DIR, "../public"),
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, "templates"),
+    get_path(PROJECT_DIR, "templates"),
 )
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -204,6 +207,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'easy_thumbnails',
     'filer',
+    'imagekit',
     'mptt',
     'south',
 ) + PROJECT_APPS

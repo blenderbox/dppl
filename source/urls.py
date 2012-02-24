@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     (r'^', include('apps.theleague.urls')),
 
     (r"^commander/", include(admin.site.urls)),
-    
+
     # Django Filer
     url(r'^', include('filer.server.urls')),
 )
