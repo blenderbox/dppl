@@ -25,6 +25,7 @@ def extra_context(request):
         'WE_LIVE_YO': we_live_yo,
     }
 
+
 def team_nav(request):
     """ Set the teams in the app.
         TODO: Cache this?
