@@ -332,9 +332,6 @@ footer .bbox:hover { background-position:-125px -78px; }
 footer .thomp { background-position:0px -40px; height:29px; margin:0 16px 0 8px; width:84px; }
 footer .thomp:hover { background-position:0 -78px; }
 
-/* HOME */
-.intro { color:#fff; font-size:24px; line-height:1.25; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
-
 /* MODULES */
 .col-3.rankings { padding:30px 10px 10px; }
 .col-3.rankings h3 { border-bottom:4px solid #8f8e88; line-height:1; margin:0 0 10px; padding:0 0 10px 4px; text-transform:uppercase; }
@@ -645,7 +642,11 @@ footer .thomp:hover { background-position:0 -78px; }
 -webkit-transform:rotate3d(45,45,0,0deg);
 }
 
-
+/* HOME */
+.home .rankings { float:right; }
+.intro p { color:#fff; font-size:24px; line-height:1.25; padding:0 0 40px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; }
+.home .dots { margin-left:-10px; }
+.home .week { float:right; margin-bottom:40px; }
 
 
 
