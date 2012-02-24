@@ -21,11 +21,11 @@
   {% include "theleague/widgets/week.html" with class=" omega" %}
   {% if we_live_yo %}
     {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
+  {% else %}
+    <div class="paddle">
+      <h3>Season has started!<br/>Got your push, chops, loops, smash, lobs, and flicks in order?</h3>
+    </div>
   {% endif %}
-  <div class="clear"></div>
-  <div class="paddle">
-    <h3>Season has started!<br/>Got your push, chops, loops, smash, lobs, and flicks in order?</h3>
-  </div>
   </div>
 {% endblock content %}
 
