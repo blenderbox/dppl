@@ -19,7 +19,7 @@ def extra_context(request):
     if len(season) > 0:
         s = season[0]
         we_live_yo = s.go_live_date <= today and (s.go_dead_date is None or s.go_dead_date >= today)
-    
+
     return {
         'FILER_URL': settings.FILER_URL,
         'WE_LIVE_YO': we_live_yo,
