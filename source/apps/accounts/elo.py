@@ -27,23 +27,31 @@ def calculate_elo(winner, loser, draw=False):
 
 def rank(player1, player2):
     """ This function will calculate the TrueSkill ranking of each player. It
-    accepts two player arguments. A player is a dictionary containing the
-    player's 'mu', and 'sigma'. Player1 is the winner, and Player2 is the
-    loser.
+    accepts two players arguments. The first is the winning player, the second
+    is the losing player. Both should be Profile objects. This will not save
+    the players.
+
+    Args:
+        player1: The winning user profile
+        player2: The losing user profile
+
+    Returns:
+        A tuple of (player1, player2)
     """
     DRAW_PROBABILITY = 0  # It's impossible to draw 1 on 1
+    approx = lambda f: round(f, 6)  # Round all floats to 6 decimals
+
     ts = TrueSkill(draw_probability=DRAW_PROBABILITY)
-    team1 = (ts.Rating(**player1),)
-    team2 = (ts.Rating(**player2),)
-    r1, r2 = tuple(x[0] for x in ts.transform_ratings(
-        rating_groups=(team1, team2)))
-    return ({
-        'mu': r1.mu,
-        'sigma': r1.sigma,
-        'exposure': r1.exposure,
-        },
-        {
-        'mu': r2.mu,
-        'sigma': r2.sigma,
-        'exposure': r2.exposure,
-        })
+    t1 = (ts.Rating(mu=player1.mu, sigma=player1.sigma),)
+    t2 = (ts.Rating(mu=player2.mu, sigma=player2.sigma),)
+    r1, r2 = tuple(x[0] for x in ts.transform_ratings(rating_groups=(t1, t2)))
+
+    player1.mu = approx(r1.mu)
+    player1.sigma = approx(r1.sigma)
+    player1.exposure = approx(r1.exposure)
+
+    player2.mu = approx(r2.mu)
+    player2.sigma = approx(r2.sigma)
+    player2.exposure = approx(r2.exposure)
+
+    return player1, player2
