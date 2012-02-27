@@ -14,7 +14,18 @@ class Profile(CommonModel):
     user = models.OneToOneField(User, unique=True)
     slug = models.SlugField("Slug", max_length=255)
     bio = models.TextField(blank=True, null=True)
-    rating = models.IntegerField(default=1600)
+
+    # TrueSkill Rating
+    # To sort players by rating, sort by their exposure. For instance, best to
+    # worst would be Profile.object.order_by('-exposure')
+    # To figure out what this player's rank is in the league, something like
+    # this should work:
+    # Profile.objects.filter(exposure__gte=self.exposure).order_by(
+    #   '-exposure').count()
+    # Exposures which are <= 0 should appear as "unranked" to the user.
+    mu = models.FloatField(blank=True, null=True)
+    sigma = models.FloatField(blank=True, null=True)
+    exposure = models.FloatField(default=0)
 
     # Avatarz
     THUMB_SIZE = (46, 46)
@@ -41,7 +52,7 @@ class Profile(CommonModel):
     team = models.ForeignKey(Team, related_name="profile_team")
 
     class Meta:
-        ordering = ('-rating',)
+        ordering = ('-exposure',)
 
     def __unicode__(self):
         return self.user.username
@@ -54,7 +65,7 @@ class Profile(CommonModel):
     def full_name(self):
         if self.user.first_name == "":
             return self.user.username
-        return ("%s %s" % (user.first_name, user.last_name)).strip()
+        return ("%s %s" % (self.user.first_name, self.user.last_name)).strip()
 
 
 def create_user_profile(sender, instance, created, **kwargs):

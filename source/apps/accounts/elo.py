@@ -1,115 +1,57 @@
-from __future__ import division
-import os
-from random import randint, choice
-
-MAX_INCREASE = 32
-INITIAL_SCORE = 1500
+from trueskill import TrueSkill
 
 
-class Player(object):
-    def __init__(self, id, score, skill, variation):
-        self.id = id
-        self.score = score
-        self.skill = skill
-        self.variation = variation
-        self.wins = 0
-        self.matches = 0
+''' ELO Rankings are lame, let's use TrueSkill!
+def calculate_elo(winner, loser, draw=False):
+    """ This function will calculate the new ELO rankings of each player's
+    score which is fed in. In the case that the match is a draw, set draw to
+    True.
 
-    def get_score(self):
-        return self.skill + randint(-self.variation, self.variation)
-
-    def __str__(self):
-        if self.matches:
-            win_perc = self.wins / self.matches * 100
-        else:
-            win_perc = 0
-        return "Player %3i %5i skill: %3i/%3i W:%3i %3.1f %%" % (
-                self.id, self.score, self.skill, self.variation, self.wins,
-                win_perc,
-                )
-
-    def __eq__(self, other):
-        return self.id == other.id
+    int(winner)
+    int(loser)
+    bool(draw)
+    returns {'winner': int(), 'loser': int()}
+    """
+    K = 20
+    prob = lambda x, y: 1 / (10 ** ((x - y) / 400) + 1)
+    prob_win = prob(loser, winner)
+    prob_los = prob(winner, loser)
+    scor_win = 0.5 if draw else 1
+    scor_los = 0.5 if draw else 0
+    return {
+            'winner': int(winner + (K * (scor_win - prob_win))),
+            'loser': int(loser + (K * (scor_los - prob_los))),
+            }
+'''
 
 
-class Elo(object):
-    def __init__(self, players):
-        for a in xrange(players):
-            self.players.append(
-                    Player(a, INITIAL_SCORE, randint(0, 99), randint(0, 99))
-                    )
-        self.players.append(Player(-2, INITIAL_SCORE, -50, 0))
-        self.players.append(Player(-3, INITIAL_SCORE, 0, 0))
-        self.players.append(Player(-11, INITIAL_SCORE, 500, 0))
-        self.players.append(Player(-12, INITIAL_SCORE, 100, 0))
-        self.output_match = True
+def rank(player1, player2):
+    """ This function will calculate the TrueSkill ranking of each player. It
+    accepts two players arguments. The first is the winning player, the second
+    is the losing player. Both should be Profile objects. This will not save
+    the players.
 
-    def random_match(self):
-        p1 = choice(self.players)
-        p2 = p1
-        while p1 == p2:
-            p2 = choice(self.players)
-        self.match(p1, p2)
+    Args:
+        player1: The winning user profile
+        player2: The losing user profile
 
-    def match(self, p1, p2):
-        if self.output_match:
-            print
-        e1 = MAX_INCREASE * 1 / (1 + 10 ** ((p2.score - p1.score) / 400))
-        e2 = MAX_INCREASE * 1 / (1 + 10 ** ((p1.score - p2.score) / 400))
-        s1 = p1.get_score()
-        s2 = p2.get_score()
-        if self.output_match:
-            print p1, e1
-        if self.output_match:
-            print ' vs'
-        if self.output_match:
-            print p2, e2
-        p1.matches += 1
-        p2.matches += 1
-        if s1 > s2:
-            p1.wins += 1
-            p1.score += e2
-            p2.score -= e2
-            if self.output_match:
-                print p1, 'won. Gained', e2
-            if self.output_match:
-                print p2, 'loss. Lost ', e2
-        else:
-            p2.wins += 1
-            p1.score -= e1
-            p2.score += e1
-            if self.output_match:
-                print p2, 'won. Gained', e1
-            if self.output_match:
-                print p1, 'loss. Lost ', e1
+    Returns:
+        A tuple of (player1, player2)
+    """
+    DRAW_PROBABILITY = 0  # It's impossible to draw 1 on 1
+    approx = lambda f: round(f, 6)  # Round all floats to 6 decimals
 
-    def print_ranks(self):
-        print
-        s = sorted(self.players, key=lambda a: a.score)
-        last = 0
-        for player in s:
-            print player, int(player.score - last)
-            last = player.score
+    ts = TrueSkill(draw_probability=DRAW_PROBABILITY)
+    t1 = (ts.Rating(mu=player1.mu, sigma=player1.sigma),)
+    t2 = (ts.Rating(mu=player2.mu, sigma=player2.sigma),)
+    r1, r2 = tuple(x[0] for x in ts.transform_ratings(rating_groups=(t1, t2)))
 
+    player1.mu = approx(r1.mu)
+    player1.sigma = approx(r1.sigma)
+    player1.exposure = approx(r1.exposure)
 
-def main():
-    e = Elo(30)
-    fast = True
-    e.output_match = not fast
-    matches = 0
-    while 1:
-        matches += 1
-        if matches % 100000 == 0:
-            e.players.append(Player(99, INITIAL_SCORE, randint(0, 99),
-                        randint(0, 99)))
-        e.random_match()
-        if fast and (matches % 100000):
-            continue
-        if fast:
-            os.system('clear')
-        e.print_ranks()
-        if not fast:
-            raw_input()
+    player2.mu = approx(r2.mu)
+    player2.sigma = approx(r2.sigma)
+    player2.exposure = approx(r2.exposure)
 
-if __name__ == '__main__':
-    main()
+    return player1, player2

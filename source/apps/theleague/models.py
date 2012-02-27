@@ -3,13 +3,14 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from apps.abstract.models import CommonModel
+from apps.accounts.elo import rank
 
 
 class Division(CommonModel):
     """ The division.  Right now, there are two, Honey and Badger.
     """
     name = models.CharField(_("Name"), max_length=255)
-    # Don't make this unique because leagues can have divisions w/ the same name.
+    # Leagues can have divisions w/ the same name
     slug = models.SlugField(_("Slug"), max_length=255)
 
     # Relations
@@ -27,12 +28,21 @@ class Game(CommonModel):
     """
     WINNER_CHOICES = ((1, "Player 1",), (2, "Player 2"),)
 
-    winner = models.CharField(_("Winner"), choices=WINNER_CHOICES, max_length=1,
-                              null=True, blank=True)
+    winner = models.CharField(_("Winner"), choices=WINNER_CHOICES,
+            max_length=1, null=True, blank=True)
     # Relations
     match = models.ForeignKey("Match")
     player1 = models.ForeignKey(User, related_name="user1")
     player2 = models.ForeignKey(User, related_name="user2")
+
+    def set_rank(self):
+        """ This will rank players one and two based on the outcome. """
+        if self.winner == 1:
+            self.player1, self.player2 = rank(self.player1, self.player2)
+        else:
+            self.player2, self.player1 = rank(self.player2, self.player1)
+        self.player1.save()
+        self.player2.save()
 
 
 class League(CommonModel):
