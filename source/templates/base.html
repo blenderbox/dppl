@@ -27,23 +27,8 @@
           </a>
           <nav>
             <ul class="clearfix">
-              <li id="schedule-nav"><a href="/schedule"{% active request '/schedule' %} title="Schedule">Schedule</a>
-                  <ul>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                  </ul>
-              </li>
-              <li id="scores-nav"><a href="/scoreboard"{% active request '/scoreboard' %} title="Scores">Scores</a>
-                  <ul>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                    <li><a href="#">Blenderbox</a></li>
-                  </ul>
-              </li>
+              <li id="schedule-nav"><a href="/schedule"{% active request '/schedule' %} title="Schedule">Schedule</a></li>
+              <li id="scores-nav"><a href="/scoreboard"{% active request '/scoreboard' %} title="Scores">Scores</a></li>
               <li id="teams-nav"><a href="/teams"{% active request '/teams' %} title="Teams">Teams</a>
                   <ul>
                   {% for team in TEAMS %}
