@@ -10,6 +10,7 @@
 
 # ignore environment and local settings files
 local_settings.py
+source/settings/local.py
 media/
 !media/avatars/default.jpg
 source/static/
