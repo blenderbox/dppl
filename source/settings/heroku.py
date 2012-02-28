@@ -10,15 +10,6 @@ TEMPLATE_DEBUG = True
 EMAIL_HOST = "localhost"
 EMAIL_PORT = 1025
 
-DATABASES = {
-    'default': {
-        'ENGINE': "django.db.backends.postgresql_psycopg2",
-        'NAME': "dppl",
-        'USER': "postgres",
-        'PASSWORD': "postgres",
-    },
-}
-
 # Dummy cache for dev
 CACHES = {
     'default': {
