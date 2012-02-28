@@ -14,5 +14,6 @@ django-extensions==0.7.1
 django-mptt==0.5.2
 django-polymorphic==0.2
 easy-thumbnails==1.0-alpha-21
+psycopg2==2.4.4
 -e git+https://github.com/sublee/trueskill.git@753b57c3abeb7cb147523031cf0b1276133d9590#egg=trueskill-dev
 wsgiref==0.1.2
