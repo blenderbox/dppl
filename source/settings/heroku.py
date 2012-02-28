@@ -2,7 +2,7 @@ from os import environ
 from sys import exc_info
 from urlparse import urlparse, uses_netloc
 
-from settings.defaults import *
+from defaults import *
 
 
 DEBUG = True
