@@ -1,6 +1,6 @@
 import sys
 
-from source.settings.defaults import *
+from settings.defaults import *
 
 
 DEBUG = True

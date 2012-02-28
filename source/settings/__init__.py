@@ -5,6 +5,6 @@ settings. On different environments, be sure to add their own
 an environment variable.
 """
 try:
-    from source.settings.local import *
+    from settings.local import *
 except ImportError:
     pass
