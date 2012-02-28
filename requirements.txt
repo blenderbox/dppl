@@ -4,7 +4,6 @@ PIL==1.1.7
 Pygments==1.4
 South==0.7.3
 Werkzeug==0.8.1
-bpython==0.10.1
 django-appconf==0.4.1
 django-compressor==1.1.2
 django-debug-toolbar==0.8.5
