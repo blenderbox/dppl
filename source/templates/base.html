@@ -40,16 +40,28 @@
             </ul>
           </nav>
         </header>
+        {% if request.user.is_authenticated %}
+        <div id="logged-in">
+          <p>Hey {{ request.user.profile.full_name }}! <a href="{% url accounts:change-password %}">Change password?</a></p>
+          <form action="{% url accounts:logout %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Sign Out</button>
+          </form>
+        </div>
+        {% else %}
         <div id="sign-in">
           <a href="#" class="ir">Sign in</a>
           <span class="flag">Pros only</span>
-          <form class="grid">
-            <label for="username">Your Serve.</label>
-            <input id="username" type="email" placeholder="Username" required="required" />
-            <input id="password" type="password" placeholder ="Password" required="required" />
+          <form action="{% url accounts:authenticate %}" class="grid" method="post">
+            <label for="Email">Your Serve.</label>
+            <input id="email" type="email" name="email" placeholder="Email" required="required" />
+            <input id="password" type="password" name="password" placeholder ="Password" required="required" />
+            {% csrf_token %}
+            <p class="error">{# For error messages #}</p>
             <button type="submit">Enter</button>
           </form>
         </div>
+        {% endif %}
         {% block content %}{% endblock content %}
     </div><!-- /container -->
     <footer>
@@ -61,11 +73,25 @@
     {% block paddle %}<div id="paddle-dots"></div>{% endblock %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>!window.jQuery && document.write('<script src="javascripts/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 {% compress js %}
 <script>var STATIC_URL='{{ STATIC_URL }}';</script>
 <script src="{{ STATIC_URL }}javascripts/app/application.js"></script>
 {% block javascripts %}{% endblock javascripts %}
 {% endcompress %}
+{% if not request.user.is_authenticated %}
+{% verbatim %}
+<script id="logged-in-template" type="text/html">
+<div id="logged-in">
+  <p>Hey ${name}! <a href="{% url accounts:change-password %}">Change password?</a></p>
+  <form action="{% url accounts:logout %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Sign Out</button>
+  </form>
+</div>
+</script>
+{% endverbatim %}
+{% endif %}
 <!--[if lt IE 9 ]>
 <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>

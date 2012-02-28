@@ -199,7 +199,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    "django.contrib.admindocs",
+    'django.contrib.admindocs',
     'django.contrib.staticfiles',
 
     # Third Party Django Applications
@@ -218,7 +218,15 @@ TEMPLATE_TAGS = (
     'easy_thumbnails.templatetags.thumbnail',
     # Project
     'templatetags.helper_tags',
+    'templatetags.verbatim',
 )
+
+AUTHENTICATION_BACKENDS = (
+    # For allowing email addresses as usernames. Must come before django stuff
+    'apps.accounts.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 ########################
 # APPLICATION SETTINGS #
 ########################
@@ -231,7 +239,7 @@ COMPRESS_PRECOMPILERS = (
 
 FILER_URL = MEDIA_URL + 'filer_thumbnails/'
 
-LEAGUE_ID=1
+LEAGUE_ID = 1
 
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',

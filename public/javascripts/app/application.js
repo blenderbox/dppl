@@ -20,10 +20,14 @@ var APP = (function($) {
             test:Modernizr.csstransitions,
             nope:STATIC_URL + 'javascripts/app/css3.js'
         }]);
-        $('#sign-in a')
-            .click(toggleSignInForm)
-            .mouseenter(onSignInOver)
-            .mouseleave(onSignOut);
+        $('#sign-in')
+            .find('a')
+              .click(toggleSignInForm)
+              .mouseenter(onSignInOver)
+              .mouseleave(onSignOut)
+            .end()
+            .find('form')
+              .submit(login);
         $('a.more')
             .mouseenter(onMoreOver)
             .mouseleave(onMouseOut);
@@ -38,6 +42,24 @@ var APP = (function($) {
         var e = $el.text().split('//').join('.').split('/').join('@');
         $el.after('<a href="mailto:' + e + '">' + e + '</a>');
         $el.remove();
+    }
+    function login(e) {
+      e.preventDefault();
+      var $el = $(e.target),
+          $error_message = $el.find('p'),
+          $sign_in = $("#sign-in"),
+          original_height = $sign_in.height();
+      $.post($el.attr('action'), $el.serialize(), function(data) {
+        if (data.success) {
+          $("#sign-in").slideUp(250, function() {
+            $("#logged-in-template").tmpl(data.user).insertAfter("header");
+          });
+          // $sign_in.hide();
+        } else {
+          $error_message.text(data.message).addClass(on);
+          $sign_in.css({ height: "+=" + $error_message.outerHeight() });
+        }
+      }, "json");
     }
     function open(e) {
         e.preventDefault();

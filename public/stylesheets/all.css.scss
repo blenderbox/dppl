@@ -328,6 +328,30 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
         transition-property:top;
 }
 #sign-in form.on { top:0; }
+#sign-in p { display:none; color:#45443F; background:rgba(255, 0, 0, 0.8);
+    margin:0 0 10px; padding:10px; width:260px; }
+#sign-in p.on { display:block; }
+#sign-in.error {
+     -o-transition-duration:.15s;
+   -moz-transition-duration:.15s;
+    -ms-transition-duration:.15s;
+-webkit-transition-duration:.15s;
+        transition-duration:.15s;
+     -o-transition-timing-function:ease-in;
+   -moz-transition-timing-function:ease-in;
+    -ms-transition-timing-function:ease-in;
+-webkit-transition-timing-function:ease-in;
+        transition-timing-function:ease-in;
+     -o-transition-property:height;
+   -moz-transition-property:height;
+    -ms-transition-property:height;
+-webkit-transition-property:height;
+        transition-property:height;
+}
+
+#logged-in { position:absolute; right:0; top:0; }
+#logged-in p, #logged-in form, #logged-in button { display:inline-block; }
+#logged-in p { margin-right:20px; }
 
 footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px; position:relative; text-align:right; width:940px; }
 footer .ir, footer p { float:left; padding:0; }
