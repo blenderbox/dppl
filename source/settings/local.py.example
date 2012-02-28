@@ -1,5 +1,8 @@
 import sys
 
+from source.settings.defaults import *
+
+
 DEBUG = True
 LOCAL_SERVE = True
 TEMPLATE_DEBUG = True
@@ -21,10 +24,10 @@ else:
     # Real database when not testing
     DATABASES = {
         'default': {
-            'ENGINE': "django.db.backends.mysql",
+            'ENGINE': "django.db.backends.postgresql_psycopg2",
             'NAME': "dppl",
-            'USER': "root",
-            'PASSWORD': "root",
+            'USER': "",
+            'PASSWORD': "",
         },
     }
 

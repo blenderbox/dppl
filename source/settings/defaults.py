@@ -64,9 +64,6 @@ TEMPLATE_LOADERS = (
 #    'django.template.loaders.app_directories.load_template_source',
 )
 
-if USE_I18N:
-    TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.i18n',)
-
 SECRET_KEY = 'localdev'
 
 LOGGING = {
@@ -147,7 +144,7 @@ DATABASES = {
 def get_path(*args):
     return os.path.realpath(os.path.join(*args))
 
-PROJECT_DIR = get_path(os.path.dirname(__file__))
+PROJECT_DIR = get_path(os.path.dirname(__file__), "../")
 
 LOG_ROOT = get_path(PROJECT_DIR, '../logs')
 
@@ -247,9 +244,3 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters',
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
 )
-
-# Load the local settings
-try:
-    from local_settings import *
-except ImportError:
-    print "Could not find local_settings.py, nice one bro."
