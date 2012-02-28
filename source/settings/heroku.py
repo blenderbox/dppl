@@ -27,6 +27,7 @@ try:
             'HOST': url.hostname,
             'PORT': url.port,
         }
+
         DATABASES['default']['ENGINE'] = 'django.db.backends.'
         if url.scheme == 'postgres':
             DATABASES['default']['ENGINE'] += 'postgresql_psycopg2'
