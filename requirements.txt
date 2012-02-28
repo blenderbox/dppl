@@ -18,4 +18,3 @@ gunicorn==0.13.4
 psycopg2==2.4.4
 -e git+https://github.com/sublee/trueskill.git@753b57c3abeb7cb147523031cf0b1276133d9590#egg=trueskill-dev
 wsgiref==0.1.2
-
