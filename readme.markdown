@@ -32,6 +32,10 @@
 1.  Once you've gained access, you can run any basic commands using:
         $ heroku run "python source/manage.py <some command> --settings=source.settings.heroku"
 
+1.  To deploy, just run:
+        $ git push heroku master
+
+
 ## Note
 If you're starting a new Heroku server, you'll need to set up some
 environment variables in order to get it working. To set up an
