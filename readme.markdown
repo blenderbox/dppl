@@ -45,9 +45,16 @@
 
 
 ## Note
+This article will definitely be helpful for Heroku stuff:
+http://devcenter.heroku.com/articles/quickstart
+
+This one will be helpful if you're adding your own settings:
+http://rdegges.com/devops-django-part-3-the-heroku-way
+
 If you're starting a new Heroku server, you'll need to set up some
 environment variables in order to get it working. To set up an
 environment variable, you must run:
+
     $ heroku config:add MY_VARIABLE="my_value"
 
 Here are the environment variables you'll need to add:
