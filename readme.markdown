@@ -1,24 +1,30 @@
 # Local Development
 1.  Check out the repo:
+
         $ git clone git://github.com/blenderbox/dppl.git
 
 1.  Create a virtual environment:
+
         $ mkvirtualenv dppl --no-site-packages
 
 1.  Enter your vitrtual environment, and install the packages:
+
         $ workon dppl
         $ easy_install pip
         $ pip install -r requirements.txt
 
 1.  Copy settings/local.py.example to local.py, and customize with your
     database info:
+
         $ cp source/settings/local.py.example source/settings/local.py
 
 1.  Create your database, then run syncdb and fake migrations:
+
         $ python source/manage.py syncdb --all
         $ python source/manage.py migrate --fake
 
 1.  Startup your server:
+
         $ python source/manage.py runserver
 
 
@@ -30,9 +36,11 @@
 1.  Install the Heroku package, and signup: http://devcenter.heroku.com/articles/quickstart
 
 1.  Once you've gained access, you can run any basic commands using:
+
         $ heroku run "python source/manage.py <some command> --settings=source.settings.heroku"
 
 1.  To deploy, just run:
+
         $ git push heroku master
 
 
@@ -43,6 +51,7 @@ environment variable, you must run:
     $ heroku config:add MY_VARIABLE="my_value"
 
 Here are the environment variables you'll need to add:
+
 *   **AWS_ACCESS_KEY_ID**: Your AWS access id for S3 storage.
 
 *   **AWS_SECRET_ACCESS_KEY**: Your AWS secret key for S3 storage.
@@ -55,6 +64,7 @@ Here are the environment variables you'll need to add:
 
 Once you've pushed to Heroku, you'll have to remotely run syncdb, and
 collect static. To do this:
+
     $ heroku run "python source/manage.py syncdb --all --noinput --settings=source.settings.heroku"
     $ heroku run "python source/manage.py collectstatic --noinput --settings=source.settings.heroku"
     $ heroku run "python source/manage.py createsuperuser --settings=source.settings.heroku"
