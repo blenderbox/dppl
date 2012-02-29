@@ -4,6 +4,8 @@ PIL==1.1.7
 Pygments==1.4
 South==0.7.3
 Werkzeug==0.8.1
+boto==2.2.2
+bpython==0.10.1
 django-appconf==0.4.1
 django-compressor==1.1.2
 django-debug-toolbar==0.8.5
@@ -12,8 +14,10 @@ django-extensions==0.7.1
 -e git+https://github.com/jdriscoll/django-imagekit.git@3a5d7da0d8086cf231fa105d019001e27befd0c8#egg=django_imagekit-dev
 django-mptt==0.5.2
 django-polymorphic==0.2
+-e hg+https://bitbucket.org/david/django-storages@3a53e65bf4cc95a2cd312348db780d3713ee07be#egg=django_storages-dev
 easy-thumbnails==1.0-alpha-21
 gunicorn==0.13.4
+ipython==0.12
 psycopg2==2.4.4
 -e git+https://github.com/sublee/trueskill.git@753b57c3abeb7cb147523031cf0b1276133d9590#egg=trueskill-dev
 wsgiref==0.1.2
