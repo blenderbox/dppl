@@ -2,11 +2,15 @@ from os import environ
 from sys import exc_info
 from urlparse import urlparse, uses_netloc
 
+from S3 import CallingFormat
+
 from defaults import *
 
 
+env = lambda e, d: environ[e] if e in environ else d
+
 DEBUG = True
-LOCAL_SERVE = True
+LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
 # To run a testing server:
@@ -36,6 +40,8 @@ try:
 except:
     print "Unexpected error:", exc_info()
 
+INSTALLED_APPS += ('storages',)
+
 # Dummy cache for dev
 CACHES = {
     'default': {
@@ -45,3 +51,20 @@ CACHES = {
 
 # DB backed sessions for testing since cache dumps itself
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+AWS_HEADERS = {
+    'x-amz-acl': 'public-read',
+    'Expires': 'Sat, 30 Oct 2010 20:00:00 GMT',
+    'Cache-Control': 'public, max-age=31556926',
+}
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
+
+STATIC_URL = 'http://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+COMPRESS_ROOT = get_path(PROJECT_DIR, "../public")
+COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

@@ -12,6 +12,6 @@
 local_settings.py
 source/settings/local.py
 media/
+static/
 !media/avatars/default.jpg
 source/static/
-static/CACHE/

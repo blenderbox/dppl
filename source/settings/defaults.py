@@ -2,6 +2,7 @@
 import os
 from sys import argv
 
+
 gettext = lambda s: s
 
 
@@ -209,7 +210,6 @@ INSTALLED_APPS = (
     'mptt',
     'south',
 ) + PROJECT_APPS
-
 
 TEMPLATE_TAGS = (
     # Third Party
