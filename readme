@@ -1,4 +1,0 @@
-First, install virtualenvwrapper and enter your environment: http://www.doughellmann.com/docs/virtualenvwrapper/
-Then, run ./bootstrap.sh if you're on Linux or (hopefully) Mac to install packages, and setup a mysql database.
-
-
