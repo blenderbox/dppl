@@ -42,7 +42,7 @@
         </header>
         {% if request.user.is_authenticated %}
         <div id="logged-in">
-          <p>Hey {{ request.user.profile.full_name }}! <a href="{% url change_password %}">Change password?</a></p>
+          <p>Hey {{ request.user.profile.full_name }}! <a href="{% url accounts:change_password %}">Change password?</a></p>
           <form action="{% url accounts:logout %}" method="post">
             {% csrf_token %}
             <button type="submit">Sign Out</button>
@@ -83,7 +83,7 @@
 {% verbatim %}
 <script id="logged-in-template" type="text/html">
 <div id="logged-in">
-  <p>Hey ${name}! <a href="{% url change_password %}">Change password?</a></p>
+  <p>Hey ${name}! <a href="{% url accounts:change_password %}">Change password?</a></p>
   <form action="{% url accounts:logout %}" method="post">
     {% csrf_token %}
     <button type="submit">Sign Out</button>
