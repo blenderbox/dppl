@@ -52,16 +52,13 @@ def authenticate(request):
     return render_json(context)
 
 
-def change_password(request):
-    """ Displays a change password form. """
-    pass
-
-
 def login(request):
     """ This is the fallback page when a user attempts to access a page and
     they aren't logged in. Pass it the get variable "next" to have the user
     redirected once they've successfully logged in.
     """
+    if request.user.is_authenticated():
+        return redirect("/")
     return render_response(request, "profile/login.html", {
         'next': request.GET.get('next', "/?in").strip(),
         })

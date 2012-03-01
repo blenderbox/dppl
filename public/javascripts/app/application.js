@@ -54,10 +54,12 @@ var APP = (function($) {
           $("#sign-in").slideUp(250, function() {
             $("#logged-in-template").tmpl(data.user).insertAfter("header");
           });
-          // $sign_in.hide();
         } else {
           $error_message.text(data.message).addClass(on);
-          $sign_in.css({ height: "+=" + $error_message.outerHeight() });
+          if (!$sign_in.hasClass('embiggened')) {
+            $sign_in.css({ height: "+=" + $error_message.outerHeight() })
+              .addClass('embiggened');
+          }
         }
       }, "json");
     }

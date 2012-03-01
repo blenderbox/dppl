@@ -44,7 +44,7 @@
         $ git push heroku master
 
 
-## Note
+## Notes
 This article will definitely be helpful for Heroku stuff:
 http://devcenter.heroku.com/articles/quickstart
 
