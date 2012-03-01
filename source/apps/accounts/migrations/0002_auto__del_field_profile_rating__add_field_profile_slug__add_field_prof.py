@@ -8,33 +8,71 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
+        # Deleting field 'Profile.rating'
+        db.delete_column('accounts_profile', 'rating')
+
         # Adding field 'Profile.slug'
-        db.add_column('accounts_profile', 'slug', self.gf('django.db.models.fields.SlugField')(default='kayluhb', max_length=255, db_index=True), keep_default=False)
+        db.add_column('accounts_profile', 'slug', self.gf('django.db.models.fields.SlugField')(default='user', max_length=255, db_index=True), keep_default=False)
+
+        # Adding field 'Profile.mu'
+        db.add_column('accounts_profile', 'mu', self.gf('django.db.models.fields.FloatField')(null=True, blank=True), keep_default=False)
+
+        # Adding field 'Profile.sigma'
+        db.add_column('accounts_profile', 'sigma', self.gf('django.db.models.fields.FloatField')(null=True, blank=True), keep_default=False)
+
+        # Adding field 'Profile.exposure'
+        db.add_column('accounts_profile', 'exposure', self.gf('django.db.models.fields.FloatField')(default=0), keep_default=False)
+
+        # Adding field 'Profile.website'
+        db.add_column('accounts_profile', 'website', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True), keep_default=False)
 
         # Adding field 'Profile.team'
-        db.add_column('accounts_profile', 'team', self.gf('django.db.models.fields.related.ForeignKey')(default='kayluhb-2', related_name='profile_team', to=orm['theleague.Team']), keep_default=False)
+        db.add_column('accounts_profile', 'team', self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='profile_team', to=orm['theleague.Team']), keep_default=False)
+
+        # Changing field 'Profile.avatar'
+        db.alter_column('accounts_profile', 'avatar', self.gf('django.db.models.fields.files.ImageField')(max_length=100))
 
 
     def backwards(self, orm):
         
+        # Adding field 'Profile.rating'
+        db.add_column('accounts_profile', 'rating', self.gf('django.db.models.fields.IntegerField')(default=1600), keep_default=False)
+
         # Deleting field 'Profile.slug'
         db.delete_column('accounts_profile', 'slug')
+
+        # Deleting field 'Profile.mu'
+        db.delete_column('accounts_profile', 'mu')
+
+        # Deleting field 'Profile.sigma'
+        db.delete_column('accounts_profile', 'sigma')
+
+        # Deleting field 'Profile.exposure'
+        db.delete_column('accounts_profile', 'exposure')
+
+        # Deleting field 'Profile.website'
+        db.delete_column('accounts_profile', 'website')
 
         # Deleting field 'Profile.team'
         db.delete_column('accounts_profile', 'team_id')
 
+        # Changing field 'Profile.avatar'
+        db.alter_column('accounts_profile', 'avatar', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True))
+
 
     models = {
         'accounts.profile': {
-            'Meta': {'ordering': "('-rating',)", 'object_name': 'Profile'},
+            'Meta': {'ordering': "('-exposure',)", 'object_name': 'Profile'},
             'avatar': ('django.db.models.fields.files.ImageField', [], {'default': "'avatars/default.jpg'", 'max_length': '100'}),
             'bio': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'exposure': ('django.db.models.fields.FloatField', [], {'default': '0'}),
             'facebook': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'linked_in': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'rating': ('django.db.models.fields.IntegerField', [], {'default': '1600'}),
+            'mu': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'sigma': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_index': 'True'}),
             'team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'profile_team'", 'to': "orm['theleague.Team']"}),
             'twitter': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
