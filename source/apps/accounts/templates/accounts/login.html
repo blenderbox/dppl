@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-Sew Tyte.
+<form action="{% url accounts:login %}" method="post">
+    <p>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required="required" />
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" required="required" />
+    </p>
+    <input id="next" type="hidden" name="next" value="{{ next }}" />
+    {% csrf_token %}
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <p><button type="submit">Enter</button></p>
+</form>
 {% endblock content %}
