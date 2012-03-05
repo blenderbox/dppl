@@ -46,7 +46,7 @@ def authenticate(request):
     else:  # Failed login, wrong username or password
         context = {
             'success': False,
-            'message': "Your username or password is incorrect.",
+            'message': "Your email or password is incorrect.",
             }
 
     return render_json(context)
@@ -57,10 +57,29 @@ def login(request):
     they aren't logged in. Pass it the get variable "next" to have the user
     redirected once they've successfully logged in.
     """
+    error = ""
+    next = request.REQUEST.get('next', "/").strip()
+
     if request.user.is_authenticated():
         return redirect("/")
-    return render_response(request, "profile/login.html", {
-        'next': request.GET.get('next', "/?in").strip(),
+    elif request.method == "POST":
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('password', '').strip()
+
+        user = auth.authenticate(email=email, password=password)
+
+        if user is not None:
+            if user.is_active:
+                auth.login(request, user)
+                return redirect(next)
+            else:
+                error = "Your account is inactive."
+        else:
+            error = "Your email or password is incorrect."
+
+    return render_response(request, "accounts/login.html", {
+        'next': next,
+        'error': error,
         })
 
 
