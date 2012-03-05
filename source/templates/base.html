@@ -12,7 +12,7 @@
     <!--[if ie]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     <script src="{{ STATIC_URL }}javascripts/libs/modernizr.min.js"></script>
     {% compress css %}
-    <link href="{{ STATIC_URL }}stylesheets/all.css.scss" rel="stylesheet" />
+    <link type="text/x-scss" href="{{ STATIC_URL }}stylesheets/all.css.scss" rel="stylesheet" />
     {% block stylesheets %}{% endblock stylesheets %}
     {% endcompress %}
 </head>
