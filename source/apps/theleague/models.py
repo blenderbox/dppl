@@ -5,6 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from apps.abstract.models import CommonModel
 from apps.accounts.elo import rank
 
+from datetime import datetime
+
 
 class Division(CommonModel):
     """ The division.  Right now, there are two, Honey and Badger.
@@ -68,6 +70,13 @@ class Season(CommonModel):
     go_live_date = models.DateField(_("Go Live Date"))
     go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
 
+    # Relations
+    league = models.ForeighKey("League")
+
+    @staticmethod
+    def current_seasons():
+        return Season.objects.filter(go_live_date__lte=datetime.now()).filter(go_dead_date__gte=datetime.now())
+
     class Meta:
         ordering = ("name",)
 
@@ -84,6 +93,7 @@ class Match(CommonModel):
 
     # Relations
     season = models.ForeignKey("Season")
+    division = models.ForeignKey("Division")
     team1 = models.ForeignKey("Team", related_name="team1")
     team2 = models.ForeignKey("Team", related_name="team2")
 
@@ -92,7 +102,7 @@ class Match(CommonModel):
         verbose_name_plural = "Matches"
 
     def __unicode__(self):
-        return "%s vs %s" % (self.team1, self.team2)
+        return "%s v %s" % (self.team1.abbr, self.team2.abbr)
 
 
 class Team(CommonModel):

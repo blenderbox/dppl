@@ -5,121 +5,127 @@
 {% block body_class %} class="schedule-page"{% endblock %}
 
 {% block content %}
+{% for season in current_seasons %}
 <section class="col-12 grid schedule">
-  <h1>2012 Schedule</h1>
-  <div class="copy">
-      <ul class="header clearfix">
-          <li>Week 1</li>
-          <li>Week 2</li>
-          <li>Week 3</li>
-          <li>Week 4</li>
-          <li>Week 5</li>
-          <li>Week 6</li>
-          <li>Week 7</li>
-          <li>Week 8</li>
-      </ul>
-      <div class="honey clearfix">
-          <ul class="past">
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul class="past">
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-      </div>
-      <div class="badger clearfix">
-          <ul class="past">
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul class="past">
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-          <ul>
-              <li>BBX 4 RGA 0</li>
-              <li>RGA 3  LBi 1</li>
-              <li>UC 2  TBG 2</li>
-              <li>BS 4 HGE 0</li>
-          </ul>
-      </div>
+<h1>{{ season.season.name }}</h1>
+<div class="copy">
+  <ul class="header clearfix">
+    {% for week in season.dates %}
+      <li>Week {{ forloop.counter }}</li>
+    {% endfor %}
+  </ul>
+  <div class="honey clearfix">
+    {% for week in season.dates %}
+    <ul>
+      {% for match in week.matches %}
+        <li>{{ match }}</li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
   </div>
+  <div class="honey clearfix">
+    <ul class="past">
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul class="past">
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+  </div>
+  <div class="badger clearfix">
+    <ul class="past">
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul class="past">
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+    <ul>
+      <li>BBX 4 RGA 0</li>
+      <li>RGA 3  LBi 1</li>
+      <li>UC 2  TBG 2</li>
+      <li>BS 4 HGE 0</li>
+    </ul>
+  </div>
+</div>
 </section>
+{% endfor %}
 {{ block.super }}
 {% endblock content %}
 
@@ -127,4 +133,3 @@
 The game originated as a sport in Britain during the 1880s, where it was played among the upper-class as an after-dinner parlour game, then commonly known as "wiff-waff". 
 Source: Wikipedia
 {% endblock %}
-

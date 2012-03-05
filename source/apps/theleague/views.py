@@ -6,7 +6,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from app_utils.tools import render_response
-from apps.theleague.models import League, Team
+from apps.theleague.models import League, Team, Season, Match
 
 
 def scoreboard(request):
@@ -24,7 +24,25 @@ def schedule(request):
     today = datetime.date.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
 
-    return render_response(request, 'theleague/schedule.html', {})
+    # set up our weeks
+    current_seasons = []
+    for season in Season.current_seasons():
+        dates = []
+        matches = season.match_set.order_by('date')
+        prev_date = None
+        for match in matches:
+            if match.date != prev_date:
+                prev_date = match.date
+                dates.append({
+                    'date': prev_date,
+                    'matches': [],
+                })
+            dates[-1]['matches'].append(match)
+        current_seasons.append({'season': season, 'dates': dates})
+
+    return render_response(request, 'theleague/schedule.html', {
+        'current_seasons': current_seasons,
+    })
 
 
 def teams(request):

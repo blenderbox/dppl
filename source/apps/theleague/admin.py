@@ -47,8 +47,8 @@ class MatchAdmin(admin.ModelAdmin):
     """ A class for the admin
     """
     fieldsets = (
-        (None, {'fields': ('season', 'date', 'team1', 'team1_score', 'team2',
-            'team2_score')}),
+        (None, {'fields': ('season', 'date', 'division', 'team1',
+            'team1_score', 'team2', 'team2_score')}),
     )
     list_display = ('team1', 'team2', 'date', 'date_created', 'date_modified')
     list_display_links = ('date',)
