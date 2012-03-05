@@ -71,7 +71,7 @@ class Season(CommonModel):
     go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
 
     # Relations
-    league = models.ForeighKey("League")
+    league = models.ForeignKey("League")
 
     @staticmethod
     def current_seasons():
