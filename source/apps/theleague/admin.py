@@ -47,14 +47,15 @@ class MatchAdmin(admin.ModelAdmin):
     """ A class for the admin
     """
     fieldsets = (
-        (None, {'fields': ("date", "team1", "team1_score", "team2", "team2_score")}),
+        (None, {'fields': ('season', 'date', 'team1', 'team1_score', 'team2',
+            'team2_score')}),
     )
-    list_display = ('date', 'date_created', 'date_modified')
+    list_display = ('team1', 'team2', 'date', 'date_created', 'date_modified')
     list_display_links = ('date',)
     list_filter = ('date_created', 'date_modified')
     search_fields = ('date',)
     save_on_top = True
-    
+
     inlines = [
         GameInline,
     ]
@@ -76,7 +77,7 @@ admin.site.register(Season, SeasonAdmin)
 class TeamAdmin(admin.ModelAdmin):
     """ A class for the admin
     """
-    list_display = ('name', 'date_created', 'date_modified')
+    list_display = ('name', 'division', 'date_created', 'date_modified')
     list_display_links = ('name',)
     list_filter = ('date_created', 'date_modified')
     prepopulated_fields = {'slug': ('name',)}

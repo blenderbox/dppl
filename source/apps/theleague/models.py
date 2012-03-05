@@ -59,6 +59,22 @@ class League(CommonModel):
         return self.name
 
 
+class Season(CommonModel):
+    """ The season.
+    """
+    name = models.CharField(_("Name"), max_length=255)
+    # Don't make this unique because leagues can have seasons w/ the same name.
+    slug = models.SlugField(_("Slug"), max_length=255)
+    go_live_date = models.DateField(_("Go Live Date"))
+    go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
+
+    class Meta:
+        ordering = ("name",)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Match(CommonModel):
     """ The match.
     """
@@ -76,23 +92,7 @@ class Match(CommonModel):
         verbose_name_plural = "Matches"
 
     def __unicode__(self):
-        return self.name
-
-
-class Season(CommonModel):
-    """ The season.
-    """
-    name = models.CharField(_("Name"), max_length=255)
-    # Don't make this unique because leagues can have seasons w/ the same name.
-    slug = models.SlugField(_("Slug"), max_length=255)
-    go_live_date = models.DateField(_("Go Live Date"))
-    go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
-
-    class Meta:
-        ordering = ("name",)
-
-    def __unicode__(self):
-        return self.name
+        return "%s vs %s" % (self.team1, self.team2)
 
 
 class Team(CommonModel):
