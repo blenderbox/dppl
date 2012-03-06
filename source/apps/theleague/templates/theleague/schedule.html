@@ -7,18 +7,18 @@
 {% block content %}
 {% for season in current_seasons %}
   <section class="col-12 grid schedule">
-    <h1>{{ season.season.name }}</h1>
+    <h1>{{ season.name }}</h1>
     <div class="copy">
       <ul class="header clearfix">
-        {% for round in season.rounds %}
-          <li>Week {{ forloop.counter }}</li>
+        {% for round in season.round_set.all %}
+          <li>{{ round.name }}</li>
         {% endfor %}
       </ul>
       {% for division in divisions %}
       <div class="{{ division.name|lower }} clearfix">
-          {% for round in season.rounds %}
-          <ul{% if round.in_past %} class="past"{% endif %}>
-            {% for match in round.matches %}
+          {% for round in season.round_set.all %}
+          <ul{% if round.in_past %} class="past"{% endif %}{% if round.current %} class="current"{% endif %}>
+            {% for match in round.match_set.all %}
             {% if match.division == division %}
             <li>{{ match }}</li>
             {% endif %}

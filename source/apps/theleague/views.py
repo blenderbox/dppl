@@ -23,24 +23,25 @@ def schedule(request):
     """
     today = datetime.date.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
+    seasons = league.current_seasons()
     divisions = league.division_set.all()
 
     # set up our weeks
-    seasons = []
-    for season in league.current_seasons():
-        rounds = []
-        matches = season.match_set.order_by('date')
-        prev_date = None
-        for match in matches:
-            if match.date != prev_date:
-                prev_date = match.date
-                rounds.append({
-                    'date': prev_date,
-                    'in_past': match.in_past,
-                    'matches': [],
-                })
-            rounds[-1]['matches'].append(match)
-        seasons.append({'season': season, 'rounds': rounds})
+    #seasons = []
+    #for season in league.current_seasons():
+        #rounds = []
+        #matches = season.match_set.order_by('date')
+        #prev_date = None
+        #for match in matches:
+            #if match.date != prev_date:
+                #prev_date = match.date
+                #rounds.append({
+                    #'date': prev_date,
+                    #'in_past': match.in_past,
+                    #'matches': [],
+                #})
+            #rounds[-1]['matches'].append(match)
+        #seasons.append({'season': season, 'rounds': rounds})
 
     return render_response(request, 'theleague/schedule.html', {
         'current_seasons': seasons,
