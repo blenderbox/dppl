@@ -76,12 +76,13 @@ collect static. To do this:
     $ heroku run "python source/manage.py collectstatic --noinput --settings=source.settings.heroku"
     $ heroku run "python source/manage.py createsuperuser --settings=source.settings.heroku"
 
-## Setting up Python + Virtualenv on a Mac
-I followed [these
+## Python + Virtualenv on a Mac
+[These
 instructions](http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/),
-up to the `virtualenvwrapper` installation.
+worked for me.  I followed them up to the `virtualenvwrapper`
+installation, then added this line to my ~/.bashrc (or ~/.zshrc) file,
+after my PATH declarations.
 
-* make sure you add this line to your ~/.bashrc (or ~/.zshrc) file, after your PATH declarations.
 ```
 source /usr/local/share/python/virtualenvwrapper.sh
 ```
