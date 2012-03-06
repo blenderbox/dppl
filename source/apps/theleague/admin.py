@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.theleague.models import Division, Game, League, Match, Season, Team
+from apps.theleague.models import Division, Game, League, Match, Round, Season, Team
 
 
 class DivisionAdmin(admin.ModelAdmin):
@@ -19,6 +19,11 @@ class GameInline(admin.StackedInline):
     extra = 4
     max_num = 4
     model = Game
+
+
+class RoundInline(admin.StackedInline):
+    extra = 3
+    model = Round
 
 
 class GameAdmin(admin.ModelAdmin):
@@ -47,13 +52,13 @@ class MatchAdmin(admin.ModelAdmin):
     """ A class for the admin
     """
     fieldsets = (
-        (None, {'fields': ('season', 'date', 'division', 'team1',
-            'team1_score', 'team2', 'team2_score')}),
+        (None, {'fields': ('round', 'division', 'team1', 'team1_score',
+            'team2', 'team2_score')}),
     )
-    list_display = ('team1', 'team2', 'date', 'date_created', 'date_modified')
-    list_display_links = ('date',)
+    list_display = ('team1', 'team2', 'round', 'date_created', 'date_modified')
+    list_display_links = ('round',)
     list_filter = ('date_created', 'date_modified')
-    search_fields = ('date',)
+    search_fields = ('round',)
     save_on_top = True
 
     inlines = [
@@ -71,6 +76,10 @@ class SeasonAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name',)
     save_on_top = True
+
+    inlines = [
+        RoundInline,
+    ]
 admin.site.register(Season, SeasonAdmin)
 
 

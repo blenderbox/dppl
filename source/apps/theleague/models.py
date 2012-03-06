@@ -83,25 +83,45 @@ class Season(CommonModel):
         return self.name
 
 
+class Round(CommonModel):
+    """ The round, as in 'Round 1, FIGHT!'
+    """
+    name = models.CharField(_("Name"), max_length=255)
+    go_live_date = models.DateTimeField(_("Go Live Date"))
+    go_dead_date = models.DateTimeField(_("Go Dead Date"))
+
+    # Relations
+    season = models.ForeignKey("Season")
+
+    def in_past(self):
+        return self.go_dead_date < datetime.now()
+
+    def current(self):
+        now = datetime.now()
+        return self.go_live_date <= now and self.go_dead_date >= datetime.now()
+
+    class Meta:
+        ordering = ("go_live_date",)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.season, self.name)
+
+
 class Match(CommonModel):
     """ The match.
     """
-    date = models.DateTimeField(_("Date"))
     team1_score = models.IntegerField(blank=True, null=True)
     team2_score = models.IntegerField(blank=True, null=True)
 
     # Relations
-    season = models.ForeignKey("Season")
+    round = models.ForeignKey("Round")
     division = models.ForeignKey("Division")
     team1 = models.ForeignKey("Team", related_name="team1")
     team2 = models.ForeignKey("Team", related_name="team2")
 
-    def in_past(self):
-        return self.date < datetime.now()
-
     class Meta:
-        ordering = ("date",)
         verbose_name_plural = "Matches"
+        ordering = ("round",)
 
     def __unicode__(self):
         return "%s v %s" % (self.team1.abbr, self.team2.abbr)
