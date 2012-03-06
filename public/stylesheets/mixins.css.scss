@@ -1,4 +1,11 @@
-@mixin border-radius($radius:4px){
+@mixin animation($ani:bounce 1s 1.2s 1 normal forwards) {
+   -moz-animation:$ani;
+    -ms-animation:$ani;
+-webkit-animation:$ani;
+        animation:$ani;
+}
+
+@mixin border-radius($radius:4px) {
    -moz-border-radius:$radius;
 -webkit-border-radius:$radius;
         border-radius:$radius;
@@ -8,6 +15,17 @@
    -moz-box-shadow:$shadow;
 -webkit-box-shadow:$shadow;
         box-shadow:$shadow;
+}
+
+@mixin font-face($name:'PassionRegular', $file:'passionone-regular') {
+    font-family:$name;
+    src:url('../fonts/' + $file + '.eot');
+    src:url('../fonts/' + $file + '.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/' + $file + '.woff') format('woff'),
+         url('../fonts/' + $file + '.ttf') format('truetype'),
+         url('../fonts/' + $file + '.svg#' + $name) format('svg');
+    font-weight:normal;
+    font-style:normal;
 }
 
 @mixin gradient($begin, $end, $bpercent:0%, $epercent:100%) {

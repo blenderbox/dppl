@@ -1,34 +1,9 @@
+@import 'mixins.css.scss';
+
 * { -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
-@font-face {
-    font-family:'AlfaSlabRegular';
-    src:url('../fonts/alfaslabone-regular.eot');
-    src:url('../fonts/alfaslabone-regular.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/alfaslabone-regular.woff') format('woff'),
-         url('../fonts/alfaslabone-regular.ttf') format('truetype'),
-         url('../fonts/alfaslabone-regular.svg#AlfaSlabRegular') format('svg');
-    font-weight:normal;
-    font-style:normal;
-}
-@font-face {
-    font-family:'PassionBold';
-    src:url('../fonts/passionone-bold.eot');
-    src:url('../fonts/passionone-bold.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/passionone-bold.woff') format('woff'),
-         url('../fonts/passionone-bold.ttf') format('truetype'),
-         url('../fonts/passionone-bold.svg#PassionBold') format('svg');
-    font-weight:normal;
-    font-style:normal;
-}
-@font-face {
-    font-family:'PassionRegular';
-    src:url('../fonts/passionone-regular.eot');
-    src:url('../fonts/passionone-regular.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/passionone-regular.woff') format('woff'),
-         url('../fonts/passionone-regular.ttf') format('truetype'),
-         url('../fonts/passionone-regular.svg#PassionRegular') format('svg');
-    font-weight:normal;
-    font-style:normal;
-}
+@font-face { @include font-face('AlfaSlabRegular', 'alfaslabone-regular'); }
+@font-face { @include font-face('PassionBold', 'passionone-bold'); }
+@font-face { @include font-face; }
 
 @-moz-keyframes bounce {
   0% { top:-45px; -moz-animation-timing-function:ease-in; }
@@ -39,12 +14,12 @@
 100% { top:88px; -moz-animation-timing-function:ease-out; }
 }
 @-ms-keyframes bounce {
-  0% { top:-45px; -moz-animation-timing-function:ease-in; }
- 20% { top:88px; -moz-animation-timing-function:ease-out; }
- 50% { top:34px; -moz-animation-timing-function:ease-in; }
- 70% { top:88px; -moz-animation-timing-function:ease-out; }
- 90% { top:70px; -moz-animation-timing-function:ease-in; }
-100% { top:88px; -moz-animation-timing-function:ease-out; }
+  0% { top:-45px; -ms-animation-timing-function:ease-in; }
+ 20% { top:88px; -ms-animation-timing-function:ease-out; }
+ 50% { top:34px; -ms-animation-timing-function:ease-in; }
+ 70% { top:88px; -ms-animation-timing-function:ease-out; }
+ 90% { top:70px; -ms-animation-timing-function:ease-in; }
+100% { top:88px; -ms-animation-timing-function:ease-out; }
 }
 @-webkit-keyframes bounce {
   0% { top:-45px; -webkit-animation-timing-function:ease-in; }
@@ -166,35 +141,13 @@ td { vertical-align:top; }
 ::-moz-placeholder { color:#a2a19a; text-transform:uppercase; }
 
 /* Put all the transition elements here */
-a, button, input, #sign-in form, #sign-in .flag, .col-2, .col-6, .standings .bar {
-     -o-transition-duration:.15s;
-   -moz-transition-duration:.15s;
-    -ms-transition-duration:.15s;
--webkit-transition-duration:.15s;
-        transition-duration:.15s;
-     -o-transition-timing-function:ease-in;
-   -moz-transition-timing-function:ease-in;
-    -ms-transition-timing-function:ease-in;
--webkit-transition-timing-function:ease-in;
-        transition-timing-function:ease-in;
-     -o-transition-property:color, background-color;
-   -moz-transition-property:color, background-color;
-    -ms-transition-property:color, background-color;
--webkit-transition-property:color, background-color;
-        transition-property:color, background-color;
-}
+a, button, input,
+#sign-in form, #sign-in .flag,
+.col-2, .col-6,
+.standings .bar { @include transition; @include transition-property(#{"color, background-color"}); }
 a:focus, button:focus, label:focus, select:focus, textarea:focus { outline:1px dotted #6FFF00; }
-input:focus { outline:0;
-   -moz-box-shadow:-2px 2px 1px 0px rgba(6, 4, 6, 0.25);
--webkit-box-shadow:-2px 2px 1px 0px rgba(6, 4, 6, 0.25);
-      box-shadow:-2px 2px 1px 0px rgba(6, 4, 6, 0.25); }
-input {
-     -o-transition-property:box-shadow;
-   -moz-transition-property:box-shadow;
-    -ms-transition-property:box-shadow;
--webkit-transition-property:box-shadow;
-        transition-property:box-shadow;
-}
+input:focus { outline:0; @include drop-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25)); }
+input { @include transition; @include transition-property(box-shadow); }
 
 h1, h2, h3, h4, h5, h6, label, #sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
 b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2, .paddle h3 { font-family:'PassionBold'; font-weight:normal !important; }
@@ -251,25 +204,17 @@ a.more:hover { color:#fff; }
 
 header { padding:36px 0 31px; position:relative; width:320px; }
 #ball { position:absolute; width:38px; height:38px; border-radius:19px; background:#fff; left:180px; top:-45px;
-   -moz-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
--webkit-box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
-        box-shadow:-4px 4px 0px 0px rgba(4, 6, 4, 0.25);
-   -moz-animation:bounce 1s 1.2s 1 normal forwards;
-    -ms-animation:bounce 1s 1.2s 1 normal forwards;
--webkit-animation:bounce 1s 1.2s 1 normal forwards;
+  @include drop-shadow(-4px 4px 0px 0px rgba(4, 6, 4, 0.25));
+  @include animation(bounce 1s 1.2s 1 normal forwards);
 }
 header h1 { color:#45443f; font-size:50px; line-height:1; padding:0; text-transform:none;
 color:rgba(69,68,63, 0.8); opacity:0;
 text-shadow:1px 4px 6px #c9c8bf, 0 0 0 #000, 1px 4px 6px #c9c8bf; 
-   -moz-animation:fade-in 0.5s 0.5s 1 normal forwards;
-    -ms-animation:fade-in 0.5s 0.5s 1 normal forwards;
--webkit-animation:fade-in 0.5s 0.5s 1 normal forwards;
+  @include animation(fade-in 0.5s 0.5s 1 normal forwards);
 }
 header h2 { color:#fff; font-size:51px; line-height:1; opacity:0; padding:0;
 text-shadow:rgba(6,4,6,0.25) -1px 1px, rgba(6,4,6,0.25) -2px 2px, rgba(6,4,6,0.25) -3px 3px;
-   -moz-animation:fade-in 0.5s 0.9s 1 normal forwards;
-    -ms-animation:fade-in 0.5s 0.9s 1 normal forwards;
--webkit-animation:fade-in 0.5s 0.9s 1 normal forwards;
+@include animation(fade-in 0.5s 0.9s 1 normal forwards);
 }
 #logo:active h1, #logo:active h2 { position:relative; top:1px; }
 .no-csstransitions header h1, .no-csstransitions header h2 { opacity:1; }
@@ -284,9 +229,7 @@ nav > ul > li > a.on { color:#fff; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6
 nav > ul > li:hover ul { display:block; }
 nav > ul > li :last-child a { padding:0 10px 0 18px; }
 nav li ul { background:#5a839a url(../images/backgrounds/grid.png); display:none; padding:13px 10px; position:absolute; width:220px; left:-10px; top:30px; z-index:9999;
-   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
--webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
-        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+@include drop-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
 }
 nav li ul li { margin-bottom:2px; }
 nav li ul a { color:#fff; font-size:14px; display:block; }
@@ -307,25 +250,17 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 #sign-in .ir:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
 #sign-in .ir:active { background-position:0 0; top:11px; }
 #sign-in .flag { color:#fff; font-size:18px; opacity:0; position:absolute; right:56px; text-transform:uppercase; top:-200px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px;
-     -o-transition-property:opacity;
-   -moz-transition-property:opacity;
--webkit-transition-property:opacity;
-        transition-property:opacity; }
+@include transition-property(opacity);
+}
 #sign-in .flag.on { opacity:1; top:18px; }
 #sign-in form { background-color:#994148; height:100%; padding:20px; position:absolute; right:0; top:-200px; width:100%; z-index:1900;
-   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
--webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
-        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
+@include drop-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
      -o-transition-duration:.25s;
    -moz-transition-duration:.25s;
     -ms-transition-duration:.25s;
 -webkit-transition-duration:.25s;
         transition-duration:.25s;
-     -o-transition-property:top;
-   -moz-transition-property:top;
-    -ms-transition-property:top;
--webkit-transition-property:top;
-        transition-property:top;
+@include transition-property(top);
 }
 #sign-in form.on { top:0; }
 #sign-in p { display:none; color:#7A343A; background:#A2A19A; margin:0 0 10px; padding:10px; width:260px;
@@ -333,31 +268,12 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 -webkit-box-shadow: -2px 2px 1px 0px rgba(6, 4, 6, 0.25);
 }
 #sign-in p.on { display:block; }
-#sign-in.error {
-     -o-transition-duration:.15s;
-   -moz-transition-duration:.15s;
-    -ms-transition-duration:.15s;
--webkit-transition-duration:.15s;
-        transition-duration:.15s;
-     -o-transition-timing-function:ease-in;
-   -moz-transition-timing-function:ease-in;
-    -ms-transition-timing-function:ease-in;
--webkit-transition-timing-function:ease-in;
-        transition-timing-function:ease-in;
-     -o-transition-property:height;
-   -moz-transition-property:height;
-    -ms-transition-property:height;
--webkit-transition-property:height;
-        transition-property:height;
-}
+#sign-in.error { @include transition(.15s); @include transition-property(height); }
 
 #logged-in { position:absolute; right:0; top:0; }
 #logged-in p, #logged-in form, #logged-in button { display:inline-block; }
 #logged-in p { margin-right:20px; text-transform:uppercase; }
-#logged-in button { background:#FFF; color:#C9C8BF; opacity:.7;
-        box-shadow: -2px 2px 1px 0px rgba(6, 4, 6, 0.25);
--webkit-box-shadow: -2px 2px 1px 0px rgba(6, 4, 6, 0.25);
-}
+#logged-in button { background:#FFF; color:#C9C8BF; opacity:.7; @include drop-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25)); }
 #logged-in button:hover { opacity:1; }
 
 footer { color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px; position:relative; text-align:right; width:940px; }
@@ -383,16 +299,9 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-3.players ul { height:310px; }
 
 .col-2.week { background-color:#cac9bf; margin-top:21px; padding:0 8px 8px; width:140px;
-     -o-transition-property:background-color, box-shadow;
-   -moz-transition-property:background-color, box-shadow;
--webkit-transition-property:background-color, box-shadow;
-        transition-property:background-color, box-shadow;
+  @include transition-property(#{"background-color, box-shadow"});
 }
-.col-2.week.on { background-color:#94aa54;
-   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
--webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
-        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
-}
+.col-2.week.on { background-color:#94aa54; @include drop-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2)); }
 .col-2.week h3 { background:#fff; height:39px; line-height:39px; margin:-21px 8px 10px; padding:0 0 0 10px; }
 .col-2.week ul, .col-2.week li { background:none; margin:0; padding:0; }
 .col-2.week .honey, .col-2.week .badger { background:#efba00 url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:10px; width:125px; }
@@ -412,17 +321,9 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-2.schedule a.badger { color:#8f8e88; }
 
 .col-6.scoreboard { background-color:#cac9c0; margin-bottom:20px; padding:30px 10px 10px; position:relative;
-     -o-transition-property:background-color, box-shadow;
-   -moz-transition-property:background-color, box-shadow;
-    -ms-transition-property:background-color, box-shadow;
--webkit-transition-property:background-color, box-shadow;
-        transition-property:background-color, box-shadow;
+@include transition-property(#{"background-color, box-shadow"});
 }
-.col-6.scoreboard.on { background-color:#6ccabd;
-   -moz-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
--webkit-box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
-        box-shadow:-5px 5px 0px 0px rgba(6, 4, 6, 0.2);
-}
+.col-6.scoreboard.on { background-color:#6ccabd; @include drop-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2)); }
 .col-6.scoreboard.on a.more { color:#6ccabd; }
 .col-6.scoreboard h2 { border-bottom:4px solid #dad9d1; color:#fff; font-size:34px; line-height:1; margin-bottom:10px; padding:0 0 6px 4px; text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px; text-transform:uppercase; }
 .col-6.scoreboard a.more { background:#fff; height:25px; line-height:25px; padding:0 9px; position:absolute; right:11px; top:32px; }
