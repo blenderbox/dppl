@@ -75,3 +75,17 @@ collect static. To do this:
     $ heroku run "python source/manage.py syncdb --all --noinput --settings=source.settings.heroku"
     $ heroku run "python source/manage.py collectstatic --noinput --settings=source.settings.heroku"
     $ heroku run "python source/manage.py createsuperuser --settings=source.settings.heroku"
+
+## Setting up Python + Virtualenv on a Mac
+I followed [these
+instructions](http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/),
+up to the `virtualenvwrapper` installation.
+
+* make sure you add this line to your ~/.bashrc (or ~/.zshrc) file, after your PATH declarations.
+
+        $ source /usr/local/share/python/virtualenvwrapper.sh
+
+* make sure mercurial is installed before running `pip install
+  requriements.txt`
+
+        $ brew install hg
