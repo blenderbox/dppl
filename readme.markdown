@@ -82,8 +82,9 @@ instructions](http://www.thisisthegreenroom.com/2011/installing-python-numpy-sci
 up to the `virtualenvwrapper` installation.
 
 * make sure you add this line to your ~/.bashrc (or ~/.zshrc) file, after your PATH declarations.
-
-        $ source /usr/local/share/python/virtualenvwrapper.sh
+```
+source /usr/local/share/python/virtualenvwrapper.sh
+```
 
 * make sure mercurial is installed before running `pip install
   requriements.txt`
