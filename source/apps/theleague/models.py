@@ -54,6 +54,9 @@ class League(CommonModel):
     name = models.CharField(_("Name"), max_length=255)
     slug = models.SlugField(_("Slug"), max_length=255, unique=True)
 
+    def current_seasons(self):
+        return self.season_set.filter(go_live_date__lte=datetime.now()).filter(go_dead_date__gte=datetime.now())
+
     class Meta:
         ordering = ("name",)
 
@@ -72,10 +75,6 @@ class Season(CommonModel):
 
     # Relations
     league = models.ForeignKey("League")
-
-    @staticmethod
-    def current_seasons():
-        return Season.objects.filter(go_live_date__lte=datetime.now()).filter(go_dead_date__gte=datetime.now())
 
     class Meta:
         ordering = ("name",)
@@ -96,6 +95,9 @@ class Match(CommonModel):
     division = models.ForeignKey("Division")
     team1 = models.ForeignKey("Team", related_name="team1")
     team2 = models.ForeignKey("Team", related_name="team2")
+
+    def in_past(self):
+        return self.date < datetime.now()
 
     class Meta:
         ordering = ("date",)

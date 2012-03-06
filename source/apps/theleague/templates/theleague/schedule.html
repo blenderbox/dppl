@@ -10,119 +10,23 @@
 <h1>{{ season.season.name }}</h1>
 <div class="copy">
   <ul class="header clearfix">
-    {% for week in season.dates %}
+    {% for round in season.rounds %}
       <li>Week {{ forloop.counter }}</li>
     {% endfor %}
   </ul>
-  <div class="honey clearfix">
-    {% for week in season.dates %}
-    <ul>
-      {% for match in week.matches %}
+  {% for division in divisions %}
+  <div class="{{ division.name|lower }} clearfix">
+      {% for round in season.rounds %}
+      <ul{% if round.in_past %} class="past"{% endif %}>
+        {% for match in round.matches %}
+        {% if match.division == division %}
         <li>{{ match }}</li>
+        {% endif %}
+        {% endfor %}
+      </ul>
       {% endfor %}
-    </ul>
-    {% endfor %}
-  </div>
-  <div class="honey clearfix">
-    <ul class="past">
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul class="past">
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-  </div>
-  <div class="badger clearfix">
-    <ul class="past">
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul class="past">
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-    <ul>
-      <li>BBX 4 RGA 0</li>
-      <li>RGA 3  LBi 1</li>
-      <li>UC 2  TBG 2</li>
-      <li>BS 4 HGE 0</li>
-    </ul>
-  </div>
+    </div>
+  {% endfor %}
 </div>
 </section>
 {% endfor %}
