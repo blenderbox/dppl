@@ -11,7 +11,7 @@
         border-radius:$radius;
 }
 
-@mixin drop-shadow($shadow:0px 0px 8px 0px rgba(4, 4, 5, .5)) {
+@mixin box-shadow($shadow:0px 0px 8px 0px rgba(4, 4, 5, .5)) {
    -moz-box-shadow:$shadow;
 -webkit-box-shadow:$shadow;
         box-shadow:$shadow;
@@ -46,21 +46,72 @@
 }
 @mixin no-shadow { @include inset-shadow(none); }
 
-@mixin transition($time:.25s, $ease-function:ease-in) {
-   -moz-transition-duration:$time;
-     -o-transition-duration:$time;
--webkit-transition-duration:$time;
-        transition-duration:$time;
+@mixin rotate($deg:180deg) {
+   -moz-transform:rotate($deg);
+     -o-transform:rotate($deg);
+-webkit-transform:rotate($deg);
+        transform:rotate($deg);
+}
+
+@mixin transition($time:.25s, $ease-function:ease-in, $properties:all) {
+  @include transition-function($ease-function);
+  @include transition-property($properties);
+  @include transition-time($time);
+}
+
+@mixin transition-function($ease-function:ease-in) {
    -moz-transition-timing-function:$ease-function;
      -o-transition-timing-function:$ease-function;
 -webkit-transition-timing-function:$ease-function;
         transition-timing-function:$ease-function;
 }
 
-@mixin transition-property($properties) {
+@mixin transition-time($time:.25s) {
+   -moz-transition-duration:$time;
+     -o-transition-duration:$time;
+-webkit-transition-duration:$time;
+        transition-duration:$time;
+}
+
+@mixin transition-property($properties:all) {
    -moz-transition-property:$properties;
      -o-transition-property:$properties;
 -webkit-transition-property:$properties;
         transition-property:$properties;
 }
+
+
+/* app specific mixins */
+@mixin pie-left-radius($radius) {
+       -moz-border-radius-topleft:$radius;
+    -moz-border-radius-bottomleft:$radius;
+-webkit-border-bottom-left-radius:$radius;
+   -webkit-border-top-left-radius:$radius;
+           border-top-left-radius:$radius;
+        border-bottom-left-radius:$radius;
+}
+@mixin pie-right-radius($radius) {
+       -moz-border-radius-topright:$radius;
+    -moz-border-radius-bottomright:$radius;
+   -webkit-border-top-right-radius:$radius;
+-webkit-border-bottom-right-radius:$radius;
+           border-top-right-radius:$radius;
+        border-bottom-right-radius:$radius;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
