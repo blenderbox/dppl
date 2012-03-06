@@ -85,8 +85,3 @@ up to the `virtualenvwrapper` installation.
 ```
 source /usr/local/share/python/virtualenvwrapper.sh
 ```
-
-* make sure mercurial is installed before running `pip install
-  requriements.txt`
-
-        $ brew install hg
