@@ -15,44 +15,28 @@ $rules-color:#ce5811;
 $badger-color:#45443f;
 $honey-color:#efba00;
 $light-gray:#d0cfcc;
+$gray:#8f8e88;
 $lime:#6FFF00;
 
-@-moz-keyframes bounce {
-  0% { top:-45px; -moz-animation-timing-function:ease-in; }
- 20% { top:88px; -moz-animation-timing-function:ease-out; }
- 50% { top:34px; -moz-animation-timing-function:ease-in; }
- 70% { top:88px; -moz-animation-timing-function:ease-out; }
- 90% { top:70px; -moz-animation-timing-function:ease-in; }
-100% { top:88px; -moz-animation-timing-function:ease-out; }
+
+@mixin bounce($pre) {
+ 0% { top:-45px; -#{$pre}-animation-timing-function:ease-in; }
+ 20% { top:88px; -#{$pre}-animation-timing-function:ease-out; }
+ 50% { top:34px; -#{$pre}-animation-timing-function:ease-in; }
+ 70% { top:88px; -#{$pre}-animation-timing-function:ease-out; }
+ 90% { top:70px; -#{$pre}-animation-timing-function:ease-in; }
+100% { top:88px; -#{$pre}-animation-timing-function:ease-out; }
 }
-@-ms-keyframes bounce {
-  0% { top:-45px; -ms-animation-timing-function:ease-in; }
- 20% { top:88px; -ms-animation-timing-function:ease-out; }
- 50% { top:34px; -ms-animation-timing-function:ease-in; }
- 70% { top:88px; -ms-animation-timing-function:ease-out; }
- 90% { top:70px; -ms-animation-timing-function:ease-in; }
-100% { top:88px; -ms-animation-timing-function:ease-out; }
-}
-@-webkit-keyframes bounce {
-  0% { top:-45px; -webkit-animation-timing-function:ease-in; }
- 20% { top:88px; -webkit-animation-timing-function:ease-out; }
- 50% { top:34px; -webkit-animation-timing-function:ease-in; }
- 70% { top:88px; -webkit-animation-timing-function:ease-out; }
- 90% { top:70px; -webkit-animation-timing-function:ease-in; }
-100% { top:88px; -webkit-animation-timing-function:ease-out; }
-}
-@-moz-keyframes fade-in {
+@mixin fade-in {
   0% { opacity:0; }
   100% { opacity:1; }
 }
-@-ms-keyframes fade-in {
-  0% { opacity:0; }
-  100% { opacity:1; }
-}
-@-webkit-keyframes fade-in {
-  0% { opacity:0; }
-  100% { opacity:1; }
-}
+@-moz-keyframes bounce { @include bounce(moz); }
+@-ms-keyframes bounce { @include bounce(ms); }
+@-webkit-keyframes bounce { @include bounce(webkit); }
+@-moz-keyframes fade-in { @include fade-in; }
+@-ms-keyframes fade-in { @include fade-in; }
+@-webkit-keyframes fade-in { @include fade-in; }
 
 /* HTML5 display definitions */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display:block; }
@@ -193,7 +177,7 @@ a.more:hover { color:#fff; }
 
 /* These have been tweaked from the standard 960gs */
 .cols {  }
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12{ display:inline; float:left; margin:0 10px; position:relative; }
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 { display:inline; float:left; margin:0 10px; position:relative; }
 .cols .col-1 {width:60px;}
 .cols .col-2 {width:140px;}
 .cols .col-3 {width:220px;}
@@ -270,10 +254,7 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 @include transition-property(top);
 }
 #sign-in form.on { top:0; }
-#sign-in p { display:none; color:#7A343A; background:#A2A19A; margin:0 0 10px; padding:10px; width:260px;
-        box-shadow: -2px 2px 1px 0px rgba(6, 4, 6, 0.25);
--webkit-box-shadow: -2px 2px 1px 0px rgba(6, 4, 6, 0.25);
-}
+#sign-in p { display:none; color:#7A343A; background:#A2A19A; margin:0 0 10px; padding:10px; width:260px; @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25)); }
 #sign-in p.on { display:block; }
 #sign-in.error { @include transition(.15s); @include transition-property(height); }
 
@@ -290,14 +271,13 @@ footer .bbox:hover { background-position:-125px -78px; }
 footer .thomp { background-position:0px -40px; height:29px; margin:-5px 16px 0 8px; width:84px; }
 footer .thomp:hover { background-position:0 -78px; }
 
-
 /* MODULES */
 .col-3.rankings { padding:30px 10px 10px; }
-.col-3.rankings h3 { border-bottom:4px solid #8f8e88; line-height:1; margin:0 0 10px; padding:0 0 10px 4px; text-transform:uppercase; }
+.col-3.rankings h3 { border-bottom:4px solid $gray; line-height:1; margin:0 0 10px; padding:0 0 10px 4px; text-transform:uppercase; }
 .col-3.rankings .highlight { color:$teams-color; }
 .col-3.rankings ul, .col-3.rankings li { background:none; margin:0; padding:0; }
 .col-3.rankings ul { height:390px; overflow-y:auto; }
-.col-3.rankings li { border-top:1px solid #8f8e88; padding:14px 10px 14px 0; }
+.col-3.rankings li { border-top:1px solid $gray; padding:14px 10px 14px 0; }
 .col-3.rankings li:first-child { border-top:0; padding-top:1px; }
 .col-3.rankings .right { float:left; width:122px; }
 .col-3.rankings a { text-transform:uppercase; }
@@ -325,7 +305,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-2.schedule ul, .col-2.schedule li { background:none; margin:0; padding:0; }
 .col-2.schedule ul { margin-bottom:6px; }
 .col-2.schedule a.more { color:#fff; }
-.col-2.schedule a.badger { color:#8f8e88; }
+.col-2.schedule a.badger { color:$gray; }
 
 .col-6.scoreboard { background-color:#cac9c0; margin-bottom:20px; padding:30px 10px 10px; position:relative;
 @include transition-property(#{"background-color, box-shadow"});
@@ -372,7 +352,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .standings .losses { margin-right:1px; width:23px; }
 .standings ul, .standings li { background:none; clear:both; margin:0; padding:0; }
 .standings li { height:27px; }
-.standings li span { background:#fff; color:#8f8e88; }
+.standings li span { background:#fff; color:$gray; }
 .standings li .team { color:$badger-color; }
 .standings .bar { background:$honey-color; color:#fff; float:left; height:26px; line-height:26px; text-indent:10px; width:0;
   @include transition-time(.5s);
@@ -388,7 +368,7 @@ footer .thomp:hover { background-position:0 -78px; }
 .col-12.schedule .honey, .col-12.schedule .badger { background:$honey-color url(../images/backgrounds/divisions.png) 8px center no-repeat; margin-bottom:20px; padding:10px 0 10px 26px; }
 .col-12.schedule ul { float:left; margin:0 10px 0 0; padding:0; width:97px; }
 .col-12.schedule li { background:#fff; height:33px; line-height:33px; margin-bottom:1px; padding-left:10px; }
-.col-12.schedule ul.past li { background:#e1e1de; color:#8f8e88; }
+.col-12.schedule ul.past li { background:#e1e1de; color:$gray; }
 .col-12.schedule .badger { background-color:$badger-color; background-position:-42px center; margin:0; }
 .col-12.schedule .header { float:none; margin-left:28px; width:856px; }
 .col-12.schedule .header li { float:left; margin-right:10px; width:97px; }
@@ -485,12 +465,12 @@ footer .thomp:hover { background-position:0 -78px; }
  -moz-backface-visibility:hidden;
 -webkit-transform-style:preserve-3d;
  -webkit-backface-visibility:hidden;
-	-moz-transform:rotate3d(45,45,0,0deg);
+   -moz-transform:rotate3d(45,45,0,0deg);
 -webkit-transform:rotate3d(45,45,0,0deg);
   @include transition(.4s, ease-in-out);
 }
 .team-token:hover .front { z-index:900;
-	-moz-transform:rotate3d(45,45,0,180deg);
+   -moz-transform:rotate3d(45,45,0,180deg);
 -webkit-transform:rotate3d(45,45,0,180deg);
 }
 .team-token .back { z-index:800;
