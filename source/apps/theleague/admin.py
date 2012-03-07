@@ -70,8 +70,9 @@ admin.site.register(Match, MatchAdmin)
 class RoundAdmin(admin.ModelAdmin):
     """ A class for the admin
     """
-    list_display = ('name', 'short_name', 'date_created', 'date_modified')
-    list_display_links = ('name',)
+    list_display = ('name', 'short_name', 'go_live_date', 'go_dead_date',
+                    'date_created', 'date_modified')
+    list_display_links = ('name', 'go_live_date', 'go_dead_date')
     list_filter = ('date_created', 'date_modified')
     search_fields = ('name',)
     save_on_top = True

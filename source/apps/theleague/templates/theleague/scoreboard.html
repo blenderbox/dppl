@@ -8,14 +8,16 @@
 <section class="col-12 grid scoreboard">
   <h1>Scoreboard</h1>
   <div class="copy clearfix">
+      {% if rounds.count > 0 %}
       <div class="weeks">
         <h2>Week</h2>
-        <h3><span>3</span></h3>
-        <h3><span>2</span></h3>
-        <h3><span>1</span></h3>
+        {% for round in rounds %}
+        <h3><span>{{ round.short_name }}</span></h3>
+        {% endfor %}
       </div>
       <div class="honey">
           <h2>Honey</h2>
+          {% for round in rounds %}
           <div class="row">
             <div class="pie">
               <ul>
@@ -63,150 +65,11 @@
               <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
             </div>
           </div>
-          <div class="row">
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-          </div>
+          {% endfor %}
       </div>
       <div class="badger">
         <h2>Badger</h2>
-        <div class="row">
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-        </div>
+        {% for round in rounds %}
           <div class="row">
             <div class="pie">
               <ul>
@@ -254,54 +117,11 @@
               <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
             </div>
           </div>
-          <div class="row">
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-          </div>
+          {% endfor %}
       </div>
+      {% else %}
+      We haven't finished any rounds yet.  Hurry up and complete the first round!
+      {% endif %}
   </div>
 </section>
 {{ block.super }}

@@ -6,7 +6,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from app_utils.tools import render_response
-from apps.theleague.models import League, Team, Season, Match
+from apps.theleague.models import League, Match, Round, Season, Team
 
 
 def scoreboard(request):
@@ -14,8 +14,9 @@ def scoreboard(request):
     """
     today = datetime.date.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
-
-    return render_response(request, 'theleague/scoreboard.html', {})
+    rounds = Round.objects.filter(go_dead_date__lte=datetime.datetime.today())\
+                .order_by('-go_live_date')
+    return render_response(request, 'theleague/scoreboard.html', { 'rounds': rounds, })
 
 
 def schedule(request):
