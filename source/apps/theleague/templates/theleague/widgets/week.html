@@ -1,23 +1,15 @@
 
 <div class="col-2 grid week{{ class }}">
-  <h3>Week {{ week_num }}</h3>
-  <div class="honey clearfix">
+  <h3>{{ CURRENT_ROUND.name }}</h3>
+  {% regroup CURRENT_ROUND.match_set.all by division as matches %}
+  {% for group in matches %}
+  <div class="{{ group.grouper|lower }} clearfix">
     <ul>
-      <li><a href="#">BBX @ RGA</a></li>
-      <li><a href="#">RGA @ LBi</a></li>
-      <li><a href="#">UC @ TBG</a></li>
-      <li><a href="#">BS @ HGE</a></li>
-      <li><a href="#">UC @ TBG</a></li>
+    {% for match in group.list %}
+      <li>{{ match }}</li>
+    {% endfor %}
     </ul>
   </div>
-  <div class="badger clearfix">
-    <ul>
-      <li><a href="#">BBX @ RGA</a></li>
-      <li><a href="#">RGA @ LBi</a></li>
-      <li><a href="#">UC @ TBG</a></li>
-      <li><a href="#">BS @ HGE</a></li>
-      <li><a href="#">UC @ TBG</a></li>
-    </ul>
-  </div>
+  {% endfor%}
   <a href="/schedule" class="more">Full schedule &raquo;</a>
 </div>

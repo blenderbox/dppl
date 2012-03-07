@@ -1,11 +1,11 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from apps.abstract.models import CommonModel
 from apps.accounts.elo import rank
-
-from datetime import datetime
 
 
 class Division(CommonModel):
@@ -55,7 +55,14 @@ class League(CommonModel):
     slug = models.SlugField(_("Slug"), max_length=255, unique=True)
 
     def current_seasons(self):
-        return self.season_set.filter(go_live_date__lte=datetime.now()).filter(go_dead_date__gte=datetime.now())
+        return self.season_set.filter(go_live_date__lte=datetime.now())\
+            .filter(go_dead_date__gte=datetime.now())
+
+    @property
+    def current_season(self):
+        season = self.season_set.exclude(go_live_date__gt=datetime.now())\
+                .order_by('-go_live_date')[:1]
+        return season[0] if len(season) > 0 else None
 
     class Meta:
         ordering = ("name",)
@@ -86,8 +93,10 @@ class Season(CommonModel):
 class Match(CommonModel):
     """ The match.
     """
-    team1_score = models.IntegerField(blank=True, null=True, help_text=_("Set the score to mark the match completed."))
-    team2_score = models.IntegerField(blank=True, null=True, help_text=_("Set the score to mark the match completed."))
+    team1_score = models.IntegerField(blank=True, null=True,
+        help_text=_("Set the score to mark the match completed."))
+    team2_score = models.IntegerField(blank=True, null=True,
+        help_text=_("Set the score to mark the match completed."))
 
     # Relations
     round = models.ForeignKey("Round")
@@ -113,7 +122,7 @@ class Match(CommonModel):
 
     class Meta:
         verbose_name_plural = "Matches"
-        ordering = ("round",)
+        ordering = ("division", "round",)
 
     def __unicode__(self):
         return "%s v %s" % (self.team1.abbr, self.team2.abbr)

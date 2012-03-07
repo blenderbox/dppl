@@ -14,8 +14,17 @@ def scoreboard(request):
     """
     today = datetime.datetime.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
+    season = league.current_season
+    if season is None:
+        return render_response(request, 'theleague/scoreboard.html', {
+                  'rounds': None,
+                  'first_division_rounds': [],
+                  'second_division_rounds': [],
+              })
+
     divisions = league.division_set.all()
-    rounds = Round.objects.filter(go_dead_date__lte=today).order_by('-go_live_date')
+    rounds = season.round_set\
+        .filter(go_dead_date__lte=today).order_by('-go_live_date')
 
     # Is this the best way?  Maybe baby.
     first_division_rounds = []

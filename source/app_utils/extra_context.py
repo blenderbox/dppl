@@ -22,7 +22,8 @@ def extra_context(request):
     """
     we_live_yo = False
     today = datetime.date.today()
-    season = Season.objects.exclude(go_live_date__gt=today)\
+    league = League.objects.get(pk=settings.LEAGUE_ID)
+    season = league.season_set.exclude(go_live_date__gt=today)\
                 .order_by('-go_live_date')[:1]
 
     if len(season) > 0:
@@ -35,19 +36,46 @@ def extra_context(request):
     }
 
 
+def schedule(request):
+    """ Display the current round
+    """
+    today = datetime.datetime.today()
+    league = League.objects.get(pk=settings.LEAGUE_ID)
+    rounds = league.current_season.round_set\
+                .filter(go_live_date__lte=today)\
+                .order_by('-go_live_date')[:1]
+    r = None
+    if len(rounds) > 0:
+        r = rounds[0]
+
+    return {
+        'CURRENT_ROUND': r,
+    }
+
+
 def scoreboard(request):
     """ Display the scoreboard
     """
     today = datetime.datetime.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
+    season = league.current_season
+
+    if season is None:
+        return {
+            'FIRST_DIVISION_MATCHES': [],
+            'SECOND_DIVISION_MATCHES': [],
+        }
+
     divisions = league.division_set.all()
-    rounds = Round.objects.filter(go_dead_date__lte=today).order_by('-go_live_date')
+    rounds = season.round_set.filter(go_dead_date__lte=today)\
+                .order_by('-go_live_date')[:1]
 
     first_division_matches = []
     second_division_matches = []
 
     if len(rounds) > 0:
         r = rounds[0]
+        # We're assuming there are two divisions
         first_division_matches = divisions[0].match_set.filter(round=r)
         second_division_matches = divisions[1].match_set.filter(round=r)
 

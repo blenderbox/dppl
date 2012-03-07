@@ -316,12 +316,12 @@ footer {
   ul { float:right; width:97px; }
 }
 .col-2.week.on { background-color:#94aa54; @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2)); }
-.col-2.week li a,
+.col-2.week li,
 .col-2.schedule li a { background:#fff; color:$badger-color; display:block;
                        border-top:1px solid $honey-color; height:30px;
                        line-height:30px; padding:0 0 0 8px; }
-.col-2.week li a:hover, .col-2.schedule li a:hover { color:$teams-color; }
-.col-2.week ul li:first-child a { border-top:0; }
+.col-2.schedule li a:hover { color:$teams-color; }
+.col-2.week ul li:first-child { border-top:0; }
 /* the small schedule */
 .col-2.schedule {
   background-color:$honey-color; padding:8px 8px 15px;
