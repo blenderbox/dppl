@@ -13,6 +13,10 @@
         $ easy_install pip
         $ pip install -r requirements.txt
 
+1.  Grab som Sass
+
+        $ gem install sass / sudo gem install sass
+
 1.  Copy settings/local.py.example to local.py, and customize with your
     database info:
 
