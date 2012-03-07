@@ -4,7 +4,16 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
+from apps.accounts.models import Profile
 from apps.theleague.models import Season, Team
+
+
+def elo_rankings(request):
+    """ This is used by the rankings widgets
+    """
+    return {
+        'PLAYERS': Profile.objects.all(),
+    }
 
 
 def extra_context(request):
@@ -24,7 +33,6 @@ def extra_context(request):
         'FILER_URL': settings.FILER_URL,
         'WE_LIVE_YO': we_live_yo,
     }
-
 
 def team_nav(request):
     """ Set the teams in the app.

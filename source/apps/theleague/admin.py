@@ -57,7 +57,7 @@ class MatchAdmin(admin.ModelAdmin):
     )
     list_display = ('team1', 'team2', 'round', 'date_created', 'date_modified')
     list_display_links = ('round',)
-    list_filter = ('date_created', 'date_modified')
+    list_filter = ('round', 'date_created', 'date_modified')
     search_fields = ('round',)
     save_on_top = True
 
@@ -65,6 +65,17 @@ class MatchAdmin(admin.ModelAdmin):
         GameInline,
     ]
 admin.site.register(Match, MatchAdmin)
+
+
+class RoundAdmin(admin.ModelAdmin):
+    """ A class for the admin
+    """
+    list_display = ('name', 'short_name', 'date_created', 'date_modified')
+    list_display_links = ('name',)
+    list_filter = ('date_created', 'date_modified')
+    search_fields = ('name',)
+    save_on_top = True
+admin.site.register(Round, RoundAdmin)
 
 
 class SeasonAdmin(admin.ModelAdmin):

@@ -406,6 +406,7 @@ footer {
 }
 /* the schedule */
 .col-12.schedule {
+  $col-width:85px;
   background-color:#94aa54; margin:20px 0 40px; padding:0 20px 20px;
   h1 { background:#fff; color:$badger-color; display:inline-block; font-size:36px;
        height:70px; line-height:70px; margin:-20px 0 20px 0; padding:0 18px;
@@ -414,12 +415,12 @@ footer {
   .copy { background:#fff; padding:20px 29px; }
   .honey, .badger { background:$honey-color url(../images/backgrounds/divisions.png) 8px center no-repeat;
                     margin-bottom:20px; padding:10px 0 10px 26px; }
-  ul { float:left; margin:0 10px 0 0; padding:0; width:97px; }
+  ul { float:left; margin:0 10px 0 0; padding:0; width:$col-width; }
   li { background:#fff; height:33px; line-height:33px; margin-bottom:1px; padding-left:10px; }
   ul.past li { background:#e1e1de; color:$gray; }
   .badger { background-color:$badger-color; background-position:-42px center; margin:0; }
   .header { float:none; margin-left:28px; width:856px; }
-  .header li { float:left; margin-right:10px; width:97px; }
+  .header li { float:left; margin-right:10px; width:$col-width; }
 }
 /* the big pages */
 .rules h1, .scoreboard h1, .teams h1 { text-shadow:$text-shadow; }

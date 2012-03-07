@@ -83,10 +83,31 @@ class Season(CommonModel):
         return self.name
 
 
+class Match(CommonModel):
+    """ The match.
+    """
+    team1_score = models.IntegerField(blank=True, null=True, help_text=_("Set the score to mark the match completed."))
+    team2_score = models.IntegerField(blank=True, null=True, help_text=_("Set the score to mark the match completed."))
+
+    # Relations
+    round = models.ForeignKey("Round")
+    division = models.ForeignKey("Division")
+    team1 = models.ForeignKey("Team", related_name="team1", help_text=_("Home Team"))
+    team2 = models.ForeignKey("Team", related_name="team2", help_text=_("Away Team"))
+
+    class Meta:
+        verbose_name_plural = "Matches"
+        ordering = ("round",)
+
+    def __unicode__(self):
+        return "%s v %s" % (self.team1.abbr, self.team2.abbr)
+
+
 class Round(CommonModel):
     """ The round, as in 'Round 1, FIGHT!'
     """
     name = models.CharField(_("Name"), max_length=255)
+    short_name = models.CharField(_("Short Name"), max_length=1)
     go_live_date = models.DateTimeField(_("Go Live Date"))
     go_dead_date = models.DateTimeField(_("Go Dead Date"))
 
@@ -105,26 +126,6 @@ class Round(CommonModel):
 
     def __unicode__(self):
         return "%s - %s" % (self.season, self.name)
-
-
-class Match(CommonModel):
-    """ The match.
-    """
-    team1_score = models.IntegerField(blank=True, null=True)
-    team2_score = models.IntegerField(blank=True, null=True)
-
-    # Relations
-    round = models.ForeignKey("Round")
-    division = models.ForeignKey("Division")
-    team1 = models.ForeignKey("Team", related_name="team1")
-    team2 = models.ForeignKey("Team", related_name="team2")
-
-    class Meta:
-        verbose_name_plural = "Matches"
-        ordering = ("round",)
-
-    def __unicode__(self):
-        return "%s v %s" % (self.team1.abbr, self.team2.abbr)
 
 
 class Team(CommonModel):
