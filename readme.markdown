@@ -13,7 +13,7 @@
         $ easy_install pip
         $ pip install -r requirements.txt
 
-1.  Grab som Sass
+1.  Grab some Sass
 
         $ gem install sass / sudo gem install sass
 
