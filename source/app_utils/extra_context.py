@@ -5,7 +5,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
 from apps.accounts.models import Profile
-from apps.theleague.models import Season, Team
+from apps.theleague.models import League, Division, Round, Season, Team
 
 
 def elo_rankings(request):
@@ -33,6 +33,29 @@ def extra_context(request):
         'FILER_URL': settings.FILER_URL,
         'WE_LIVE_YO': we_live_yo,
     }
+
+
+def scoreboard(request):
+    """ Display the scoreboard
+    """
+    today = datetime.datetime.today()
+    league = League.objects.get(pk=settings.LEAGUE_ID)
+    divisions = league.division_set.all()
+    rounds = Round.objects.filter(go_dead_date__lte=today).order_by('-go_live_date')
+
+    first_division_matches = []
+    second_division_matches = []
+
+    if len(rounds) > 0:
+        r = rounds[0]
+        first_division_matches = divisions[0].match_set.filter(round=r)
+        second_division_matches = divisions[1].match_set.filter(round=r)
+
+    return {
+        'FIRST_DIVISION_MATCHES': first_division_matches,
+        'SECOND_DIVISION_MATCHES': second_division_matches,
+    }
+
 
 def team_nav(request):
     """ Set the teams in the app.

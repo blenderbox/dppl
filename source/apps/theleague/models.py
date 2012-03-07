@@ -19,7 +19,7 @@ class Division(CommonModel):
     league = models.ForeignKey("League")
 
     class Meta:
-        ordering = ("name",)
+        ordering = ("-name",)
 
     def __unicode__(self):
         return self.name
@@ -95,6 +95,22 @@ class Match(CommonModel):
     team1 = models.ForeignKey("Team", related_name="team1", help_text=_("Home Team"))
     team2 = models.ForeignKey("Team", related_name="team2", help_text=_("Away Team"))
 
+    @property
+    def loser(self):
+        if self.team1_score is None:
+            return None
+        return self.team1 if self.team1_score < self.team2_score else self.team2
+
+    @property
+    def winner(self):
+        if self.team1_score is None:
+            return None
+        return self.team1 if self.team1_score > self.team2_score else self.team2
+
+    @property
+    def winning_score(self):
+        return self.team1_score if self.team1_score > self.team2_score else self.team2_score
+
     class Meta:
         verbose_name_plural = "Matches"
         ordering = ("round",)
@@ -120,6 +136,9 @@ class Round(CommonModel):
     def current(self):
         now = datetime.now()
         return self.go_live_date <= now and self.go_dead_date >= datetime.now()
+
+    def division_matches(self, division_id):
+        return self.match_set.filter(division=Division.objects.get(pk=division_id))
 
     class Meta:
         ordering = ("go_live_date",)

@@ -17,105 +17,21 @@
       </div>
       <div class="honey">
           <h2>Honey</h2>
-          {% for round in rounds %}
+          {% for round in first_division_rounds %}
           <div class="row">
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
+            {% for match in round %}
+            {% include "theleague/scoreboard_pie.html" with match=match %}
+            {% endfor %}
           </div>
           {% endfor %}
       </div>
       <div class="badger">
         <h2>Badger</h2>
-        {% for round in rounds %}
+        {% for round in second_division_rounds %}
           <div class="row">
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
-            <div class="pie">
-              <ul>
-              <li><p class="c1-r"><span class="pie-left"></span></p></li>
-              <li><p class="c1-l"><span class="pie-right"></span></p></li>
-              <li><p class="c2-r"><span class="pie-left"></span></p></li>
-              <li><p class="c2-l"><span class="pie-right"></span></p></li>
-              </ul>
-              <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-            </div>
+            {% for match in round %}
+            {% include "theleague/scoreboard_pie.html" with match=match %}
+            {% endfor %}
           </div>
           {% endfor %}
       </div>

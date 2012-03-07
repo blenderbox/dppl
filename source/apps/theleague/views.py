@@ -12,11 +12,25 @@ from apps.theleague.models import League, Match, Round, Season, Team
 def scoreboard(request):
     """ Display the scoreboard
     """
-    today = datetime.date.today()
+    today = datetime.datetime.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
-    rounds = Round.objects.filter(go_dead_date__lte=datetime.datetime.today())\
-                .order_by('-go_live_date')
-    return render_response(request, 'theleague/scoreboard.html', { 'rounds': rounds, })
+    divisions = league.division_set.all()
+    rounds = Round.objects.filter(go_dead_date__lte=today).order_by('-go_live_date')
+
+    # Is this the best way?  Maybe baby.
+    first_division_rounds = []
+    for r in rounds:
+      first_division_rounds.append(divisions[0].match_set.filter(round=r))
+
+    second_division_rounds = []
+    for r in rounds:
+      second_division_rounds.append(divisions[1].match_set.filter(round=r))
+
+    return render_response(request, 'theleague/scoreboard.html', {
+        'rounds': rounds,
+        'first_division_rounds': first_division_rounds,
+        'second_division_rounds': second_division_rounds,
+    })
 
 
 def schedule(request):

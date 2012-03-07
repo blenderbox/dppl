@@ -3,100 +3,16 @@
   <a href="/scoreboard" class="more">See all scores &raquo;</a>
   <div class="honey clearfix">
       <div class="charts">
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
+          {% for match in FIRST_DIVISION_MATCHES %}
+            {% include "theleague/scoreboard_pie.html" with match=match %}
+          {% endfor %}
       </div>
   </div>
   <div class="badger clearfix">
       <div class="charts">
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
-          <div class="pie">
-            <ul>
-            <li><p class="c1-r"><span class="pie-left"></span></p></li>
-            <li><p class="c1-l"><span class="pie-right"></span></p></li>
-            <li><p class="c2-r"><span class="pie-left"></span></p></li>
-            <li><p class="c2-l"><span class="pie-right"></span></p></li>
-            </ul>
-            <div class="crc">BBX 4<br/> <span class="loser">def<br/> UCO</span></div>
-          </div>
+          {% for match in SECOND_DIVISION_MATCHES %}
+            {% include "theleague/scoreboard_pie.html" with match=match %}
+          {% endfor %}
       </div>
   </div>
 </div>
