@@ -27,6 +27,17 @@
         $ python source/manage.py syncdb --all
         $ python source/manage.py migrate --fake
 
+        note: don't run fake migrations.  this is bad.
+
+1.  Do some crazy shit with the shell_plus:
+
+        $ python source/manage.py shell_plus
+        $ u = User.objects.get(pk=1)
+        $ u.profile = Profile(team_id=1)
+        $ u.save
+
+1.  Give up and DM kayluhb for a db dump
+
 1.  Startup your server:
 
         $ python source/manage.py runserver
