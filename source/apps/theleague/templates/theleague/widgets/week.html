@@ -1,7 +1,7 @@
-
+{% if current_round %}
 <div class="col-2 grid week{{ class }}">
-  <h3>{{ CURRENT_ROUND.name }}</h3>
-  {% regroup CURRENT_ROUND.match_set.all by division as matches %}
+  <h3>{{ current_round.name }}</h3>
+  {% regroup current_round.match_set.all by division as matches %}
   {% for group in matches %}
   <div class="{{ group.grouper|lower }} clearfix">
     <ul>
@@ -13,3 +13,4 @@
   {% endfor%}
   <a href="/schedule" class="more">Full schedule &raquo;</a>
 </div>
+{% endif %}

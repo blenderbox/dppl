@@ -101,7 +101,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # Project Context Processors
     'app_utils.extra_context.elo_rankings',
     'app_utils.extra_context.extra_context',
-    'app_utils.extra_context.schedule',
     'app_utils.extra_context.scoreboard',
     'app_utils.extra_context.team_nav',
 )

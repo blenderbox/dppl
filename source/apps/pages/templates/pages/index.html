@@ -18,7 +18,7 @@
   {% else %}
     {% include "theleague/widgets/scoreboard_upcoming.html" with class=" alpha" %}
   {% endif %}
-  {% include "theleague/widgets/week.html" with class=" omega" week_num=1 %}
+  {% include "theleague/widgets/week.html" with class=" omega" current_round=current_round %}
   {% if WE_LIVE_YO %}
     {% include "theleague/widgets/standings.html" with class=" alpha omega" %}
   {% else %}
