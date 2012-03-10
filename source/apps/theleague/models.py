@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from apps.abstract.models import CommonModel
@@ -71,25 +72,6 @@ class League(CommonModel):
         return self.name
 
 
-class Season(CommonModel):
-    """ The season.
-    """
-    name = models.CharField(_("Name"), max_length=255)
-    # Don't make this unique because leagues can have seasons w/ the same name.
-    slug = models.SlugField(_("Slug"), max_length=255)
-    go_live_date = models.DateField(_("Go Live Date"))
-    go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
-
-    # Relations
-    league = models.ForeignKey("League")
-
-    class Meta:
-        ordering = ("name",)
-
-    def __unicode__(self):
-        return self.name
-
-
 class Match(CommonModel):
     """ The match.
     """
@@ -119,6 +101,13 @@ class Match(CommonModel):
     @property
     def winning_score(self):
         return self.team1_score if self.team1_score > self.team2_score else self.team2_score
+
+    @property
+    def scored_match(self):
+        if self.round.in_past() and self.team1_score is not None and self.team2_score is not None:
+            return "%s %s v %s %s" % (self.team1.abbr, self.team1_score,\
+                                      self.team2.abbr, self.team2_score)
+        return self
 
     class Meta:
         verbose_name_plural = "Matches"
@@ -156,6 +145,25 @@ class Round(CommonModel):
         return "%s - %s" % (self.season, self.name)
 
 
+class Season(CommonModel):
+    """ The season.
+    """
+    name = models.CharField(_("Name"), max_length=255)
+    # Don't make this unique because leagues can have seasons w/ the same name.
+    slug = models.SlugField(_("Slug"), max_length=255)
+    go_live_date = models.DateField(_("Go Live Date"))
+    go_dead_date = models.DateField(_("Go Dead Date"), blank=True, null=True)
+
+    # Relations
+    league = models.ForeignKey("League")
+
+    class Meta:
+        ordering = ("name",)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Team(CommonModel):
     """ The team model.
     """
@@ -173,6 +181,10 @@ class Team(CommonModel):
 
     # Relations
     division = models.ForeignKey(Division)
+
+    def current_schedule(self, season):
+        return self.division.match_set.filter(round__season=season)\
+                   .filter(Q(team1=self) | Q(team2=self))
 
     class Meta:
         ordering = ("name",)

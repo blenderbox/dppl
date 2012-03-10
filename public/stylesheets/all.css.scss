@@ -26,7 +26,6 @@ $teams-color:#3c6e88;
   100% { opacity:1; }
 }
 
-* { -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
 @font-face { @include font-face('AlfaSlabRegular', 'alfaslabone-regular'); }
 @font-face { @include font-face('PassionBold', 'passionone-bold'); }
 @font-face { @include font-face; }
@@ -38,6 +37,7 @@ $teams-color:#3c6e88;
 @-ms-keyframes fade-in { @include fade-in; }
 @-webkit-keyframes fade-in { @include fade-in; }
 
+* { -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
 /* HTML5 display definitions */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display:block; }
 audio, canvas, video { display:inline-block; *display:inline; *zoom:1; }
@@ -320,17 +320,17 @@ footer {
 .col-2.schedule li a { background:#fff; color:$badger-color; display:block;
                        border-top:1px solid $honey-color; height:30px;
                        line-height:30px; padding:0 0 0 8px; }
-.col-2.schedule li a:hover { color:$teams-color; }
+
 .col-2.week ul li:first-child { border-top:0; }
 /* the small schedule */
 .col-2.schedule {
   background-color:$honey-color; padding:8px 8px 15px;
   h3 { color:#fff; font-size:18px; line-height:1.11; padding:8px 0 8px 4px;
        text-transform:uppercase; text-shadow:$text-shadow; }
-  ul, li { background:none; margin:0; padding:0; }
+  ul, li { margin:0; padding:0; }
   ul { margin-bottom:6px; }
   a.more { color:#fff; }
-  a.badger { color:$gray; }
+  a.past { color:$gray; }
 }
 .col-2.schedule.on { background-color:$badger-color; }
 
@@ -586,6 +586,26 @@ footer {
 
 
 
+@mixin transition {
+     -o-transition:opacity 0.15s linear 0s;
+   -moz-transition:opacity 0.15s linear 0s;
+-webkit-transition:opacity 0.15s linear 0s;
+        transition:opacity 0.15s linear 0s;
+}
+.twipsy {
+  $pad:5px;
+  $brder:$pad solid transparent;
+  $brder2:$pad solid #000;
+  display:block; font-size:14px; position:absolute; visibility:visible; padding:$pad; z-index:1000;
+  &.above .twipsy-arrow { bottom:0; left:50%; margin-left:-$pad; border-left:$brder; border-right:$brder; border-top:$brder2; }
+  &.left .twipsy-arrow { top:50%; right:0; margin-top:-$pad; border-top:$brder; border-bottom:$brder; border-left:$brder2; }
+  &.below .twipsy-arrow { top:0; left:50%; margin-left:-$pad; border-left:$brder; border-right:$brder; border-bottom:$brder2; }
+  &.right .twipsy-arrow { top:50%; left:0; margin-top:-$pad; border-top:$brder; border-bottom:$brder; border-right:$brder2; }
+}
+.twipsy-inner { background-color:#000; color:#fff; text-align:center; max-width:200px; padding:3px 8px; text-decoration:none; @include border-radius; }
+.twipsy-arrow {position:absolute; width:0; height:0; }
+.fade { opacity:0; @include transition; }
+.fade.in { opacity:1; }
 
 
 @media (max-width:480px) { }

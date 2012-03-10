@@ -83,6 +83,7 @@ def teams(request):
     team = teams[0] if len(teams) > 0 else None
 
     return render_response(request, 'theleague/teams.html', {
+        'schedule': team.current_schedule(league.current_season),
         'teams': teams,
         'team': team,
     })
@@ -97,6 +98,7 @@ def team(request, team_slug):
     team = get_object_or_404(Team, slug=team_slug)
 
     return render_response(request, 'theleague/team.html', {
+        'schedule': team.current_schedule(league.current_season),
         'teams': teams,
         'team': team,
     })
@@ -110,14 +112,15 @@ def team_member(request, team_slug, team_member_slug):
     team = get_object_or_404(Team, slug=team_slug)
 
     try:
-        team_member = team.profile_team.get(slug=team_member_slug)
+        profile = team.profile_team.get(slug=team_member_slug)
     except Poll.DoesNotExist:
         raise Http404
 
     return render_response(request, 'theleague/team_member.html', {
+        'schedule': team.current_schedule(league.current_season),
         'teams': teams,
         'team': team,
-        'team_member': team_member,
+        'profile': profile,
     })
 
 

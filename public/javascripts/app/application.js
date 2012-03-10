@@ -36,6 +36,7 @@ var APP = (function($) {
             $el.delay(150).width(($el.data('percent') / 100) * 170);
         });
         emails();
+        $('a[rel="tooltip"]').twipsy({ html:true });
     }
     function emails() {
         $el = $('span.e');
