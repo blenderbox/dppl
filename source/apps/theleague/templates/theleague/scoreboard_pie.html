@@ -7,8 +7,8 @@
   </ul>
   <div class="crc">
   {% if match.winner %}
-    {{ match.winner }} {{ match.winning_score }}<br/>
-    <span class="loser">def<br/> {{ match.loser }}</span>
+    {{ match.winner.abbr }} {{ match.winning_score }}<br/>
+    <span class="loser">def<br/> {{ match.loser.abbr }}</span>
   {% else %}
     {{ match.team1.abbr }}<br/>
     v<br/>
