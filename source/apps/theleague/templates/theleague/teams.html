@@ -1,18 +1,31 @@
 {% extends "base_with_standing.html" %}
 
+{% load compress %}
+
 {% block title %}Teams | {% endblock %}
 
 {% block body_class %} class="teams-page"{% endblock %}
+
+{% block javascripts %}
+{% compress js %}<script src="{{ STATIC_URL }}javascripts/app/teams.js"></script>{% endcompress %}
+{% endblock %}
 
 {% block content %}
 <section class="col-12 grid teams">
   <div class="left">
     <h1>Teams</h1>
-    <ul class="nav">
-      {% for t in teams %}
-      <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name }} ({{ t.abbr }})</a></li>
-      {% endfor %}
-    </ul>
+    <div id="teams-scroller">
+      <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+      <div class="viewport">
+	      <div class="overview">
+        <ul class="nav">
+          {% for t in teams %}
+          <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name }} ({{ t.abbr }})</a></li>
+          {% endfor %}
+        </ul>                       
+        </div>
+      </div>
+    </div>
   </div>
   <div class="copy clearfix">
       {% spaceless %}

@@ -605,7 +605,21 @@ footer {
 .twipsy-inner { background-color:#000; color:#fff; text-align:center; max-width:200px; padding:3px 8px; text-decoration:none; @include border-radius; }
 .twipsy-arrow {position:absolute; width:0; height:0; }
 .fade { opacity:0; @include transition; }
-.fade.in { opacity:1; }
+.fade.in { opacity:0.8; }
+
+#teams-scroller {
+  position:relative; width:210px;
+  .viewport { height:378px; overflow:hidden; position:relative; width:210px; }
+  .overview { list-style:none; position:absolute; left:0; top:0; width:100%; }
+  .thumb .end,
+  .thumb { background-color:rgba(0, 0, 0, 0.5); }
+  .scrollbar { opacity:0; position:absolute; right:-20px; width:10px; @include transition; }
+  .scrollbar.on { opacity:1; }
+  .track { background-color:$gray; height:100%; width:1px; position:relative; padding:0 1px; }
+  .thumb { cursor:pointer; height:20px; margin-left:-4px; overflow:hidden;
+           position:absolute; top:0; width:8px; @include border-radius(2px); }
+  .thumb .end { display:none; height:5px; overflow:hidden; width:13px; } 
+}
 
 
 @media (max-width:480px) { }
