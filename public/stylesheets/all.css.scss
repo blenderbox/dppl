@@ -646,7 +646,8 @@ footer {
   .viewport { height:378px; overflow:hidden; position:relative; width:210px; }
   .overview { list-style:none; position:absolute; left:0; top:0; width:100%; }
   .thumb .end,
-  .thumb { background-color:$light-gray; }
+  .thumb { background-color:$light-gray; border-bottom:1px solid rgba(208, 207, 204, 0.2);
+           border-left:1px solid rgba(208, 207, 204, 0.2); }
   .thumb:hover { background-color:$gray; }
   .scrollbar { opacity:0; position:absolute; right:-20px; width:10px; @include transition; }
   .scrollbar.on { opacity:1; }
