@@ -47,7 +47,8 @@ audio:not([controls]) { display:none; }
 html, body { height:100%; }
 html { font-size:100%; overflow-y:auto; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body { background:#cccbc2 url(../images/backgrounds/body.gif); margin:0; }
-body, button, input, select, textarea { color:#5e5d57; font:15px 'PassionRegular', sans-serif; font-weight:normal !important; line-height:1.22; }
+body, button, input, select, textarea { color:#5e5d57; font:15px 'PassionRegular', sans-serif;
+                                        font-weight:normal !important; line-height:1.22; }
 /* Links */
 a { color:$teams-color; text-decoration:none; }
 a:visited {  }
@@ -60,11 +61,13 @@ abbr[title] { border-bottom:1px dotted; }
 b, strong {  }
 blockquote { margin:1em 40px; }
 dfn { font-style:italic; }
-hr { border:0 #e2e6e6 solid; border-top-width:1px; clear:both; display:block; height:1px; margin:10px 0; }
+hr { border:0 #e2e6e6 solid; border-top-width:1px; clear:both; display:block;
+     height:1px; margin:10px 0; }
 ins { background:#ff9; color:#000; text-decoration:none; }
 mark { background:#ff0; color:#000; font-style:italic; font-weight:bold; }
 /* Redeclare monospace font family:h5bp.com/j */
-pre, code, kbd, samp { font-family:monospace, monospace; _font-family:'courier new', monospace; font-size:1em; }
+pre, code, kbd, samp { font-family:monospace, monospace; _font-family:'courier new', monospace;
+                       font-size:1em; }
 /* Improve readability of pre-formatted text in all browsers */
 pre { white-space:pre; white-space:pre-wrap; word-wrap:break-word; }
 q { quotes:none; }
@@ -84,7 +87,8 @@ h6, h6 a { font-size:14px; }
 /* Lists */
 dd { margin:0 0 0 40px; }
 ul, ol { padding:10px 10px 10px 30px; }
-ul li { background:transparent url(../images/bullet.gif) 0 6px no-repeat; list-style:none; padding:0 0 8px 10px; }
+ul li { background:transparent url(../images/bullet.gif) 0 6px no-repeat;
+        list-style:none; padding:0 0 8px 10px; }
 ol {  }
 ol li { list-style:decimal; margin:0 0 0 10px; padding:0 0 8px 0; }
 nav ul, nav ol, nav li { background:none; margin:0; padding:0; }
@@ -99,28 +103,38 @@ figure { margin:0; }
 form { margin:0; }
 fieldset { border:0; margin:0; padding:0; }
 /* Indicate that 'label' will shift focus to the associated form element */
-label { color:#fff; cursor:pointer; display:block; font-size:18px; margin-bottom:13px; text-transform:uppercase; text-shadow:$text-shadow; }
+label { color:#fff; cursor:pointer; display:block; font-size:18px;
+        margin-bottom:13px; text-transform:uppercase; text-shadow:$text-shadow; }
 legend { border:0; *margin-left:-7px; padding:0; }
 button, input, select, textarea { font-size:100%; margin:0; vertical-align:baseline; *vertical-align:middle; }
 button, input { line-height:normal; *overflow:visible; }
-button:active, .button:active, a.more:active, .dots a:active, .team-token:active { position:relative; top:1px; }
+button:active,
+.button:active,
+a.more:active,
+.dots a:active,
+.team-token:active { position:relative; top:1px; }
 /* Reintroduce inner spacing in 'table' to avoid overlap and whitespace issues in IE6/7 */
 table button, table input { *overflow:auto; }
 button, select, input[type="button"], input[type="reset"], input[type="submit"], input[type='file'] { cursor:pointer; }
 button, input[type="button"], input[type="reset"], input[type="submit"] { background:#2d2c29; border:0; color:#fff; font-size:18px; height:31px; line-height:31px; padding:0 18px; text-transform:uppercase;
 -webkit-appearance:button; }
-button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover { background:#000; }
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover { background:#000; }
 
 /* Consistent box sizing and appearance  */
 input[type="checkbox"], input[type="radio"] { box-sizing:border-box; padding:0; *width:13px; *height:13px; }
-input[type="search"] { -webkit-appearance:textfield; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; }
-input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance:none; }
+input[type="search"] { -webkit-appearance:textfield; }
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button { -webkit-appearance:none; }
 button::-moz-focus-inner, input::-moz-focus-inner { border:0; padding:0; }
 input[type='text'],
 input[type='email'],
 input[type='password'],
 input[type='url'],
-textarea { border:0; color:$badger-color; font-size:18px; height:35px; line-height:35px; margin-bottom:10px; padding-left:10px; width:260px; }
+textarea { border:0; color:$badger-color; font-size:18px; height:35px;
+           line-height:35px; margin-bottom:10px; padding-left:10px; width:260px; }
 textarea { overflow:auto; vertical-align:top; resize:vertical; }
 /* Colors for form validity */
 input:valid, textarea:valid {  }
@@ -145,8 +159,17 @@ a:focus, button:focus, label:focus, select:focus, textarea:focus { outline:1px d
 input:focus { outline:0; @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25)); }
 input { @include transition; @include transition-property(box-shadow); }
 
-h1, h2, h3, h4, h5, h6, label, #sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
-b, strong, button, input[type="button"], input[type="reset"], input[type="submit"], nav li ul a, .intro, .rules .copy, .col-12.scoreboard h2, .paddle h3 { font-family:'PassionBold'; font-weight:normal !important; }
+h1, h2, h3, h4, h5, h6, label,
+#sign-in .flag, .rules .copy strong { font-family:'AlfaSlabRegular'; font-weight:normal !important; }
+b, strong, button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+nav li ul a,
+.intro,
+.rules .copy,
+.col-12.scoreboard h2,
+.paddle h3 { font-family:'PassionBold'; font-weight:normal !important; }
 
 /* Let's get this party started */
 ::-webkit-scrollbar { width:12px; }
@@ -162,7 +185,7 @@ b, strong, button, input[type="button"], input[type="reset"], input[type="submit
 
 /* CLASSES */
 /* For image replacement */
-.ir { background:transparent url(../images/backgrounds/ui.png) no-repeat; border:0; direction:ltr; display:block; overflow:hidden; text-align:left; text-indent:-999em; }
+.ir { background:transparent url(../images/backgrounds/ui.png) no-repeat; border:0; font:0/0 a; text-shadow:none; color:transparent; }
 .ir br { display:none; }
 .hide { display:none !important; visibility:hidden; }
 .invisible { visibility:hidden; }
@@ -178,18 +201,20 @@ a.more:hover { color:#fff; }
 /* These have been tweaked from the standard 960gs */
 .cols {  }
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 { display:inline; float:left; margin:0 10px; position:relative; }
-.cols .col-1 {width:60px;}
-.cols .col-2 {width:140px;}
-.cols .col-3 {width:220px;}
-.cols .col-4 {width:310px;}
-.cols .col-5 {width:380px;}
-.cols .col-6 {width:460px;}
-.cols .col-7 {width:540px;}
-.cols .col-8 {width:640px; margin-right:-10px; }
-.cols .col-9 {width:700px;}
-.cols .col-10 {width:780px;}
-.cols .col-11 {width:860px;}
-.cols .col-12 {width:980px; margin-left:0; margin-right:0;}
+.cols {
+  .col-1 {width:60px;}
+  .col-2 {width:140px;}
+  .col-3 {width:220px;}
+  .col-4 {width:310px;}
+  .col-5 {width:380px;}
+  .col-6 {width:460px;}
+  .col-7 {width:540px;}
+  .col-8 {width:640px; margin-right:-10px; }
+  .col-9 {width:700px;}
+  .col-10 {width:780px;}
+  .col-11 {width:860px;}
+  .col-12 {width:980px; margin-left:0; margin-right:0;}
+}
 .alpha { margin-left:0; }
 .omega { margin-right:0; }
 .grid { background:#fff url(../images/backgrounds/grid.png); }
@@ -219,32 +244,44 @@ header {
 .no-csstransitions header h1, .no-csstransitions header h2 { opacity:1; }
 .no-csstransitions #ball { top:88px; }
 /* Look at all these selectors!  Can we optimize this? */
-nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px; }
-nav > ul { line-height:30px; margin:0; padding:0; position:relative; }
-nav > ul > li { float:left; line-height:30px; margin:0; padding:0; position:relative; text-transform:uppercase; }
-nav > ul > li > a { color:#6e6d67; display:block; font-size:18px; padding:0 19px 0 10px; }
-nav > ul > li > a:active { position:relative; top:1px; }
-nav > ul > li > a.on { color:#fff; text-shadow:$text-shadow; }
-nav > ul > li:hover ul { display:block; }
-nav > ul > li :last-child a { padding:0 10px 0 18px; }
-nav li ul {
-  background:#5a839a url(../images/backgrounds/grid.png); display:none;
-  padding:13px 10px; position:absolute; width:220px; left:-10px; top:30px; z-index:9999;
-  @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
+nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px;
+  > ul {
+    line-height:30px; margin:0; padding:0; position:relative;
+    > li {
+      float:left; line-height:30px; margin:0; padding:0; position:relative; text-transform:uppercase;
+      > a { color:#6e6d67; display:block; font-size:18px; padding:0 19px 0 10px; }
+      > a:active { position:relative; top:1px; }
+      > a.on { color:#fff; text-shadow:$text-shadow; }
+      &:hover ul { display:block; }
+      & :last-child a { padding:0 10px 0 18px; }
+    }
+  }
+  li ul {
+    background:#5a839a url(../images/backgrounds/grid.png); display:none;
+    padding:13px 10px; position:absolute; left:-10px; top:30px; width:220px; z-index:9999;
+    @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
+  }
 }
 nav li ul li { margin-bottom:2px; }
 nav li ul a { color:#fff; font-size:14px; display:block; }
 nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 
-#schedule-nav > a:hover { color:$schedule-color; }
-#scores-nav > a:hover { color:$scores-color; }
-#teams-nav > a:hover { color:$teams-color; }
-#rules-nav > a:hover { color:$rules-color; }
-
-#schedule-nav ul { background-color:$schedule-color; left:0; }
-#scores-nav ul { background-color:$scores-color; }
-#teams-nav ul { background-color:$teams-color; }
-#rules-nav ul { background-color:$rules-color; }
+#schedule-nav {
+  ul { background-color:$schedule-color; left:0; }
+  > a:hover { color:$schedule-color; }
+}
+#scores-nav{
+  ul { background-color:$scores-color; }
+  > a:hover { color:$scores-color; }
+}
+#teams-nav {
+  ul { background-color:$teams-color; }
+  > a:hover { color:$teams-color; }
+}
+#rules-nav {
+  ul { background-color:$rules-color; }
+  > a:hover { color:$rules-color; }
+}
 
 #sign-in { height:195px; position:absolute; right:0; top:0; width:340px;
   .ir { height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000; }
@@ -258,9 +295,9 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
   .flag.on { opacity:1; top:18px; }
   form { background-color:#994148; height:100%; padding:20px; position:absolute;
          right:0; top:-200px; width:100%; z-index:1900;
-  @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
-  @include transition-time(.25s);
-  @include transition-property(top);
+         @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
+         @include transition-time(.25s);
+         @include transition-property(top);
   }
   form.on { top:0; }
   p { display:none; color:#7A343A; background:#A2A19A; margin:0 0 10px;
@@ -490,6 +527,11 @@ footer {
     .copy p { padding:0 0 30px; }
  }
 
+@mixin flipper($pre, $deg:0deg) {
+-#{$pre}-transform:rotateY($deg);
+-#{$pre}-transform-style:preserve-3d;
+-#{$pre}-backface-visibility:hidden;
+}
 /* the promotional dots */
 .dots {
   a, .ir { background-position:0 -125px; height:79px; width:79px; }
@@ -502,22 +544,14 @@ footer {
     display:block; margin-bottom:20px; position:relative;
     .front {
       left:0; position:absolute; top:0; z-index:900;
-      -moz-transform:rotateY(0deg);
-      -moz-transform-style:preserve-3d;
-      -moz-backface-visibility:hidden;
-      -webkit-transform:rotateY(0deg);
-      -webkit-transform-style:preserve-3d;
-      -webkit-backface-visibility:hidden;
+      @include flipper(mox);
+      @include flipper(webkit);
       @include transition(.4s, ease-in-out);
     }
     .back {
       left:0; position:absolute; top:0; z-index:800;
-      -moz-transform:rotateY(-180deg);
-      -moz-transform-style:preserve-3d;
-      -moz-backface-visibility:hidden;
-      -webkit-transform:rotateY(-180deg);
-      -webkit-transform-style:preserve-3d;
-      -webkit-backface-visibility:hidden;
+      @include flipper(mox, -180deg);
+      @include flipper(webkit, -180deg);
       @include transition(.4s, ease-in-out);
     }
     &:hover {
@@ -540,17 +574,17 @@ footer {
   img { left:0; margin:3px; position:absolute; top:0; @include border-radius(50%); }
   .front { z-index:900;
     -moz-backface-visibility:hidden;
-    -webkit-transform-style:preserve-3d;
+    -moz-transform:rotate3d(45,45,0,0deg);
     -webkit-backface-visibility:hidden;
-     -moz-transform:rotate3d(45,45,0,0deg);
+    -webkit-transform-style:preserve-3d;
     -webkit-transform:rotate3d(45,45,0,0deg);
     @include transition(.4s, ease-in-out);
   }
   .back { z-index:800;
     -moz-backface-visibility:hidden;
-    -webkit-transform-style:preserve-3d;
+    -moz-transform:rotate3d(45,45,0,-180deg);
     -webkit-backface-visibility:hidden;
-     -moz-transform:rotate3d(45,45,0,-180deg);
+    -webkit-transform-style:preserve-3d;
     -webkit-transform:rotate3d(45,45,0,-180deg);
     @include transition(.4s, ease-in-out);
   }
@@ -576,15 +610,15 @@ footer {
 }
 
 /* HOME */
-.home .rankings { float:right; }
+.home {
+  .rankings { float:right; }
+  .dots { margin-left:-10px; }
+  .week { float:right; margin-bottom:40px; }
+}
 .intro { color:#fff; font-size:24px; line-height:1.25; padding:0 0 40px; text-shadow:$text-shadow; }
-.home .dots { margin-left:-10px; }
-.home .week { float:right; margin-bottom:40px; }
 
 .teams-page .dots, .scoreboard-page .dots, .schedule-page .dots { margin-right:30px; }
 .teams-page .paddle { padding-left:90px; }
-
-
 
 @mixin transition {
      -o-transition:opacity 0.15s linear 0s;
@@ -621,7 +655,6 @@ footer {
            position:absolute; top:0; width:8px; }
   .thumb .end { display:none; height:5px; overflow:hidden; width:13px; } 
 }
-
 
 @media (max-width:480px) { }
 @media (max-width:768px) { }
