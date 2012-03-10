@@ -41,9 +41,12 @@ def schedule(request):
     """
     today = datetime.datetime.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
-    rounds = league.current_season.round_set\
-                .filter(go_live_date__lte=today)\
-                .order_by('-go_live_date')[:1]
+    season = league.current_season
+    rounds = []
+    if season is not None:
+      rounds = season.round_set\
+                  .filter(go_live_date__lte=today)\
+                  .order_by('-go_live_date')[:1]
     r = None
     if len(rounds) > 0:
         r = rounds[0]

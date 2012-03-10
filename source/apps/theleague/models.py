@@ -183,6 +183,8 @@ class Team(CommonModel):
     division = models.ForeignKey(Division)
 
     def current_schedule(self, season):
+        if season is None:
+            return None
         return self.division.match_set.filter(round__season=season)\
                    .filter(Q(team1=self) | Q(team2=self))
 
