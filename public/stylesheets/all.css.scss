@@ -279,7 +279,7 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 }
 
 footer {
-  color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px;
+  color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px; z-index:200;
   position:relative; text-align:right; width:940px;
   .ir, p { float:left; padding:0; }
   .bbox { background-position:-125px -40px; height:13px; margin:2px 0 0 8px; width:73px; }
@@ -612,7 +612,8 @@ footer {
   .viewport { height:378px; overflow:hidden; position:relative; width:210px; }
   .overview { list-style:none; position:absolute; left:0; top:0; width:100%; }
   .thumb .end,
-  .thumb { background-color:rgba(0, 0, 0, 0.5); }
+  .thumb { background-color:$light-gray; }
+  .thumb:hover { background-color:$gray; }
   .scrollbar { opacity:0; position:absolute; right:-20px; width:10px; @include transition; }
   .scrollbar.on { opacity:1; }
   .track { background-color:$gray; height:100%; width:1px; position:relative; padding:0 1px; }
