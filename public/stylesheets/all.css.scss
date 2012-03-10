@@ -617,7 +617,7 @@ footer {
   .scrollbar.on { opacity:1; }
   .track { background-color:$gray; height:100%; width:1px; position:relative; padding:0 1px; }
   .thumb { cursor:pointer; height:20px; margin-left:-4px; overflow:hidden;
-           position:absolute; top:0; width:8px; @include border-radius(2px); }
+           position:absolute; top:0; width:8px; }
   .thumb .end { display:none; height:5px; overflow:hidden; width:13px; } 
 }
 

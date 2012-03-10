@@ -11,7 +11,7 @@
       <div class="right">
         {{ profile.rating }}<br/>
         {{ profile.full_name }}<br/>
-        <a href="{{ profile.team.get_absolute_url }}">{{ profile.team.name }} ({{ profile.team.abbr }})</a>
+        <a href="{{ profile.team.get_absolute_url }}">{{ profile.team.name_and_abbr }}</a>
       </div>
     </li>
     {% endfor %}

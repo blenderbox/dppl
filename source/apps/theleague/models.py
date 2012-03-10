@@ -188,6 +188,12 @@ class Team(CommonModel):
         return self.division.match_set.filter(round__season=season)\
                    .filter(Q(team1=self) | Q(team2=self))
 
+    @property
+    def name_and_abbr(self):
+        if self.name == self.abbr:
+            return self.name
+        return "%s (%s)" % (self.name, self.abbr)
+
     class Meta:
         ordering = ("name",)
 

@@ -20,7 +20,7 @@
 	      <div class="overview">
         <ul class="nav">
           {% for t in teams %}
-          <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name }} ({{ t.abbr }})</a></li>
+          <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name_and_abbr }}</a></li>
           {% endfor %}
         </ul>                       
         </div>
@@ -31,10 +31,10 @@
       {% spaceless %}
       <h2>
       {% if team.website %}
-          {% external_link team.website team.name %}
+          {% external_link team.website team.name_and_abbr %}
       {% else %}
-          {{ team.name }}
-      {% endif %} ({{ team.abbr }})
+          {{ team.name_and_abbr }}
+      {% endif %}
       {% if request.user.is_staff %} <span class="edit-link"><a href="{% url admin:theleague_team_change team.pk %}">(EDIT)</a></span>{% endif %}
       </h2>
       {% endspaceless %}
