@@ -68,3 +68,4 @@ STATIC_URL = 'http://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 COMPRESS_ROOT = get_path(PROJECT_DIR, "../public")
 COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+COMPRESS_OFFLINE = True
