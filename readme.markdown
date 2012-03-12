@@ -54,9 +54,17 @@
 
         $ heroku run "python source/manage.py <some command> --settings=source.settings.heroku"
 
-1.  To deploy, just run:
+1.  To deploy, setup the static files, compile the sass, and push:
 
+        $ python source/manage.py collectstatic --noinput
+        $ python source/manage.py compress
         $ git push heroku master
+
+    Or just run `./deploy/heroku.sh`. In order to do this, you'll need
+    to have your AWS info setup in `local.py`. Look at `settings/heroku.py` to
+    get an idea of what settings you'll need.
+
+        $ ./deploy/heroku.sh
 
 
 ## Notes
@@ -84,12 +92,15 @@ Here are the environment variables you'll need to add:
 *   **DJANGO_SETTINGS_MODULE**: This should probably be `source.settings.heroku`
     unless you use a different settings file.
 
-Once you've pushed to Heroku, you'll have to remotely run syncdb, and
-collect static. To do this:
+Once you've pushed to Heroku, you'll have to remotely run syncdb. To do this:
 
     $ heroku run "python source/manage.py syncdb --all --noinput --settings=source.settings.heroku"
-    $ heroku run "python source/manage.py collectstatic --noinput --settings=source.settings.heroku"
     $ heroku run "python source/manage.py createsuperuser --settings=source.settings.heroku"
+
+You'll also have to run collect static, and compile the sass locally.
+Heroku at this time doesn't support remote compression of SASS files.
+    $ python source/manage.py collectstatic --noinput
+    $ python source/manage.py compress
 
 ## Python + Virtualenv on a Mac
 [These
