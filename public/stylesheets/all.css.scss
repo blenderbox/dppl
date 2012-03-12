@@ -385,19 +385,23 @@ footer {
   .badger { background-color:$badger-color; background-position:-42px center; }
   .charts { background:#fff; float:right; padding:19px 0 19px 10px; width:415px; }
   .pie { float:left; margin-right:5px; }
+  
+  &.on {
+    background-color:$scores-color-highlight; @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
+    a.more { color:$scores-color-highlight; }
+  }
+  &.upcoming {
+    background-color:$scores-color-highlight; height:354px;
+    h3 { color:#fff; font-size:26px; line-height:1.46; padding:0 10px; }
+  }
 }
-.col-6.scoreboard.on { background-color:$scores-color-highlight;
-                       @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2)); }
-.col-6.scoreboard.on a.more { color:$scores-color-highlight; }
-.col-6.scoreboard.upcoming { background-color:$scores-color-highlight; height:354px; }
-.col-6.scoreboard.upcoming h3 { color:#fff; font-size:26px; line-height:1.46; padding:0 10px; }
 
 
 /* Mmmmmmmmm pie. */
 .pie {
   position:relative;
   p { height:76px; margin:0; padding:0; position:absolute; top:0; left:0; width:76px; }
-  ul { height:76px; margin:0; overflow:hidden; padding:0; width:76px; }
+  ul { height:76px; margin:0; overflow:hidden; padding:0; width:76px; @include rotate(180deg); }
   li { background:none; }
   li span { display:block; height:76px; width:38px; }
 }
