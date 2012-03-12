@@ -1,4 +1,5 @@
 import datetime
+from operator import itemgetter
 
 from django.conf import settings
 from django.core.cache import cache
@@ -66,6 +67,50 @@ def scoreboard(request):
         'FIRST_DIVISION_MATCHES': first_division_matches,
         'SECOND_DIVISION_MATCHES': second_division_matches,
     }
+
+
+def standings(request):
+    """ Display the standings
+        TODO: cache this bad boy.
+    """
+    today = datetime.datetime.today()
+    league = League.objects.get(pk=settings.LEAGUE_ID)
+    season = league.current_season
+    division_standings = []
+
+    if season is None:
+        return { 'STANDINGS': division_standings, }
+
+    divisions = league.division_set.all()
+    for division in divisions:
+        team_standings = []
+        for team in division.team_set.all():
+            wins = 0
+            losses = 0
+            total = 0
+            for m in team.current_schedule(season):
+                if m.complete:
+                    total += 1
+                    if m.winner == team:
+                        wins += 1
+                    else:
+                        losses += 1
+
+            percent = (float(wins) / total) * 100 if total > 0 else 0
+            team_standings.append({
+                'team': team,
+                'wins': wins,
+                'losses': losses,
+                'percent': "%.0f" % percent,
+            })
+
+        team_standings.sort(key=itemgetter('wins'), reverse=True)
+        division_standings.append({
+            'division': division,
+            'standings': team_standings,
+        })
+
+    return { 'STANDINGS': division_standings, }
 
 
 def team_nav(request):

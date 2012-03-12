@@ -87,24 +87,30 @@ class Match(CommonModel):
     team2 = models.ForeignKey("Team", related_name="team2", help_text=_("Away Team"))
 
     @property
+    def complete(self):
+        return self.team1_score is not None and self.team2_score is not None
+
+    @property
     def loser(self):
-        if self.team1_score is None:
+        if self.complete == False:
             return None
         return self.team1 if self.team1_score < self.team2_score else self.team2
 
     @property
     def winner(self):
-        if self.team1_score is None:
+        if self.complete == False:
             return None
         return self.team1 if self.team1_score > self.team2_score else self.team2
 
     @property
     def winning_score(self):
+        if self.complete == False:
+            return None
         return self.team1_score if self.team1_score > self.team2_score else self.team2_score
 
     @property
     def scored_match(self):
-        if self.round.in_past() and self.team1_score is not None and self.team2_score is not None:
+        if self.round.in_past() and self.complete:
             return "%s %s v %s %s" % (self.team1.abbr, self.team1_score,\
                                       self.team2.abbr, self.team2_score)
         return self

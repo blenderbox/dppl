@@ -1,93 +1,30 @@
 <div class="col-8 grid standings {{ class }}">
   <h2>Standings</h2>
-  <div class="left">
+  {% for division in STANDINGS %}
+    {% if forloop.first %}
+      <div class="left">
+    {% else %}
+         </ul>
+      </div>
+      <div class="right">
+    {% endif %}
       <header>
           <span class="rank">#</span>
           <span class="team">Team</span>
           <span class="wins">W</span>
           <span class="losses">L</span>
       </header>
-       <ul>
+      <ul class="{{ division.division|lower }}">
+        {% for standing in division.standings %}
           <li>
-              <span class="rank">1</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="100">100%</div>
+              <span class="rank">{{ forloop.counter }}</span>
+              <span class="team">{{ standing.team.abbr }}</span>
+              <span class="wins">{{ standing.wins }}</span>
+              <span class="losses">{{ standing.losses }}</span>
+              <div class="bar" data-percent="{{ standing.percent }}">{{ standing.percent }}%</div>
           </li>
-          <li>
-              <span class="rank">2</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="80">80%</div>
-          </li>
-          <li>
-              <span class="rank">3</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="50">40%</div>
-          </li>
-          <li>
-              <span class="rank">4</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="20">20%</div>
-          </li>
-          <li>
-              <span class="rank">5</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="0">0%</div>
-          </li>
-       </ul>
-  </div>
-  <div class="right">
-      <header>
-          <span class="rank">#</span>
-          <span class="team">Team</span>
-          <span class="wins">W</span>
-          <span class="losses">L</span>
-      </header>
-       <ul class="badger">
-          <li>
-              <span class="rank">1</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="100">100%</div>
-          </li>
-          <li>
-              <span class="rank">2</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="80">80%</div>
-          </li>
-          <li>
-              <span class="rank">3</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="50">40%</div>
-          </li>
-          <li>
-              <span class="rank">4</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="20">20%</div>
-          </li>
-          <li>
-              <span class="rank">5</span>
-              <span class="team">BBX</span>
-              <span class="wins">6</span>
-              <span class="losses">0</span>
-              <div class="bar" data-percent="0">0%</div>
-          </li>
-       </ul>
+        {% endfor %}
+      {% endfor %}
+     </ul>
   </div>
 </div>

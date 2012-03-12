@@ -102,6 +102,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'app_utils.extra_context.elo_rankings',
     'app_utils.extra_context.extra_context',
     'app_utils.extra_context.scoreboard',
+    'app_utils.extra_context.standings',
     'app_utils.extra_context.team_nav',
 )
 
