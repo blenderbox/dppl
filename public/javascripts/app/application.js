@@ -7,7 +7,13 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 var APP = (function($) {
     var app = {}, $el, $signIn = $('#sign-in form'), $flag = $('#sign-in .flag'), on = 'on';
     // Public functions
-    // app.foo = function() {  };
+    app.rotate = function(el, tarR) {
+        var roto = 'rotate(' + tarR + 'deg)';
+        el.style.WebkitTransform = roto;
+        el.style.MozTransform = roto;
+        el.style.OTransform = roto;
+        el.style.MSTransform = roto;
+    };
     // Private functions
     function init() {
         $('a[href=#]').attr('href', 'javascript:;');
@@ -37,6 +43,11 @@ var APP = (function($) {
         });
         emails();
         $('a[rel="tooltip"]').twipsy({ html:true });
+        $('.pie').each(calculatePie);
+    }
+    function calculatePie(idx, el) {
+        $el = $(el);
+        app.rotate($el.find('ul :nth-child(4) p')[0], ($el.data('points') - 2) * 90);
     }
     function emails() {
         $el = $('span.e');

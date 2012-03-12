@@ -1,3 +1,4 @@
+{% if STANDINGS %}
 <div class="col-8 grid standings {{ class }}">
   <h2>Standings</h2>
   {% for division in STANDINGS %}
@@ -28,3 +29,4 @@
      </ul>
   </div>
 </div>
+{% endif %}
