@@ -403,7 +403,7 @@ footer {
                     margin-bottom:10px; width:440px; }
   .badger { background-color:$badger-color; background-position:-42px center; }
   .charts { background:#fff; float:right; padding:19px 0 19px 10px; width:415px; }
-  .pie { float:left; margin-right:5px; }
+  .pie { float:left; margin-right:24px; }
   
   &.on {
     background-color:$scores-color-highlight; @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
@@ -509,7 +509,7 @@ footer {
     h2 { border-color:$badger-color; color:$badger-color; }
   }
   .pie {
-    float:left; margin-right:8px;
+    float:left; margin-right:24px;
     p { height:74px; width:74px; }
     ul { height:74px; width:74px; }
     li span { height:74px; width:37px; }

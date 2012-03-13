@@ -31,7 +31,7 @@
       {% else %}
           {{ team.name_and_abbr }}
       {% endif %}
-      {% if request.user.is_staff %} <span class="edit-link"> | <a href="{% url admin:theleague_team_change team.pk %}">EDIT</a></span>{% endif %}
+      {% if request.user.is_staff %} <span class="edit-link">&nbsp;&nbsp;&nbsp;<a href="{% url admin:theleague_team_change team.pk %}">EDIT</a></span>{% endif %}
       </h2>
       {% endspaceless %}
       <div class="col-4">
