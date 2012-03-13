@@ -77,7 +77,7 @@ class Profile(CommonModel):
 
     @property
     def linked_in_url(self):
-        return "" if self.twitter == "" else ("http://linkedin.com/%s" % self.twitter).strip()
+        return "" if self.twitter == "" else ("http://www.linkedin.com/in/%s" % self.twitter).strip()
 
 
 def delete_user_profile(sender, instance, **kwargs):
