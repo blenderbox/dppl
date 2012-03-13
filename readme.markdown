@@ -62,9 +62,9 @@
 
     Or just run `./deploy/heroku.sh`. In order to do this, you'll need
     to have your AWS info setup in `local.py`. Look at `settings/heroku.py` to
-    get an idea of what settings you'll need.
+    get an idea of what settings you'll need. From the source directory, run 
 
-        $ ./deploy/heroku.sh
+        $ ../deploy/heroku.sh
 
 
 ## Notes
