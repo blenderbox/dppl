@@ -57,8 +57,10 @@ class Profile(CommonModel):
             )
 
     # Social
-    twitter = models.CharField("Twitter handle", blank=True, null=True, max_length=20)
-    facebook = models.CharField("Facebook username", blank=True, null=True, max_length=50)
+    twitter = models.CharField("Twitter handle", blank=True, null=True,
+            max_length=20)
+    facebook = models.CharField("Facebook username", blank=True, null=True,
+            max_length=50)
     linked_in = models.CharField(blank=True, null=True, max_length=50)
     website = models.URLField(blank=True, null=True, verify_exists=False)
 
@@ -82,15 +84,24 @@ class Profile(CommonModel):
 
     @property
     def facebook_url(self):
-        return "" if self.twitter == "" else ("http://facebook.com/%s" % self.twitter).strip()
+        if self.facebook:
+            return "http://facebook.com/%s" % self.facebook.strip()
+        else:
+            return ""
 
     @property
     def twitter_url(self):
-        return "" if self.twitter == "" else ("http://twitter.com/%s" % self.twitter).strip()
+        if self.twitter:
+            return "http://twitter.com/%s" % self.twitter.strip()
+        else:
+            return ""
 
     @property
     def linked_in_url(self):
-        return "" if self.twitter == "" else ("http://www.linkedin.com/in/%s" % self.twitter).strip()
+        if self.linked_in:
+            return "http://www.linkedin.com/in/%s" % self.linked_in.strip()
+        else:
+            return ""
 
 
 def delete_user_profile(sender, instance, **kwargs):
