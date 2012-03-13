@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -7,6 +10,16 @@ from imagekit.processors.resize import SmartResize
 from apps.abstract.models import CommonModel
 from apps.theleague.models import Team
 from app_utils.image_processors import Pixelate
+
+
+def get_path(instance, filename):
+    """ Normalizes the filename. """
+    chars = string.ascii_lowercase + string.digits
+    return "avatars/%s%s.%s" % (
+                instance.pk,
+                ''.join(random.choice(chars) for x in range(5)),
+                filename.rsplit('.', 1)[1]
+                )
 
 
 class Profile(CommonModel):
@@ -31,7 +44,7 @@ class Profile(CommonModel):
     THUMB_SIZE = (46, 46)
     AVATAR_FORMAT = "JPEG"
     DEFAULT_AVATAR = "avatars/default.jpg"
-    avatar = models.ImageField(default=DEFAULT_AVATAR, upload_to="avatars")
+    avatar = models.ImageField(default=DEFAULT_AVATAR, upload_to=get_path)
     pixelate_avatar = ImageSpec(
             [Pixelate(), SmartResize(*THUMB_SIZE)],
             image_field='avatar',
