@@ -1,3 +1,4 @@
+@import 'fonts.css.scss';
 @import 'mixins.css.scss';
 
 $text-shadow:rgba(6,4,6,0.15) -1px 1px, rgba(6,4,6,0.15) -2px 2px;
@@ -25,10 +26,6 @@ $teams-color:#3c6e88;
   0% { opacity:0; }
   100% { opacity:1; }
 }
-
-@font-face { @include font-face('AlfaSlabRegular', 'alfaslabone-regular'); }
-@font-face { @include font-face('PassionBold', 'passionone-bold'); }
-@font-face { @include font-face; }
 
 @-moz-keyframes bounce { @include bounce(moz); }
 @-ms-keyframes bounce { @include bounce(ms); }
