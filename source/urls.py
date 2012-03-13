@@ -6,10 +6,12 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.shortcuts import redirect
 from django.views.static import directory_index
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 
 admin.autodiscover()
+
+STATIC_REDIRECTS = ['robots.txt', 'favicon.ico']
 
 urlpatterns = patterns('',
 
@@ -23,6 +25,10 @@ urlpatterns = patterns('',
 
     # /commander/ (django admin)
     (r"^commander/", include(admin.site.urls)),
+
+    # Static Redirects
+    url(r"^(?P<filename>%s)$" % '|'.join(STATIC_REDIRECTS),
+        redirect_to, {'url': settings.STATIC_URL + '%(filename)s'}),
 
     # Django Filer
     url(r'^', include('filer.server.urls')),
