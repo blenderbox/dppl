@@ -194,8 +194,10 @@ nav li ul a,
 .clearfix { *zoom:1; }
 .clear { clear:both; display:block; overflow:hidden; visibility:hidden; width:0; height:0; }
 .alert { color:#ff0000; }
-a.more { color:$badger-color; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase; }
-a.more:hover { color:#fff; }
+a.more {
+  color:$badger-color; display:block; font-size:16px; padding:0 0 0 8px; text-transform:uppercase;
+  &:hover { color:#fff; }
+}
 .edit-link a { font-size:11px; }
 
 /* These have been tweaked from the standard 960gs */
@@ -240,18 +242,24 @@ header {
        @include animation(fade-in 0.5s 0.9s 1 normal forwards);
   }
 }
-#logo:active h1, #logo:active h2 { position:relative; top:1px; }
-.no-csstransitions header h1, .no-csstransitions header h2 { opacity:1; }
-.no-csstransitions #ball { top:88px; }
+#logo:active {
+  h1, h2 { position:relative; top:1px; }
+}
+.no-csstransitions {
+  header h1, header h2 { opacity:1; }
+  #ball { top:88px; }
+}
 /* Look at all these selectors!  Can we optimize this? */
 nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px;
   > ul {
     line-height:30px; margin:0; padding:0; position:relative;
     > li {
       float:left; line-height:30px; margin:0; padding:0; position:relative; text-transform:uppercase;
-      > a { color:#6e6d67; display:block; font-size:18px; padding:0 19px 0 10px; }
-      > a:active { position:relative; top:1px; }
-      > a.on { color:#fff; text-shadow:$text-shadow; }
+      > a {
+        color:#6e6d67; display:block; font-size:18px; padding:0 19px 0 10px;
+        &:active { position:relative; top:1px; }
+        &.on { color:#fff; text-shadow:$text-shadow; }
+      }
       &:hover ul { display:block; }
       & :last-child a { padding:0 10px 0 18px; }
     }
@@ -260,11 +268,13 @@ nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px;
     background:#5a839a url(../images/backgrounds/grid.png); display:none;
     padding:13px 10px; position:absolute; left:-10px; top:30px; width:220px; z-index:9999;
     @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
+    li { margin-bottom:2px; }
+    a {
+      color:#fff; font-size:14px; display:block;
+      &:hover { background:rgba(255,255,255,0.25); color:#fff; }
+    }
   }
 }
-nav li ul li { margin-bottom:2px; }
-nav li ul a { color:#fff; font-size:14px; display:block; }
-nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
 
 #schedule-nav {
   ul { background-color:$schedule-color; left:0; }
@@ -283,47 +293,56 @@ nav li ul a:hover { background:rgba(255,255,255,0.25); color:#fff; }
   > a:hover { color:$rules-color; }
 }
 
-#sign-in { height:195px; position:absolute; right:0; top:0; width:340px;
-  .ir { height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000; }
-  .ir:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
-  .ir:active { background-position:0 0; top:11px; }
+#sign-in {
+  height:195px; position:absolute; right:0; top:0; width:340px;
+  .ir {
+    height:35px; position:absolute; top:10px; right:10px; width:35px; z-index:2000;
+    &:hover { background-position:-125px 0; height:37px; right:8px; width:37px; }
+    &:active { background-position:0 0; top:11px; }
+  }
   .flag {
     color:#fff; font-size:18px; opacity:0; position:absolute; right:56px;
     text-transform:uppercase; top:-200px; text-shadow:$text-shadow;
     @include transition-property(opacity);
+    &.on { opacity:1; top:18px; }
   }
-  .flag.on { opacity:1; top:18px; }
   form { background-color:#994148; height:100%; padding:20px; position:absolute;
-         right:0; top:-200px; width:100%; z-index:1900;
+         right:0; top:-110%; width:100%; z-index:1900;
          @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
          @include transition-time(.25s);
          @include transition-property(top);
+    &.on { top:0; }
   }
-  form.on { top:0; }
   p { display:none; color:#7A343A; background:#A2A19A; margin:0 0 10px;
-      padding:10px; width:260px; @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25)); }
-  p.on { display:block; }
+      padding:10px; width:260px; @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25));
+    &.on { display:block; }
+  }
+  &.error { @include transition(.15s); @include transition-property(height); }
 }
-#sign-in.error { @include transition(.15s); @include transition-property(height); }
 
 #logged-in {
   position:absolute; right:0; top:0;
   p, form, button { display:inline-block; }
   p { margin-right:20px; text-transform:uppercase; }
   button { background:#FFF; color:#C9C8BF; opacity:.7;
-           @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25)); }
-  button:hover { opacity:1; }
+           @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25));
+    &:hover { opacity:1; }
+  }
 }
 
 footer {
   color:#9e9e93; height:60px; margin:-60px auto 0; padding:24px 0 0 550px; z-index:200;
   position:relative; text-align:right; width:940px;
   .ir, p { float:left; padding:0; }
-  .bbox { background-position:-125px -40px; height:13px; margin:2px 0 0 8px; width:73px; }
-  .bbox:hover { background-position:-125px -78px; }
-  .thomp { background-position:0px -40px; height:29px; margin:-5px 16px 0 8px; width:84px; }
-  .thomp:hover { background-position:0 -78px; }
- }
+  .bbox {
+    background-position:-125px -40px; height:13px; margin:2px 0 0 8px; width:73px;
+    &:hover { background-position:-125px -78px; }
+  }
+  .thomp {
+    background-position:0px -40px; height:29px; margin:-5px 16px 0 8px; width:84px;
+    &:hover { background-position:0 -78px; }
+  }
+}
 
 /* MODULES */
 .col-3.rankings {
@@ -351,8 +370,8 @@ footer {
                     margin-bottom:10px; width:125px; }
   .badger { background-color:$badger-color; background-position:-42px center; }
   ul { float:right; width:97px; }
+  &.on { background-color:#94aa54; @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2)); }
 }
-.col-2.week.on { background-color:#94aa54; @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2)); }
 .col-2.week li,
 .col-2.schedule li a { background:#fff; color:$badger-color; display:block;
                        border-top:1px solid $honey-color; height:30px;
@@ -368,8 +387,8 @@ footer {
   ul { margin-bottom:6px; }
   a.more { color:#fff; }
   a.past { color:$gray; }
+  &.on { background-color:$badger-color; }
 }
-.col-2.schedule.on { background-color:$badger-color; }
 
 .col-6.scoreboard {
   background-color:#cac9c0; margin-bottom:20px; padding:30px 10px 10px; position:relative;
@@ -395,7 +414,6 @@ footer {
     h3 { color:#fff; font-size:26px; line-height:1.46; padding:0 10px; }
   }
 }
-
 
 /* Mmmmmmmmm pie. */
 .pie {
