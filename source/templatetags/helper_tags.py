@@ -26,6 +26,10 @@ def external_link(url, text=""):
     if url.find('http') < 0:
         url = 'http://' + url
 
+    # remove a trailing slash if it exists
+    if text[-1:] == "/":
+      text = text[0:-1]
+
     return "<a href=\"%s\" title=\"%s\">%s</a>" % (url, text, text)
 
 

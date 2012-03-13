@@ -3,15 +3,20 @@
 {% block title %}{{ profile.full_name }} on {{ team.name }} - Teams | {% endblock %}
 
 {% block copy %}
-  <span class="team-token">
-    <img src="{{ profile.pixelate_avatar.url }}" alt="{{ profile.full_name }}" class="front" height="46" width="46" />
-    <img src="{{ profile.thumbnail_avatar.url }}" alt="{{ profile.full_name }}" class="back" height="46" width="46" />
-  </span>
-  <h3>{{ profile.full_name }} - {{ profile.rating }}</h3>
+  <div class="clearfix">
+    <span class="team-token">
+      <img src="{{ profile.thumbnail_avatar.url }}" alt="{{ profile.full_name }}" height="46" width="46" />
+    </span>
+    <h3>{{ profile.full_name }}</h3>
+    <h4>{{ profile.rating }}</h4>
+  </div>
+  
   {% if profile.bio %}{{ profile.bio }}{% endif %}
-  {% external_link profile.website %}
-  {% external_link profile.twitter %}
-  {% external_link profile.facebook %}
-  {% external_link profile.linked_in %}
+  <p>
+    {% if profile.website %}u: {% external_link profile.website %}<br/>{% endif %}
+    {% if profile.twitter %}t: {% external_link profile.twitter_url %}<br/>{% endif %}
+    {% if profile.facebook %}f: {% external_link profile.facebook_url %}<br/>{% endif %}
+    {% if profile.linked_in %}li: {% external_link profile.linked_in_url %}<br/>{% endif %}
+  </p>
 {% endblock copy %}
 
