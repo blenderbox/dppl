@@ -58,11 +58,12 @@ AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
 AWS_HEADERS = {
     'x-amz-acl': 'public-read',
     'Expires': 'Sat, 30 Oct 2010 20:00:00 GMT',
-    'Cache-Control': 'public, max-age=31556926',
+    'Cache-Control': 'public, max-age=3153600',
 }
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
+AWS_QUERYSTRING_AUTH = False
 
 STATIC_URL = 'http://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
