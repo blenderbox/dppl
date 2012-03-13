@@ -10,10 +10,9 @@ from apps.theleague.models import League, Division, Round, Season, Team
 
 
 def elo_rankings(request):
-    """ This is used by the rankings widgets
-    """
+    """ This is used by the rankings widgets. """
     return {
-        'PLAYERS': Profile.objects.all(),
+        'PLAYERS': Profile.objects.order_by('-exposure'),
     }
 
 
@@ -29,7 +28,8 @@ def extra_context(request):
 
     if len(season) > 0:
         s = season[0]
-        we_live_yo = s.go_live_date <= today and (s.go_dead_date is None or s.go_dead_date >= today)
+        we_live_yo = s.go_live_date <= today and (
+                s.go_dead_date is None or s.go_dead_date >= today)
 
     return {
         'FILER_URL': settings.FILER_URL,
@@ -73,13 +73,12 @@ def standings(request):
     """ Display the standings
         TODO: cache this bad boy.
     """
-    today = datetime.datetime.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
     season = league.current_season
     division_standings = []
 
     if season is None:
-        return { 'STANDINGS': division_standings, }
+        return {'STANDINGS': division_standings}
 
     divisions = league.division_set.all()
     for division in divisions:
@@ -110,7 +109,7 @@ def standings(request):
             'standings': team_standings,
         })
 
-    return { 'STANDINGS': division_standings, }
+    return {'STANDINGS': division_standings}
 
 
 def team_nav(request):
@@ -118,7 +117,5 @@ def team_nav(request):
         TODO: Cache this?
     """
     teams = Team.objects.all()
-    
-    return {
-        'TEAMS': teams,
-    }
+
+    return {'TEAMS': teams}

@@ -76,6 +76,20 @@ class Profile(CommonModel):
     def get_absolute_url(self):
         return ('theleague_team_member', [str(self.team.slug), str(self.slug)])
 
+    def ranking(self):
+        """ Where this player ranks compared to the other players. """
+        if self.exposure <= 0:
+            return "Unranked"
+        else:
+            return Profile.objects.filter(
+                    exposure__gte=self.exposure).order_by('-exposure').count()
+
+    def rating(self):
+        if self.exposure <= 0:
+            return "Unrated"
+        else:
+            return self.exposure
+
     @property
     def full_name(self):
         if self.user.first_name == "":
