@@ -64,7 +64,7 @@ var APP = (function($) {
       $.post($el.attr('action'), $el.serialize(), function(data) {
         if (data.success) {
           $("#sign-in").slideUp(250, function() {
-            $("#logged-in-template").tmpl(data.user).insertAfter("header");
+            $("#logged-in-template").tmpl(data.user).insertAfter("header:first");
           });
         } else {
           $error_message.text(data.message).addClass(on);

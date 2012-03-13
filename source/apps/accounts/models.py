@@ -80,8 +80,10 @@ class Profile(CommonModel):
         return "" if self.twitter == "" else ("http://linkedin.com/%s" % self.twitter).strip()
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    """ This creates a user profile on invocation. """
-    if created:
-        Profile.objects.create(user=instance)
-models.signals.post_save.connect(create_user_profile, sender=User)
+def delete_user_profile(sender, instance, **kwargs):
+    """ This deletes the user profile when the User is deleted. """
+    try:
+        Profile.objects.get(user=instance).delete()
+    except Profile.DoesNotExist:
+        pass
+models.signals.post_delete.connect(delete_user_profile, sender=User)
