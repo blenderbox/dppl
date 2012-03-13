@@ -1,6 +1,9 @@
 #!/bin/bash
 
-cd ../source/
-python manage.py collectstatic --noinput
-python manage.py compress
-git push heroku master
+GIT=$(which git)
+PYTHON=$(which python)
+MANAGE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../source/manage.py"
+
+$PYTHON $MANAGE collectstatic --noinput
+$PYTHON $MANAGE compress
+$GIT push heroku master
