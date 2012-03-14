@@ -639,6 +639,11 @@ footer {
 .teams-page .dots, .scoreboard-page .dots, .schedule-page .dots { margin-right:30px; }
 .teams-page .paddle { padding-left:90px; }
 
+section.teams.member .copy {
+  h3 { padding:0; }
+  h4 { padding-bottom:20px; }
+}
+
 @mixin transition {
      -o-transition:opacity 0.15s linear 0s;
    -moz-transition:opacity 0.15s linear 0s;
