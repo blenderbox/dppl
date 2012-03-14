@@ -639,9 +639,10 @@ footer {
 .teams-page .dots, .scoreboard-page .dots, .schedule-page .dots { margin-right:30px; }
 .teams-page .paddle { padding-left:90px; }
 
-section.teams.member .copy {
+.teams-page.member .copy {
   h3 { padding:0; }
   h4 { padding-bottom:20px; }
+  p { padding-bottom:20px; }
 }
 
 @mixin transition {
