@@ -12,8 +12,9 @@
     <h3>{{ profile.full_name }}</h3>
     <h4>{{ profile.rating }}</h4>
   </div>
-  
+  <p>
   {% if profile.bio %}{{ profile.bio }}{% endif %}
+  </p>
   <p>
     {% if profile.website %}u: {% external_link profile.website %}<br/>{% endif %}
     {% if profile.twitter %}t: {% external_link profile.twitter_url %}<br/>{% endif %}
