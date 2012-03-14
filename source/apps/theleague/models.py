@@ -194,6 +194,9 @@ class Team(CommonModel):
         return self.division.match_set.filter(round__season=season)\
                    .filter(Q(team1=self) | Q(team2=self))
 
+    def active_profile_team(self):
+        return self.profile_team.filter(include_in_team=True)
+
     @property
     def name_and_abbr(self):
         if self.name == self.abbr:

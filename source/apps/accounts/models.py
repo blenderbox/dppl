@@ -27,6 +27,7 @@ class Profile(CommonModel):
     user = models.OneToOneField(User, unique=True)
     slug = models.SlugField("Slug", max_length=255)
     bio = models.TextField(blank=True, null=True)
+    include_in_team = models.BooleanField(default=True)
 
     # TrueSkill Rating
     # To sort players by rating, sort by their exposure. For instance, best to

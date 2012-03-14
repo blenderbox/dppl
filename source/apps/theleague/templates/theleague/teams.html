@@ -15,7 +15,7 @@
       <div class="viewport">
 	      <div class="overview">
         <ul class="nav">{% spaceless %}
-          {% for t in teams %}
+          {% for t in TEAMS %}
           <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name_and_abbr }}</a></li>
           {% endfor %}
         {% endspaceless %}</ul>                       
@@ -59,7 +59,7 @@
       {% endblock copy %}
       &nbsp;
       </div>
-      {% include "theleague/widgets/players.html" with players=team.profile_team.all %}
+      {% include "theleague/widgets/players.html" with players=team.active_profile_team.all %}
       {% include "theleague/widgets/schedule.html" with schedule=schedule %}
   </div>
 </section>

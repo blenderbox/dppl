@@ -79,12 +79,11 @@ def teams(request):
     """
     league = League.objects.get(pk=settings.LEAGUE_ID)
     # TODO: make this actually pull in teams just from the league.
-    teams = Team.objects.all()
+    teams = Team.objects.all()[:1]
     team = teams[0] if len(teams) > 0 else None
 
     return render_response(request, 'theleague/teams.html', {
         'schedule': team.current_schedule(league.current_season),
-        'teams': teams,
         'team': team,
     })
 
@@ -94,12 +93,10 @@ def team(request, team_slug):
     """
     league = League.objects.get(pk=settings.LEAGUE_ID)
     # TODO: make this actually pull in teams just from the league.
-    teams = Team.objects.all()
     team = get_object_or_404(Team, slug=team_slug)
 
     return render_response(request, 'theleague/team.html', {
         'schedule': team.current_schedule(league.current_season),
-        'teams': teams,
         'team': team,
     })
 
@@ -108,7 +105,6 @@ def team_member(request, team_slug, team_member_slug):
     """
     league = League.objects.get(pk=settings.LEAGUE_ID)
     # TODO: make this actually pull in teams just from the league.
-    teams = Team.objects.all()
     team = get_object_or_404(Team, slug=team_slug)
 
     try:
@@ -118,7 +114,6 @@ def team_member(request, team_slug, team_member_slug):
 
     return render_response(request, 'theleague/team_member.html', {
         'schedule': team.current_schedule(league.current_season),
-        'teams': teams,
         'team': team,
         'profile': profile,
     })

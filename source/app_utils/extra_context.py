@@ -12,7 +12,7 @@ from apps.theleague.models import League, Division, Round, Season, Team
 def elo_rankings(request):
     """ This is used by the rankings widgets. """
     return {
-        'PLAYERS': Profile.objects.order_by('-exposure'),
+        'PLAYERS': Profile.objects.filter(include_in_team=True).order_by('-exposure'),
     }
 
 
