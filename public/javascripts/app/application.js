@@ -44,6 +44,15 @@ var APP = (function($) {
         emails();
         $('a[rel="tooltip"]').twipsy({ html:true });
         $('.pie').each(calculatePie);
+        var kkeys = [],
+            konami = "38,38,40,40,37,39,37,39,66,65,13";
+        $(document).keydown(function(e) {
+          kkeys.push(e.keyCode);
+          if (kkeys.toString().indexOf(konami) >= 0) {
+            kkeys = [];
+            $("body").addClass("tyte");
+          }
+        });
     }
     function calculatePie(idx, el) {
         $el = $(el);
