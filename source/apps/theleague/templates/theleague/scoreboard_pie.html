@@ -1,18 +1,4 @@
 <div class="pie" data-points="{% if match.complete %}{{ match.winning_score }}{% else %}4{% endif %}">
-  <ul>
-    <li><p class="c1-r"><span class="pie-left"></span></p></li>
-    <li><p class="c1-l"><span class="pie-right"></span></p></li>
-    <li><p class="c2-r"><span class="pie-left"></span></p></li>
-    <li><p class="c2-l"><span class="pie-right"></span></p></li>
-  </ul>
-  <div class="crc">
-  {% if match.winner %}
-    {{ match.winner.abbr }} {{ match.winning_score }}<br/>
-    <span class="loser">def<br/> {{ match.loser.abbr }}</span>
-  {% else %}
-    {{ match.team1.abbr }}<br/>
-    v<br/>
-    {{ match.team2.abbr }}
-  {% endif %}
-  </div>
+<ul><li><p class="c1-r"><span class="pie-left"></span></p></li><li><p class="c1-l"><span class="pie-right"></span></p></li><li><p class="c2-r"><span class="pie-left"></span></p></li><li><p class="c2-l"><span class="pie-right"></span></p></li></ul>
+  <div class="crc">{% if match.winner %}{{ match.winner.abbr }} {{ match.winning_score }}<br/> <span class="loser">def<br/> {{ match.loser.abbr }}</span>   {% else %} {{ match.team1.abbr }}<br/> v<br/> {{ match.team2.abbr }} {% endif %}</div>
 </div>

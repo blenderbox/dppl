@@ -1,11 +1,11 @@
 {% if schedule %}
 <div class="col-2 grid schedule">
   <h3>Schedule &amp; Scores</h3>
-  <ul>
+  <ul>{% spaceless %}
   {% for match in schedule %}
     <li><a href="#" rel="tooltip" title="{{ match.round }}"{% if match.round.in_past %} class="past"{% endif %}>{{ match.scored_match }}</a></li>
   {% endfor %}
-  </ul>
+  {% endspaceless %}</ul>
   <a href="/schedule" class="more">Full schedule &raquo;</a>
   <a href="/scoreboard" class="more">Scoreboard &raquo;</a>
 </div>

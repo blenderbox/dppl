@@ -29,13 +29,13 @@
             <ul class="clearfix">
               <li id="schedule-nav"><a href="/schedule"{% active request '/schedule' %} title="Schedule">Schedule</a></li>
               <li id="scores-nav"><a href="/scoreboard"{% active request '/scoreboard' %} title="Scores">Scores</a></li>
-              <li id="teams-nav"><a href="/teams"{% active request '/teams' %} title="Teams">Teams</a>
+              <li id="teams-nav"><a href="/teams"{% active request '/teams' %} title="Teams">Teams</a>{% spaceless %}
                   <ul>
                   {% for team in TEAMS %}
                     <li><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></li>
                   {% endfor %}
                   </ul>
-              </li>
+              {% endspaceless %}</li>
               <li id="rules-nav"><a href="/rules"{% active request '/rules' %} title="Rules">Rules</a></li>
             </ul>
           </nav>

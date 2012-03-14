@@ -4,7 +4,7 @@
 
 {% block body_class %} class="scoreboard-page"{% endblock %}
 
-{% block content %}
+{% block content %}{% spaceless %}
 <section class="col-12 grid scoreboard">
   <h1>Scoreboard</h1>
   <div class="copy clearfix">
@@ -40,7 +40,7 @@
       You know the deal.  Hurry up and complete the first round.</h3>
       {% endif %}
   </div>
-</section>
+</section>{% endspaceless %}
 {{ block.super }}
 {% endblock content %}
 

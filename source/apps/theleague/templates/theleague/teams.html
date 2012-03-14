@@ -14,11 +14,11 @@
       <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
       <div class="viewport">
 	      <div class="overview">
-        <ul class="nav">
+        <ul class="nav">{% spaceless %}
           {% for t in teams %}
           <li><a href="{{ t.get_absolute_url }}"{% if t.id == team.id %} class="on"{% endif %}>{{ t.name_and_abbr }}</a></li>
           {% endfor %}
-        </ul>                       
+        {% endspaceless %}</ul>                       
         </div>
       </div>
     </div>

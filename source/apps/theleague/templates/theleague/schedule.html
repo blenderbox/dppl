@@ -7,7 +7,7 @@
 {% block content %}
 {% for season in current_seasons %}
   <section class="col-12 grid schedule">
-    <h1>{{ season.name }}</h1>
+    <h1>{{ season.name }}</h1>{% spaceless %}
     <div class="copy">
       <ul class="header clearfix">
         {% for round in season.round_set.all %}
@@ -28,7 +28,7 @@
         </div>
       {% endfor %}
     </div>
-  </section>
+  {% endspaceless %}</section>
 {% endfor %}
 {{ block.super }}
 {% endblock content %}

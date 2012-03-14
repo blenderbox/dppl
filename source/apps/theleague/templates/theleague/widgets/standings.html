@@ -1,6 +1,6 @@
 {% if STANDINGS %}
 <div class="col-8 grid standings {{ class }}">
-  <h2>Standings</h2>
+  <h2>Standings</h2>{% spaceless %}
   {% for division in STANDINGS %}
     {% if forloop.first %}
       <div class="left">
@@ -27,6 +27,6 @@
         {% endfor %}
       {% endfor %}
      </ul>
-  </div>
+  {% endspaceless %}</div>
 </div>
 {% endif %}
