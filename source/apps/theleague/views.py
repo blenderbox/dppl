@@ -109,7 +109,7 @@ def team_member(request, team_slug, team_member_slug):
 
     try:
         profile = team.profile_team.get(slug=team_member_slug)
-    except Poll.DoesNotExist:
+    except Team.DoesNotExist:
         raise Http404
 
     return render_response(request, 'theleague/team_member.html', {
