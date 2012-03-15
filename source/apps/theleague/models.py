@@ -40,7 +40,7 @@ class Game(CommonModel):
 
     def set_rank(self):
         """ This will rank players one and two based on the outcome. """
-        if self.winner == 1:
+        if int(self.winner) == 1:
             self.player1, self.player2 = rank(self.player1, self.player2)
         else:
             self.player2, self.player1 = rank(self.player2, self.player1)
