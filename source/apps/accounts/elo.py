@@ -54,4 +54,7 @@ def rank(player1, player2):
     player2.sigma = approx(r2.sigma)
     player2.exposure = approx(r2.exposure)
 
+    player1.save()
+    player2.save()
+
     return player1, player2
