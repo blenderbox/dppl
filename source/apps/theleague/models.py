@@ -29,7 +29,7 @@ class Division(CommonModel):
 class Game(CommonModel):
     """ The game.
     """
-    WINNER_CHOICES = ((1, "Player 1",), (2, "Player 2"),)
+    WINNER_CHOICES = (("1", "Player 1",), ("2", "Player 2"),)
 
     winner = models.CharField(_("Winner"), choices=WINNER_CHOICES,
             max_length=1, null=True, blank=True)
@@ -40,7 +40,7 @@ class Game(CommonModel):
 
     def set_rank(self):
         """ This will rank players one and two based on the outcome. """
-        if int(self.winner) == 1:
+        if self.winner == "1":
             self.player1, self.player2 = rank(self.player1, self.player2)
         else:
             self.player2, self.player1 = rank(self.player2, self.player1)
