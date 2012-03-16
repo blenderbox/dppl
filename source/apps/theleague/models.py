@@ -81,8 +81,10 @@ class Match(CommonModel):
     # Relations
     round = models.ForeignKey("Round")
     division = models.ForeignKey("Division")
-    team1 = models.ForeignKey("Team", related_name="team1", help_text=_("Home Team"))
-    team2 = models.ForeignKey("Team", related_name="team2", help_text=_("Away Team"))
+    team1 = models.ForeignKey("Team", related_name="team1",
+            help_text=_("Home Team"))
+    team2 = models.ForeignKey("Team", related_name="team2",
+            help_text=_("Away Team"))
 
     @property
     def complete(self):
@@ -90,21 +92,24 @@ class Match(CommonModel):
 
     @property
     def loser(self):
-        if self.complete == False:
+        if not self.complete:
             return None
-        return self.team1 if self.team1_score < self.team2_score else self.team2
+        return self.team1 if self.team1_score < self.team2_score \
+                else self.team2
 
     @property
     def winner(self):
-        if self.complete == False:
+        if not self.complete:
             return None
-        return self.team1 if self.team1_score > self.team2_score else self.team2
+        return self.team1 if self.team1_score > self.team2_score \
+                else self.team2
 
     @property
     def winning_score(self):
-        if self.complete == False:
+        if not self.complete:
             return None
-        return self.team1_score if self.team1_score > self.team2_score else self.team2_score
+        return self.team1_score if self.team1_score > self.team2_score \
+                else self.team2_score
 
     @property
     def scored_match(self):
@@ -122,8 +127,7 @@ class Match(CommonModel):
 
 
 class Round(CommonModel):
-    """ The round, as in 'Round 1, FIGHT!'
-    """
+    """ The round, as in 'Round 1, FIGHT!' """
     name = models.CharField(_("Name"), max_length=255)
     short_name = models.CharField(_("Short Name"), max_length=1)
     go_live_date = models.DateTimeField(_("Go Live Date"))
@@ -140,7 +144,8 @@ class Round(CommonModel):
         return self.go_live_date <= now and self.go_dead_date >= datetime.now()
 
     def division_matches(self, division_id):
-        return self.match_set.filter(division=Division.objects.get(pk=division_id))
+        return self.match_set.filter(
+                division=Division.objects.get(pk=division_id))
 
     class Meta:
         ordering = ("go_live_date",)
@@ -180,8 +185,10 @@ class Team(CommonModel):
     state = models.CharField(_("State"), max_length=2, blank=True)
     zip_code = models.CharField(_("Zip Code"), max_length=20, blank=True)
     description = models.TextField(_("Description"), blank=True)
-    contact_name = models.CharField(_("Contact Name"), max_length=255, blank=True)
-    contact_email = models.CharField(_("Contact Email"), max_length=255, blank=True)
+    contact_name = models.CharField(_("Contact Name"), max_length=255,
+            blank=True)
+    contact_email = models.CharField(_("Contact Email"), max_length=255,
+            blank=True)
 
     # Relations
     division = models.ForeignKey(Division)
@@ -210,5 +217,3 @@ class Team(CommonModel):
     @models.permalink
     def get_absolute_url(self):
         return ('theleague_team', [str(self.slug)])
-
-

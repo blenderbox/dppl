@@ -2,24 +2,23 @@ import datetime
 from operator import itemgetter
 
 from django.conf import settings
-from django.core.cache import cache
-from django.core.urlresolvers import reverse
+# from django.core.cache import cache
+# from django.core.urlresolvers import reverse
 
 from apps.accounts.models import Profile
-from apps.theleague.models import League, Division, Round, Season, Team
+from apps.theleague.models import League, Team
 
 
 def elo_rankings(request):
     """ This is used by the rankings widgets. """
     return {
-        'PLAYERS': Profile.objects.filter(include_in_team=True).order_by('-exposure'),
+        'PLAYERS': Profile.objects.filter(
+            include_in_team=True).order_by('-exposure'),
     }
 
 
 def extra_context(request):
-    """
-    This provides some extra context for the templates.
-    """
+    """ This provides some extra context for the templates. """
     we_live_yo = False
     today = datetime.date.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
@@ -38,8 +37,7 @@ def extra_context(request):
 
 
 def scoreboard(request):
-    """ Display the scoreboard
-    """
+    """ Display the scoreboard """
     today = datetime.datetime.today()
     league = League.objects.get(pk=settings.LEAGUE_ID)
     season = league.current_season
@@ -84,9 +82,7 @@ def standings(request):
     for division in divisions:
         team_standings = []
         for team in division.team_set.all():
-            wins = 0
-            losses = 0
-            total = 0
+            wins, losses, total = 0, 0, 0
             for m in team.current_schedule(season):
                 if m.complete:
                     total += 1

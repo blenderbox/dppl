@@ -1,12 +1,11 @@
 import datetime
 
 from django.conf import settings
-from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from app_utils.tools import render_response
-from apps.theleague.models import League, Match, Round, Season, Team
+from apps.theleague.models import League, Team
 
 
 def scoreboard(request):
@@ -29,11 +28,11 @@ def scoreboard(request):
     # Is this the best way?  Maybe baby.
     first_division_rounds = []
     for r in rounds:
-      first_division_rounds.append(divisions[0].match_set.filter(round=r))
+        first_division_rounds.append(divisions[0].match_set.filter(round=r))
 
     second_division_rounds = []
     for r in rounds:
-      second_division_rounds.append(divisions[1].match_set.filter(round=r))
+        second_division_rounds.append(divisions[1].match_set.filter(round=r))
 
     return render_response(request, 'theleague/scoreboard.html', {
         'rounds': rounds,
@@ -43,9 +42,7 @@ def scoreboard(request):
 
 
 def schedule(request):
-    """ Display the schedule
-    """
-    today = datetime.date.today()
+    """ Display the schedule """
     league = League.objects.get(pk=settings.LEAGUE_ID)
     seasons = league.current_seasons()
     divisions = league.division_set.all()
@@ -100,6 +97,7 @@ def team(request, team_slug):
         'team': team,
     })
 
+
 def team_member(request, team_slug, team_member_slug):
     """ Display the team
     """
@@ -117,5 +115,3 @@ def team_member(request, team_slug, team_member_slug):
         'team': team,
         'profile': profile,
     })
-
-
