@@ -193,6 +193,16 @@ class Team(CommonModel):
     # Relations
     division = models.ForeignKey(Division)
 
+    class Meta:
+        ordering = ("name",)
+
+    def __unicode__(self):
+        return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('theleague_team', [str(self.slug)])
+
     def current_schedule(self, season):
         if season is None:
             return None
@@ -208,12 +218,5 @@ class Team(CommonModel):
             return self.name
         return "%s (%s)" % (self.name, self.abbr)
 
-    class Meta:
-        ordering = ("name",)
-
-    def __unicode__(self):
-        return self.name
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('theleague_team', [str(self.slug)])
+    def standing(self):
+        pass

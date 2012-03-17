@@ -4,6 +4,7 @@ from operator import itemgetter
 from django.conf import settings
 # from django.core.cache import cache
 # from django.core.urlresolvers import reverse
+from django.db.models import Sum
 
 from apps.accounts.models import Profile
 from apps.theleague.models import League, Team
@@ -74,36 +75,37 @@ def standings(request):
     league = League.objects.get(pk=settings.LEAGUE_ID)
     season = league.current_season
     division_standings = []
+    add = lambda x, y: (x or 0) + (y or 0)
 
     if season is None:
         return {'STANDINGS': division_standings}
 
     divisions = league.division_set.all()
+
     for division in divisions:
         team_standings = []
         for team in division.team_set.all():
-            wins, losses, total = 0, 0, 0
-            for m in team.current_schedule(season):
-                if m.complete:
-                    total += 1
-                    if m.winner == team:
-                        wins += 1
-                    else:
-                        losses += 1
+            s1 = team.team1.aggregate(wins=Sum('team1_score'),
+                                      losses=Sum('team2_score'))
+            s2 = team.team2.aggregate(wins=Sum('team2_score'),
+                                      losses=Sum('team1_score'))
 
+            wins = add(s1['wins'], s2['wins'])
+            losses = add(s1['losses'], s2['losses'])
+            total = wins + losses
             percent = (float(wins) / total) * 100 if total > 0 else 0
-            team_standings.append({
-                'team': team,
-                'wins': wins,
-                'losses': losses,
-                'percent': "%.0f" % percent,
-            })
 
+            team_standings.append({
+                    'team': team,
+                    'wins': wins,
+                    'losses': losses,
+                    'percent': "%.0f" % percent,
+                    })
         team_standings.sort(key=itemgetter('wins'), reverse=True)
         division_standings.append({
             'division': division,
             'standings': team_standings,
-        })
+            })
 
     return {'STANDINGS': division_standings}
 
