@@ -232,6 +232,10 @@ AUTHENTICATION_BACKENDS = (
 # APPLICATION SETTINGS #
 ########################
 
+STATIC_REDIRECTS = [
+    'apple-touch-icon.png', 'favicon.ico', 'humans.txt', 'robots.txt',
+]
+
 COMPRESS_ENABLED = True
 COMPRESS_PRECOMPILERS = (
     ('text/x-sass', 'sass {infile} {outfile}'),

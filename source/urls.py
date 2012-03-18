@@ -11,8 +11,6 @@ from django.views.generic.simple import direct_to_template, redirect_to
 
 admin.autodiscover()
 
-STATIC_REDIRECTS = ['apple-touch-icon.png', 'favicon.ico', 'humans.txt', 'robots.txt']
-
 urlpatterns = patterns('',
 
     # /
@@ -27,7 +25,7 @@ urlpatterns = patterns('',
     (r"^commander/", include(admin.site.urls)),
 
     # Static Redirects
-    url(r"^(?P<filename>%s)$" % '|'.join(STATIC_REDIRECTS),
+    url(r"^(?P<filename>%s)$" % '|'.join(settings.STATIC_REDIRECTS),
         redirect_to, {'url': settings.STATIC_URL + '%(filename)s'}),
 
     # Django Filer
