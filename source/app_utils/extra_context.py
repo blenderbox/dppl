@@ -69,28 +69,31 @@ def scoreboard(request):
         season = league.current_season
 
         if season is None:
-            return {
+            context = {
                 'FIRST_DIVISION_MATCHES': [],
                 'SECOND_DIVISION_MATCHES': [],
-            }
-
-        divisions = league.division_set.all()
-        rounds = season.round_set.filter(go_dead_date__lte=today)\
-                    .order_by('-go_live_date')[:1]
-
-        first_division_matches = []
-        second_division_matches = []
-
-        if len(rounds) > 0:
-            r = rounds[0]
-            # We're assuming there are two divisions
-            first_division_matches = divisions[0].match_set.filter(round=r)
-            second_division_matches = divisions[1].match_set.filter(round=r)
-
-        context = {
-                'FIRST_DIVISION_MATCHES': first_division_matches,
-                'SECOND_DIVISION_MATCHES': second_division_matches,
                 }
+
+        else:
+            divisions = league.division_set.all()
+            rounds = season.round_set.filter(go_dead_date__lte=today)\
+                        .order_by('-go_live_date')[:1]
+
+            first_division_matches = []
+            second_division_matches = []
+
+            if len(rounds) > 0:
+                r = rounds[0]
+                # We're assuming there are two divisions
+                first_division_matches = divisions[0].match_set.filter(round=r)
+                second_division_matches = divisions[1].match_set.filter(
+                        round=r)
+
+            context = {
+                    'FIRST_DIVISION_MATCHES': first_division_matches,
+                    'SECOND_DIVISION_MATCHES': second_division_matches,
+                    }
+
         cache.set(KEY, context, 30 * 60)
 
     return {

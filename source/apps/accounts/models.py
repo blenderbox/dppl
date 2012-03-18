@@ -44,8 +44,7 @@ class Profile(CommonModel):
     # Avatarz
     THUMB_SIZE = (46, 46)
     AVATAR_FORMAT = "JPEG"
-    DEFAULT_AVATAR = "avatars/default.jpg"
-    avatar = models.ImageField(default=DEFAULT_AVATAR, upload_to=get_path)
+    avatar = models.ImageField(upload_to=get_path, blank=True, null=True)
     pixelate_avatar = ImageSpec(
             [Pixelate(), SmartResize(*THUMB_SIZE)],
             image_field='avatar',
