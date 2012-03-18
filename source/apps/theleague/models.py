@@ -38,12 +38,17 @@ class Game(CommonModel):
     player1 = models.ForeignKey(User, related_name="user1")
     player2 = models.ForeignKey(User, related_name="user2")
 
+    ranked = models.BooleanField(editable=False, default=False)
+
     def set_rank(self):
         """ This will rank players one and two based on the outcome. """
-        if self.winner == "1":
-            rank(self.player1.profile, self.player2.profile)
-        else:
-            rank(self.player2.profile, self.player1.profile)
+        if not self.ranked:
+            if self.winner == "1":
+                rank(self.player1.profile, self.player2.profile)
+            else:
+                rank(self.player2.profile, self.player1.profile)
+            self.ranked = True
+            self.save()
 
 
 class League(CommonModel):
