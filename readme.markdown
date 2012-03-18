@@ -13,6 +13,12 @@
         $ easy_install pip
         $ pip install -r requirements.txt
 
+    Note: You'll need to install memcached, and tools to install all of
+    the requirements. For ubuntu:
+
+        $ sudo apt-get install memcached
+        $ sudo apt-get install libmemcached-dev libmemcached-tools
+
 1.  Grab some Sass
 
         $ gem install sass / sudo gem install sass

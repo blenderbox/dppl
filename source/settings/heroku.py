@@ -45,12 +45,19 @@ INSTALLED_APPS += ('storages',)
 # Dummy cache for dev
 CACHES = {
     'default': {
-        'BACKEND': "django.core.cache.backends.dummy.DummyCache",
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': 'localhost:11211',
+        'TIMEOUT': 300,
+        'BINARY': True,
+        'OPTIONS': {
+                'tcp_nodelay': True,
+                'ketama': True,
+        }
     },
 }
 
 # DB backed sessions for testing since cache dumps itself
-SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
