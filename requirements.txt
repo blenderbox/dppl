@@ -5,7 +5,6 @@ Pygments==1.4
 South==0.7.3
 Werkzeug==0.8.1
 boto==2.2.2
-bpython==0.10.1
 django-appconf==0.4.1
 django-compressor==1.1.2
 django-debug-toolbar==0.8.5

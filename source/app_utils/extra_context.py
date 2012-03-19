@@ -110,18 +110,22 @@ def standings(request):
     division_standings = cache.get(KEY)
 
     if not division_standings:
+        TIMEOUT = 30 * 60
+
         league = League.objects.get(pk=settings.LEAGUE_ID)
         season = league.current_season
         division_standings = []
         add = lambda x, y: (x or 0) + (y or 0)
 
         if season is None:
+            cache.set(KEY, division_standings, TIMEOUT)
             return {'STANDINGS': division_standings}
 
         divisions = league.division_set.all()
 
         for division in divisions:
             team_standings = []
+
             for team in division.team_set.all():
                 s1 = team.team1.aggregate(wins=Sum('team1_score'),
                                           losses=Sum('team2_score'))
@@ -139,13 +143,14 @@ def standings(request):
                         'losses': losses,
                         'percent': "%.0f" % percent,
                         })
+
             team_standings.sort(key=itemgetter('wins'), reverse=True)
             division_standings.append({
                 'division': division,
                 'standings': team_standings,
                 })
 
-        cache.set(KEY, division_standings, 30 * 60)
+        cache.set(KEY, division_standings, TIMEOUT)
 
     return {'STANDINGS': division_standings}
 

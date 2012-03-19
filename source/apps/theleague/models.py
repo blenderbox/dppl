@@ -40,6 +40,9 @@ class Game(CommonModel):
 
     ranked = models.BooleanField(editable=False, default=False)
 
+    def __unicode__(self):
+        return "%s v %s" % (self.player1, self.player2)
+
     def set_rank(self):
         """ This will rank players one and two based on the outcome. """
         if not self.ranked:
@@ -90,6 +93,32 @@ class Match(CommonModel):
             help_text=_("Home Team"))
     team2 = models.ForeignKey("Team", related_name="team2",
             help_text=_("Away Team"))
+
+    def set_score(self):
+        """ Sets the score based on winning players. """
+        team1_score = team2_score = 0
+        team1 = self.team1
+        team2 = self.team2
+
+        games = self.game_set.filter(winner__isnull=False)
+
+        if games.count() > 0:  # Only score ones that have winning games
+            for game in self.game_set.filter(winner__isnull=False):
+                winning_team = None
+                if game.winner == "1":
+                    winning_team = game.player1.profile.team
+                else:
+                    winning_team = game.player2.profile.team
+
+                if winning_team == team1:
+                    team1_score += 1
+                elif winning_team == team2:
+                    team2_score += 1
+
+            if team1_score + team2_score == 4:  # Only save scores if they add
+                self.team1_score = team1_score
+                self.team2_score = team2_score
+                self.save()
 
     @property
     def complete(self):
