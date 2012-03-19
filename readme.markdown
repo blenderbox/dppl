@@ -13,7 +13,7 @@
         $ easy_install pip
         $ pip install -r requirements.txt
 
-    Note: You'll need to install memcached, and tools to install all of
+    **Note**: You'll need to install memcached, and tools to install all of
     the requirements. For ubuntu:
 
         $ sudo apt-get install memcached
@@ -33,14 +33,14 @@
         $ python source/manage.py syncdb --all
         $ python source/manage.py migrate --fake
 
-        note: don't run fake migrations.  this is bad.
+    **Note**: Don't run fake migrations. This is bad.
 
 1.  Do some crazy shit with the shell_plus:
 
         $ python source/manage.py shell_plus
         $ u = User.objects.get(pk=1)
         $ u.profile = Profile(team_id=1)
-        $ u.save
+        $ u.save()
 
 1.  Give up and DM kayluhb for a db dump
 
@@ -59,6 +59,15 @@
 1.  Once you've gained access, you can run any basic commands using:
 
         $ heroku run "python source/manage.py <some command> --settings=source.settings.heroku"
+
+    There's also the handy script `deploy/heroku_run.sh` which will
+    handle this for you. For this shortcut do:
+
+        $ ./deploy/heroku_run.sh shell_plus --plain
+
+    Which will actually run:
+
+        $ heroku run "python source/manage.py shell_plus --plain --settings=source.settings.heroku"
 
 1.  To deploy, setup the static files, compile the sass, and push:
 
