@@ -11,7 +11,7 @@ django-compressor==1.1.2
 django-debug-toolbar==0.8.5
 django-extensions==0.7.1
 -e git://github.com/stefanfoulis/django-filer.git@19c416905cf1dfe492aed6ae8f1963cccb5517e5#egg=django_filer-dev
--e git+https://github.com/jdriscoll/django-imagekit.git@3a5d7da0d8086cf231fa105d019001e27befd0c8#egg=django_imagekit-dev
+django-imagekit==1.1
 -e git+https://github.com/bartTC/django-memcache-status.git@e63d52a66df1e1c4a243de8e8f2d5dc18d34ef5d#egg=django_memcache_status-dev
 django-mptt==0.5.2
 django-polymorphic==0.2

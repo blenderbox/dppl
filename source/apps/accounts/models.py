@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from imagekit.models import ImageSpec
-from imagekit.processors.resize import SmartResize
+from imagekit.processors import resize
 
 from apps.abstract.models import CommonModel
 from apps.theleague.models import Team
@@ -23,20 +23,25 @@ def get_path(instance, filename):
 
 
 class Profile(CommonModel):
-    """ This represents a user's profile. """
+    """ This represents a user's profile.
+
+    To sort players by rating, sort by their exposure. For instance, best to
+    worst would be:
+        Profile.object.order_by('-exposure')
+
+    To figure out what this player's rank is in the league, something like
+    this should work:
+        Profile.objects.filter(exposure__gte=self.exposure).order_by(
+            '-exposure').count()
+
+    Exposures which are <= 0 should appear as "unranked" to the user.
+    """
     user = models.OneToOneField(User, unique=True)
     slug = models.SlugField("Slug", max_length=255)
     bio = models.TextField(blank=True, null=True)
     include_in_team = models.BooleanField(default=True)
 
     # TrueSkill Rating
-    # To sort players by rating, sort by their exposure. For instance, best to
-    # worst would be Profile.object.order_by('-exposure')
-    # To figure out what this player's rank is in the league, something like
-    # this should work:
-    # Profile.objects.filter(exposure__gte=self.exposure).order_by(
-    #   '-exposure').count()
-    # Exposures which are <= 0 should appear as "unranked" to the user.
     mu = models.FloatField(blank=True, null=True)
     sigma = models.FloatField(blank=True, null=True)
     exposure = models.FloatField(default=0)
@@ -46,12 +51,12 @@ class Profile(CommonModel):
     AVATAR_FORMAT = "JPEG"
     avatar = models.ImageField(upload_to=get_path, blank=True, null=True)
     pixelate_avatar = ImageSpec(
-            [Pixelate(), SmartResize(*THUMB_SIZE)],
+            [Pixelate(), resize.SmartCrop(*THUMB_SIZE)],
             image_field='avatar',
             format=AVATAR_FORMAT,
             )
     thumbnail_avatar = ImageSpec(
-            [SmartResize(*THUMB_SIZE)],
+            [resize.SmartCrop(*THUMB_SIZE)],
             image_field='avatar',
             format=AVATAR_FORMAT,
             )
