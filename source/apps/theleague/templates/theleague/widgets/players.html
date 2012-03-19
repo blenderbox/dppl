@@ -5,8 +5,13 @@
     {% for profile in players %}
     <li class="clearfix">
       <a href="{{ profile.get_absolute_url }}" class="team-token" title="{{ profile.full_name }}">
-        <img src="{{ profile.pixelate_avatar.url }}" alt="{{ profile.full_name }}" class="front" height="46" width="46" />
-        <img src="{{ profile.thumbnail_avatar.url }}" alt="{{ profile.full_name }}" class="back" height="46" width="46" />
+        {% if profile.avatar %}
+          <img src="{{ profile.pixelate_avatar.url }}" alt="{{ profile.full_name }}" class="front" height="46" width="46" />
+          <img src="{{ profile.thumbnail_avatar.url }}" alt="{{ profile.full_name }}" class="back" height="46" width="46" />
+        {% else %}
+          <img src="{{ STATIC_URL }}images/default-avatar_pixelated.png" alt="{{ profile.full_name }}" class="front" height="46" width="46" />
+          <img src="{{ STATIC_URL }}images/default-avatar_thumbnail.png" alt="{{ profile.full_name }}" class="back" height="46" width="46" />
+        {% endif %}
       </a>
       <div class="right">
         {{ profile.rating }}<br/>
