@@ -12,25 +12,25 @@
       <div class="weeks">
         <h2>Week</h2>
         {% for round in rounds %}
-        <h3><span>{{ round.short_name }}</span></h3>
+          <h3><span>{{ round.short_name }}</span></h3>
         {% endfor %}
       </div>
       <div class="honey">
-          <h2>Honey</h2>
-          {% for round in first_division_rounds %}
+        <h2>Honey</h2>
+        {% for round, matches in first_division_rounds %}
           <div class="row">
-            {% for match in round %}
-            {% include "theleague/scoreboard_pie.html" with match=match %}
+            {% for match in matches %}
+              {% include "theleague/scoreboard_pie.html" with match=match %}
             {% endfor %}
           </div>
-          {% endfor %}
+        {% endfor %}
       </div>
       <div class="badger">
         <h2>Badger</h2>
-        {% for round in second_division_rounds %}
+        {% for round, matches in second_division_rounds %}
           <div class="row">
-            {% for match in round %}
-            {% include "theleague/scoreboard_pie.html" with match=match %}
+            {% for match in matches %}
+              {% include "theleague/scoreboard_pie.html" with match=match %}
             {% endfor %}
           </div>
           {% endfor %}

@@ -1,19 +1,20 @@
 import datetime
+from itertools import groupby
 
 from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from app_utils.tools import render_response
-from apps.theleague.models import League, Team
+from apps.theleague.models import League, Team, Match
 
 
 def scoreboard(request):
-    """ Display the scoreboard
-    """
-    today = datetime.datetime.today()
+    """ Display the scoreboard. """
+    now = datetime.datetime.now()
     league = League.objects.get(pk=settings.LEAGUE_ID)
     season = league.current_season
+
     if season is None:
         return render_response(request, 'theleague/scoreboard.html', {
                   'rounds': None,
@@ -22,22 +23,28 @@ def scoreboard(request):
               })
 
     divisions = league.division_set.all()
-    rounds = season.round_set\
-        .filter(go_dead_date__lte=today).order_by('-go_live_date')
+    rounds = season.round_set.select_related().filter(
+            go_dead_date__lt=now).order_by('-go_live_date')
 
-    # Is this the best way?  Maybe baby.
-    first_division_rounds = []
-    for r in rounds:
-        first_division_rounds.append(divisions[0].match_set.filter(round=r))
+    # All of the round ids as a list
+    round_ids = [r.id for r in rounds]
 
-    second_division_rounds = []
-    for r in rounds:
-        second_division_rounds.append(divisions[1].match_set.filter(round=r))
+    # A lambda to get matches by division
+    matches = lambda i: Match.objects.filter(
+            division__id=divisions[i].id, round__id__in=round_ids)
+
+    # A lambda to regroup the matches by round
+    division = lambda x: [(k, list(g)) for k, g in groupby(
+                    matches(x),
+                    key=lambda o: getattr(o, 'round'),
+                )]
 
     return render_response(request, 'theleague/scoreboard.html', {
         'rounds': rounds,
-        'first_division_rounds': first_division_rounds,
-        'second_division_rounds': second_division_rounds,
+        # Get the round-grouped matches of the first division in `divisions`
+        'first_division_rounds': division(0),
+        # Get the round-grouped matches of the second division in `divisions`
+        'second_division_rounds': division(1),
     })
 
 
@@ -47,50 +54,24 @@ def schedule(request):
     seasons = league.current_seasons()
     divisions = league.division_set.all()
 
-    # set up our weeks
-    #seasons = []
-    #for season in league.current_seasons():
-        #rounds = []
-        #matches = season.match_set.order_by('date')
-        #prev_date = None
-        #for match in matches:
-            #if match.date != prev_date:
-                #prev_date = match.date
-                #rounds.append({
-                    #'date': prev_date,
-                    #'in_past': match.in_past,
-                    #'matches': [],
-                #})
-            #rounds[-1]['matches'].append(match)
-        #seasons.append({'season': season, 'rounds': rounds})
-
     return render_response(request, 'theleague/schedule.html', {
         'current_seasons': seasons,
         'divisions': divisions,
     })
 
 
-def teams(request):
-    """ Display the teams landing page
-        TODO: Combine this with the team view.  This seems unnecessary.
-    """
+def team(request, team_slug=None):
+    """ Display the team. """
     league = League.objects.get(pk=settings.LEAGUE_ID)
-    # TODO: make this actually pull in teams just from the league.
-    teams = Team.objects.all()[:1]
-    team = teams[0] if len(teams) > 0 else None
+    objs = Team.objects.filter(division__league__id=settings.LEAGUE_ID)
 
-    return render_response(request, 'theleague/teams.html', {
-        'schedule': team.current_schedule(league.current_season),
-        'team': team,
-    })
+    if team_slug is not None:
+        objs = objs.filter(slug=team_slug)
 
-
-def team(request, team_slug):
-    """ Display the team
-    """
-    league = League.objects.get(pk=settings.LEAGUE_ID)
-    # TODO: make this actually pull in teams just from the league.
-    team = get_object_or_404(Team, slug=team_slug)
+    try:
+        team = objs[:1][0]
+    except IndexError:
+        raise Http404
 
     return render_response(request, 'theleague/team.html', {
         'schedule': team.current_schedule(league.current_season),
