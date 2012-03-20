@@ -4,11 +4,13 @@ from itertools import groupby
 from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import cache_page
 
 from app_utils.tools import render_response
 from apps.theleague.models import League, Team, Match
 
 
+@cache_page(60 * 30)
 def scoreboard(request):
     """ Display the scoreboard. """
     now = datetime.datetime.now()
