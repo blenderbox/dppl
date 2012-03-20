@@ -128,12 +128,16 @@ class Match(CommonModel):
         """ This will return a team, or a sentinel value based on the score.
 
         Return:
-            None - If the game is incomplete (scores are unset) or tied
-            team2 - If team2 is the loser
-            team1 - If team1 is the loser
+            None - If the game is incomplete (scores are unset)
+            team2 - If team2 is the winner
+            team1 - If team1 is the winner
+            "tied" - If the scores are equal
         """
-        if not self.complete or self.team1_score == self.team2_score:
+        if not self.complete:
             return None
+
+        elif self.team1_score == self.team2_score:
+            return "tied"
 
         elif self.team1_score < self.team2_score:
             return self.team1
@@ -146,12 +150,16 @@ class Match(CommonModel):
         """ This will return a team, or a sentinel value based on the score.
 
         Return:
-            None - If the game is incomplete (scores are unset) or tied
+            None - If the game is incomplete (scores are unset)
             team2 - If team2 is the winner
             team1 - If team1 is the winner
+            "tied" - If the scores are equal
         """
-        if not self.complete or self.team1_score == self.team2_score:
+        if not self.complete:
             return None
+
+        elif self.team1_score == self.team2_score:
+            return "tied"
 
         elif self.team1_score > self.team2_score:
             return self.team1

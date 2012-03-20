@@ -5,5 +5,17 @@
     <li><p class="c2-r"><span class="pie-left"></span></p></li>
     <li><p class="c2-l"><span class="pie-right"></span></p></li>
   </ul>
-  <div class="crc">{% if match.winner %}{{ match.winner.abbr }} {{ match.winning_score }}<br/> <span class="loser">def<br/> {{ match.loser.abbr }}</span>   {% else %} {{ match.team1.abbr }}<br/> v<br/> {{ match.team2.abbr }} {% endif %}</div>
+  <div class="crc">
+    {% with match.winner as winner %}
+      {% if winner == "tied" %}
+        {{ match.team1.abbr }}<br/> <span class="loser">tied</span><br/> {{ match.team2.abbr }}
+      {% else %}
+        {% if winner %}
+          {{ match.winner.abbr }} {{ match.winning_score }}<br/> <span class="loser">def<br/> {{ match.loser.abbr }}</span>
+        {% else %}
+          {{ match.team1.abbr }}<br/> v<br/> {{ match.team2.abbr }}
+        {% endif %}
+      {% endif %}
+    {% endwith %}
+  </div>
 </div>
