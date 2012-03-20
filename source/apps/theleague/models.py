@@ -125,17 +125,39 @@ class Match(CommonModel):
 
     @property
     def loser(self):
-        if not self.complete:
+        """ This will return a team, or a sentinel value based on the score.
+
+        Return:
+            None - If the game is incomplete (scores are unset) or tied
+            team2 - If team2 is the loser
+            team1 - If team1 is the loser
+        """
+        if not self.complete or self.team1_score == self.team2_score:
             return None
-        return self.team1 if self.team1_score < self.team2_score \
-                else self.team2
+
+        elif self.team1_score < self.team2_score:
+            return self.team1
+
+        else:
+            return self.team2
 
     @property
     def winner(self):
-        if not self.complete:
+        """ This will return a team, or a sentinel value based on the score.
+
+        Return:
+            None - If the game is incomplete (scores are unset) or tied
+            team2 - If team2 is the winner
+            team1 - If team1 is the winner
+        """
+        if not self.complete or self.team1_score == self.team2_score:
             return None
-        return self.team1 if self.team1_score > self.team2_score \
-                else self.team2
+
+        elif self.team1_score > self.team2_score:
+            return self.team1
+
+        else:
+            return self.team2
 
     @property
     def winning_score(self):
