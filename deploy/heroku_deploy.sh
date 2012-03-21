@@ -13,7 +13,7 @@ PYTHON=$(which python)
 MANAGE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../source/manage.py"
 
 function handle_error {
-  echo -e "${1}\t\t\t${RED}${BOLD}[Failed]${RESET}"
+  echo -e "\n${1}\t\t\t${RED}${BOLD}[Failed]${RESET}"
   exit 1
 }
 

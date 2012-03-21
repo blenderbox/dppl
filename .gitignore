@@ -8,7 +8,6 @@
 # ignore development db files
 *.sqlite
 .sass-cache/
-temporary_backup.dump
 
 # ignore environment and local settings files
 local_settings.py
@@ -17,3 +16,4 @@ media/
 static/
 !media/avatars/default.jpg
 source/static/
+backups/
