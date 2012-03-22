@@ -42,7 +42,7 @@ except:
 
 INSTALLED_APPS += ('storages',)
 
-# Dummy cache for dev
+# Memcachedddd
 CACHES = {
     'default': {
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
@@ -55,6 +55,8 @@ CACHES = {
         }
     },
 }
+# Only cache for anonymous users
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 # DB backed sessions for testing since cache dumps itself
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
