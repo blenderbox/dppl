@@ -51,12 +51,12 @@ class Profile(CommonModel):
     AVATAR_FORMAT = "JPEG"
     avatar = models.ImageField(upload_to=get_path, blank=True, null=True)
     pixelate_avatar = ImageSpec(
-            [Pixelate(), resize.SmartCrop(*THUMB_SIZE)],
+            [Pixelate(), resize.Fit(*THUMB_SIZE), resize.Crop(*THUMB_SIZE)],
             image_field='avatar',
             format=AVATAR_FORMAT,
             )
     thumbnail_avatar = ImageSpec(
-            [resize.SmartCrop(*THUMB_SIZE)],
+            [resize.Fit(*THUMB_SIZE), resize.Crop(*THUMB_SIZE)],
             image_field='avatar',
             format=AVATAR_FORMAT,
             )
