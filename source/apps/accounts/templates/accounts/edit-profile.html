@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url accounts:edit_profile %}" enctype="multipart/form-data" id="profile-form" method="post">
+    {{ profile_form.as_p }}
+    {% csrf_token %}
+    <button name="{{ profile_form.prefix }}" type="submit">Update Profile</button>
+</form>
+
+<form action="{% url accounts:edit_profile %}" id="email-form" method="post">
+  {{ email_form.as_p }}
+  {% csrf_token %}
+  <button name="{{ email_form.prefix }}" type="submit">Update Email</button>
+</form>
+{% endblock content %}

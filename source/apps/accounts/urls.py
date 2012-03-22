@@ -1,5 +1,4 @@
 from django.conf.urls.defaults import patterns, url
-from django.contrib.auth.views import password_change, password_change_done
 
 
 urlpatterns = patterns('',
@@ -15,6 +14,9 @@ urlpatterns = patterns('',
         {'template_name': "accounts/change-password.html",
          'post_change_redirect': "accounts:change_password_done"},
         name="change_password"),
+
+    url(r"^edit-profile/$", 'apps.accounts.views.update_profile',
+        name="edit_profile"),
 
     url(r"^login/$", 'apps.accounts.views.login', name="login"),
     url(r"^logout/$", 'apps.accounts.views.logout', name="logout"),

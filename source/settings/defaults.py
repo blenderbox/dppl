@@ -118,6 +118,7 @@ if USE_I18N:
 
 ROOT_URLCONF = 'urls'
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 #############
 # DATABASES #

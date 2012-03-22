@@ -168,6 +168,18 @@ nav li ul a,
 .col-12.scoreboard h2,
 .paddle h3 { font-family:'PassionBold'; font-weight:normal !important; }
 
+#messages {
+  margin:0 0 10px; padding:0; position:relative; z-index:9999;
+  @include box-shadow(-2px 2px 1px 0px rgba(6, 4, 6, 0.25));
+  li {
+    background:none; color:#000; cursor:pointer; font-size:20px; margin:0;
+    opacity:.6; padding:20px; width: 100%;
+    &:hover { opacity:.7; }
+  }
+  .success { background:$highlight; }
+  .error { color:#ff0000; }
+}
+
 /* Let's get this party started */
 ::-webkit-scrollbar { width:12px; }
 /* Track */
@@ -643,6 +655,53 @@ footer {
   h3 { padding:0; }
   h4 { padding-bottom:20px; }
   p { padding-bottom:20px; }
+}
+
+/* Edit Profile */
+#email-form, #profile-form {
+  border: 4px dotted $teams-color; float: left; padding: 20px;
+  button { float: right; }
+}
+#email-form {
+  margin-left: 50px;
+  .errorlist { display: inline-block; margin: 0; padding: 0; width: 260px; }
+  .errorlist li {
+    background: none; display: inline-block; margin: 0; padding: 0;
+  }
+  .error label { color: rgba(255, 0, 0, .7); }
+}
+#profile-form {
+  p { clear: both; }
+  textarea { height:200px; width: 570px; }
+  input[type='checkbox'], label[for='profile-avatar-clear_id'] {
+    display: inline-block;
+  }
+  label[for='profile-avatar-clear_id'] {
+    color:#5E5D57; font-family: 'PassionRegular', sans-serif;
+    padding-left: 10px; text-shadow: none; text-transform: none;
+  }
+  .preview {
+    margin: 0 20px 20px 0; max-height: 110px; max-width: 110px; float: left;
+  }
+  #id_profile-twitter, #id_profile-facebook, #id_profile-linked_in,
+  #id_profile-website {
+    border: 1px solid gray; border-left: none; display: inline-block;
+    font-size: 16px; width: 387px;
+  }
+  label[for='id_profile-twitter'], label[for='id_profile-facebook'],
+  label[for='id_profile-linked_in'], label[for='id_profile-website'] {
+    background: rgba(255, 255, 255, .6); border: 1px solid gray;
+    border-right: 1px solid #bbb; border-radius: 4px 0 0 4px;
+    color: rgba(0, 0, 0, .5); display: inline-block;
+    font-family: 'PassionRegular', sans-serif; font-size: 16px; height: 35px;
+    line-height: 33px; margin-right: 0; padding: 0 5px 0 10px;
+    position: relative; right: -3px; text-align: right; text-shadow: none;
+    text-transform: none; width: 180px;
+  }
+  .errorlist { margin: 0; padding: 0; }
+  .errorlist li { background: none; text-align: right; }
+  .error { padding-top: 0; }
+  .error label { background: rgba(255, 0, 0, .6); }
 }
 
 @mixin transition {

@@ -42,9 +42,9 @@ class Profile(CommonModel):
     include_in_team = models.BooleanField(default=True)
 
     # TrueSkill Rating
-    mu = models.FloatField(blank=True, null=True)
-    sigma = models.FloatField(blank=True, null=True)
-    exposure = models.FloatField(default=0)
+    mu = models.FloatField(editable=False, blank=True, null=True)
+    sigma = models.FloatField(editable=False, blank=True, null=True)
+    exposure = models.FloatField(editable=False, default=0)
 
     # Avatarz
     THUMB_SIZE = (46, 46)

@@ -1,8 +1,10 @@
-from django.contrib import auth
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
 from app_utils.tools import render_json, render_response
+from apps.accounts.forms import ProfileForm, EmailForm
 
 
 @require_POST
@@ -90,3 +92,45 @@ def logout(request):
     """
     auth.logout(request)
     return redirect("/?out")
+
+
+@login_required
+def update_profile(request):
+    """ This allows a user to update his or her profile. """
+    profile_kwargs = {
+            'instance': request.user.profile,
+            'prefix': 'profile',
+            }
+    email_kwargs = {
+            'instance': request.user,
+            'prefix': 'email',
+            }
+
+    if request.method == 'POST':
+        if profile_kwargs['prefix'] in request.POST:
+            profile_form = ProfileForm(request.POST, request.FILES,
+                    **profile_kwargs)
+            if profile_form.is_valid():
+                profile_form.save()
+                messages.success(request, "Your profile has been successfully "
+                        "updated")
+                return redirect("accounts:edit_profile")
+            email_form = EmailForm(**email_kwargs)
+
+        elif email_kwargs['prefix'] in request.POST:
+            email_form = EmailForm(request.POST, **email_kwargs)
+            if email_form.is_valid():
+                email_form.save()
+                messages.success(request, "Your email address has been "
+                        "successfully updated.")
+                return redirect("accounts:edit_profile")
+            profile_form = ProfileForm(**profile_kwargs)
+
+    else:
+        profile_form = ProfileForm(**profile_kwargs)
+        email_form = EmailForm(**email_kwargs)
+
+    return render_response(request, "accounts/edit-profile.html", {
+        'profile_form': profile_form,
+        'email_form': email_form,
+        })

@@ -44,6 +44,7 @@ var APP = (function($) {
         emails();
         $('a[rel="tooltip"]').twipsy({ html:true });
         $('.pie').each(calculatePie);
+        $('#messages li').click(function() { $(this).slideUp(250); });
         var kkeys = [],
             konami = "38,38,40,40,37,39,37,39,66,65,13";
         $(document).keydown(function(e) {
