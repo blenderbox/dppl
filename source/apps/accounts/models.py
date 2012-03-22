@@ -118,7 +118,7 @@ class Profile(CommonModel):
     @property
     def linked_in_url(self):
         if self.linked_in:
-            return "http://www.linkedin.com/in/%s" % self.linked_in.strip()
+            return "http://www.linkedin.com/%s" % self.linked_in.strip()
         else:
             return ""
 
