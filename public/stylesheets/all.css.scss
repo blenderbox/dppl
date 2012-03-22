@@ -279,7 +279,7 @@ nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px;
     @include box-shadow(-5px 5px 0px 0px rgba(6, 4, 6, 0.2));
     li { margin-bottom:2px; }
     a {
-      color:#fff; font-size:14px; display:block;
+      color:#fff; font-size:14px; display:block; line-height:1.7;
       &:hover { background:rgba(255,255,255,0.25); color:#fff; }
     }
   }
@@ -294,8 +294,8 @@ nav { border-top:5px solid #fff; border-bottom:1px solid #fff; margin-top:17px;
   > a:hover { color:$scores-color; }
 }
 #teams-nav {
-  ul { background-color:$teams-color; }
-  > a:hover { color:$teams-color; }
+  ul { background-color:#5a839a; }
+  > a:hover { color:#5a839a; }
 }
 #rules-nav {
   ul { background-color:$rules-color; }
@@ -528,15 +528,15 @@ footer {
   .crc { height:60px; left:7px; top:7px; width:60px; }
 }
 /* teams */
-.teams { background-color:#518391; margin-bottom:40px;
+.teams { background-color:#5a839a; margin-bottom:40px;
   .left { float:left; padding:0 0 20px 10px; width:220px; }
   h1 { border-bottom:4px solid $light-gray; margin:0 10px 11px 0; padding:24px 10px 6px 6px; }
   .nav, .nav li { background:none; margin:0; padding:0; }
-  .nav li a { color:$badger-color; display:block; height:26px; line-height:26px;
+  .nav li a { color:#fff; display:block; height:26px; line-height:26px;
               padding-left:14px; text-transform:uppercase; }
   .nav li a:hover { background:#7b9cae; }
   .nav li a:active { position:relative; top:1px; }
-  .nav li a.on { background:#fff; }
+  .nav li a.on { background:#fff; color:$badger-color; }
   .copy { background:#fff; float:left; height:100%; padding:20px; width:760px; }
   .copy h2 { color:$badger-color; padding:0 0 30px 20px; }
   .copy h2 a { color:$badger-color; }
