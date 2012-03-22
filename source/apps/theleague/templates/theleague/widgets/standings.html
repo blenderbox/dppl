@@ -19,7 +19,7 @@
         {% for standing in division.standings %}
           <li>
               <span class="rank">{{ forloop.counter }}</span>
-              <span class="team">{{ standing.team.abbr }}</span>
+              <span class="team"><a href="{{ standing.team.get_absolute_url }}">{{ standing.team.abbr }}</a></span>
               <span class="wins">{{ standing.wins }}</span>
               <span class="losses">{{ standing.losses }}</span>
               <div class="bar" data-percent="{{ standing.percent }}">{{ standing.percent }}%</div>

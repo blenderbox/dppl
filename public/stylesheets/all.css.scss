@@ -463,7 +463,8 @@ footer {
   ul, li { background:none; clear:both; margin:0; padding:0; }
   li { height:27px; }
   li span { background:#fff; color:$gray; }
-  li .team { color:$badger-color; }
+  li .team a { color:$badger-color; }
+  li .team a:hover { color:$teams-color; }
   .bar {
     background:$honey-color; color:#fff; float:left; height:26px;
     line-height:26px; text-indent:10px; width:0;
