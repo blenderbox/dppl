@@ -21,8 +21,8 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ["avatar", "bio", "twitter", "facebook", "linked_in",
-                "website"]
+        fields = ["avatar", "bio", "website", "twitter", "facebook",
+                "linked_in"]
         widgets = {
                 'avatar': BetterImageWidget,
                 'twitter': placeholder("your_username"),
