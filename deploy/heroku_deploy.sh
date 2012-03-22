@@ -19,7 +19,7 @@ function handle_error {
 
 fail=0
 
-$PYTHON $MANAGE collectstatic --noinput || fail=1
+$PYTHON $MANAGE collectstatic --noinput --ignore="public/CACHE/*" || fail=1
 if [ $fail -eq 1 ]; then
   handle_error "Collect Static"
 fi
