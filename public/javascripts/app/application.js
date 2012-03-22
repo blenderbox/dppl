@@ -51,6 +51,7 @@ var APP = (function($) {
           kkeys.push(e.keyCode);
           if (kkeys.toString().indexOf(konami) >= 0) {
             kkeys = [];
+            $("head").append('<link rel="stylesheet" href="' + STATIC_URL + 'stylesheets/tyte.css" type="text/css" />');
             $("body").addClass("tyte");
           }
         });
