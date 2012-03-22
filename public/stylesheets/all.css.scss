@@ -698,6 +698,11 @@ footer {
     position: relative; right: -3px; text-align: right; text-shadow: none;
     text-transform: none; width: 180px;
   }
+  label[for='id_profile-website'] {
+    color: rgba(0, 0, 255, .8);
+    font-family: 'Comic Sans MS', cursive, sans-serif; font-size: 13px;
+    font-weight: bold;
+  }
   .errorlist { margin: 0; padding: 0; }
   .errorlist li { background: none; text-align: right; }
   .error { padding-top: 0; }

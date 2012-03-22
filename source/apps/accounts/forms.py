@@ -30,7 +30,7 @@ class ProfileForm(forms.ModelForm):
                                         "profile.php?id=123456"),
                 'linked_in': placeholder("in/your-name or "
                                          "pub/your-name/12/345/678"),
-                'website': placeholder("onetinyhand.com"),
+                'website': placeholder("http://onetinyhand.com"),
                 }
 
     def __init__(self, *args, **kwargs):
@@ -41,7 +41,7 @@ class ProfileForm(forms.ModelForm):
         self.fields['twitter'].label = "http://twitter.com/#!/"
         self.fields['facebook'].label = "http://facebook.com/"
         self.fields['linked_in'].label = "http://www.linkedin.com/"
-        self.fields['website'].label = "http://"
+        self.fields['website'].label = "~* uR WeBsItE *~"
 
     def clean_twitter(self):
         """ Sanitizes the '@' and trailing whitespace from the twitter handle.
