@@ -93,8 +93,18 @@ class Match(CommonModel):
     team2 = models.ForeignKey("Team", related_name="team2",
             help_text=_("Away Team"))
 
+    locked = models.BooleanField(editable=False, default=False)
+
     def set_score(self):
-        """ Sets the score based on winning players. """
+        """ Sets the score based on winning players.
+
+        Return:
+            - True if score was set.
+            - False if not set.
+        """
+        if self.locked:
+            return False
+
         team1_score = team2_score = 0
         team1 = self.team1
         team2 = self.team2
@@ -117,7 +127,11 @@ class Match(CommonModel):
             if team1_score + team2_score == 4:  # Only save scores if they add
                 self.team1_score = team1_score
                 self.team2_score = team2_score
+                self.locked = True
                 self.save()
+                return True
+
+        return False
 
     @property
     def complete(self):
