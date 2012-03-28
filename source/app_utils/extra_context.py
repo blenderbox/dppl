@@ -115,9 +115,10 @@ def standings(request):
                         'wins': wins,
                         'losses': losses,
                         'percent': "%.0f" % percent,
+                        'key': percent,
                         })
 
-            team_standings.sort(key=itemgetter('wins'), reverse=True)
+            team_standings.sort(key=itemgetter('key'), reverse=True)
             division_standings.append({
                 'division': division,
                 'standings': team_standings,
