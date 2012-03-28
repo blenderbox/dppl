@@ -93,7 +93,7 @@ class Profile(CommonModel):
         if self.exposure <= 0:
             return "Unrated"
         else:
-            return self.exposure
+            return "%0.2f" % (self.exposure * 10,)
 
     @property
     def full_name(self):
