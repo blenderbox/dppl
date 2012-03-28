@@ -9,7 +9,8 @@ from defaults import *
 
 env = lambda e, d: environ[e] if e in environ else d
 
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
