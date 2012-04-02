@@ -16,7 +16,7 @@ class Command(BaseCommand):
         matches = Match.objects.filter(
                 team1_score__isnull=True,
                 team2_score__isnull=True,
-                round__go_live_date__lte=today,
+                round__go_dead_date__lte=today,
                 )
 
         for match in matches:

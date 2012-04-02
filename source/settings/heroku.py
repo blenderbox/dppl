@@ -13,6 +13,7 @@ env = lambda e, d: environ[e] if e in environ else d
 
 # DEBUG = True
 DEBUG = False
+HEROKU = True
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
