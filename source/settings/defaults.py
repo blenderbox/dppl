@@ -11,10 +11,10 @@ gettext = lambda s: s
 ########################
 
 ADMINS = (
-    ('Damon Jablons', 'djablons@blenderbox.com'),
-    ('Nick Herro', 'nherro@blenderbox.com'),
-    ('Brett Berman', 'bberman@blenderbox.com'),
-    ('Caleb Brown', 'cbrown@blenderbox.com'),
+    ("Damon Jablons", 'djablons@blenderbox.com'),
+    ("Nick Herro", 'nherro@blenderbox.com'),
+    ("Brett Berman", 'bberman@blenderbox.com'),
+    ("Caleb Brown", 'cbrown@blenderbox.com'),
 )
 
 MANAGERS = ADMINS

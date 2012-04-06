@@ -50,7 +50,7 @@ def extra_context(request):
 
     return {
             'FILER_URL': settings.FILER_URL,
-            'WE_LIVE_YO': True,  # we_live_yo,
+            'WE_LIVE_YO': we_live_yo,
             }
 
 

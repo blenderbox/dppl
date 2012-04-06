@@ -7,8 +7,6 @@ from S3 import CallingFormat
 from defaults import *
 
 
-# Bump
-
 env = lambda e, d: environ[e] if e in environ else d
 
 # DEBUG = True
@@ -17,10 +15,21 @@ HEROKU = True
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
-# To run a testing server:
-# python -m smtpd -n -c DebuggingServer localhost:1025
-EMAIL_HOST = "localhost"
-EMAIL_PORT = 1025
+# Temporarily overriding admins for error mailing
+ADMINS = (
+    ('Damon Jablons', 'djablons@blenderbox.com'),
+)
+
+
+# Email Settings
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env('SENDGRID_USERNAME', '')
+EMAIL_HOST_PASSWORD = env('SENDGRID_PASSWORD', '')
+EMAIL_SUBJECT_PREFIX = "[ pxlpng.com ] "
+EMAIL_USE_TLS = True
+SERVER_EMAIL = env('SENDGRID_USERNAME', '')
+
 
 uses_netloc.append('postgres')
 uses_netloc.append('mysql')

@@ -17,7 +17,7 @@
       </div>
       <div class="honey">
         <h2>Honey</h2>
-        {% for round, matches in first_division_rounds %}
+        {% for round, matches in first_division_rounds reversed %}
           <div class="row">
             {% for match in matches %}
               {% include "theleague/scoreboard_pie.html" with match=match %}
@@ -27,7 +27,7 @@
       </div>
       <div class="badger">
         <h2>Badger</h2>
-        {% for round, matches in second_division_rounds %}
+        {% for round, matches in second_division_rounds reversed %}
           <div class="row">
             {% for match in matches %}
               {% include "theleague/scoreboard_pie.html" with match=match %}
