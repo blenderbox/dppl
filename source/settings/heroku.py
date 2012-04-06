@@ -17,7 +17,7 @@ TEMPLATE_DEBUG = True
 
 # Temporarily overriding admins for error mailing
 ADMINS = (
-    ('Damon Jablons', 'djablons@blenderbox.com'),
+    ("Damon Jablons", 'djablons@blenderbox.com'),
 )
 
 
