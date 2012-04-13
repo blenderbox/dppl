@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
 from app_utils.tools import render_response
+from apps.accounts.models import Profile
 from apps.theleague.models import League, Team, Match
 
 
@@ -82,15 +83,14 @@ def team(request, team_slug=None):
 
 
 def team_member(request, team_slug, team_member_slug):
-    """ Display the team
-    """
+    """ Display the team """
     league = League.objects.get(pk=settings.LEAGUE_ID)
     # TODO: make this actually pull in teams just from the league.
     team = get_object_or_404(Team, slug=team_slug)
 
     try:
         profile = team.profile_team.get(slug=team_member_slug)
-    except Team.DoesNotExist:
+    except Profile.DoesNotExist:
         raise Http404
 
     return render_response(request, 'theleague/team_member.html', {
