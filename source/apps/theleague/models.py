@@ -61,8 +61,12 @@ class League(CommonModel):
     slug = models.SlugField(_("Slug"), max_length=255, unique=True)
 
     def current_seasons(self):
-        return self.season_set.filter(go_live_date__lte=datetime.now())\
-            .filter(go_dead_date__gte=datetime.now())
+        now = datetime.now()
+        return self.season_set.filter(
+                    go_live_date__lte=now,
+                ).filter(
+                    Q(go_dead_date__gte=now) | Q(go_dead_date__isnull=True),
+                )
 
     @property
     def current_season(self):
