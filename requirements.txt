@@ -19,6 +19,7 @@ django-pylibmc-sasl==0.2.4
 easy-thumbnails==1.0-alpha-21
 gunicorn==0.13.4
 ipython==0.12
+-e git+https://github.com/ross/memcache-debug-panel.git@70943696dd42b2d9dc3f8a151818074e14320c82#egg=memcache_toolbar-dev
 psycopg2==2.4.4
 pylibmc==1.2.2
 python-dateutil==1.2

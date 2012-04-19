@@ -12,27 +12,35 @@ GIT=$(which git)
 PYTHON=$(which python)
 MANAGE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../source/manage.py"
 
-function handle_error {
-  echo -e "\n${1}\t\t\t${RED}${BOLD}[Failed]${RESET}"
-  exit 1
+function static {
+    $PYTHON $MANAGE collectstatic --noinput --ignore="public/CACHE/*"
+    $PYTHON $MANAGE compress
 }
 
-fail=0
+function deploy {
+    $GIT push heroku master
+}
 
-$PYTHON $MANAGE collectstatic --noinput --ignore="public/CACHE/*" || fail=1
-if [ $fail -eq 1 ]; then
-  handle_error "Collect Static"
+function warn {
+    echo -e "\n${BOLD}${YELLOW}${1}${RESET}"
+}
+
+function success {
+    echo -e "\n${BOLD}${GREEN}${1}${SUCCESS}"
+}
+
+if [ "${1}" == "--static" ]; then
+    warn "Collecting Static, and Compressing\n---"
+    static
+
+elif [ "${1}" == "--deploy" ]; then
+    warn "Deploying\n---"
+    deploy
+
+else
+    warn "Collecting Static, Compressing, then Deploying\n---"
+    static && deploy
+
 fi
 
-$PYTHON $MANAGE compress || fail=1
-if [ $fail -eq 1 ]; then
-  handle_error "Compressor"
-fi
-
-$GIT push heroku master || fail=1
-if [ $fail -eq 1 ]; then
-  handle_error "Heroku"
-fi
-
-# Everything worked!
-echo -e "\n${BOLD}${GREEN}Deployed to Heroku, remember to run migrations manually!${RESET}"
+success "[ Complete ]"

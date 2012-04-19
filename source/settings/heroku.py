@@ -2,6 +2,7 @@ from os import environ
 from sys import exc_info
 from urlparse import urlparse, uses_netloc
 
+import memcache_toolbar.panels.pylibmc
 from S3 import CallingFormat
 
 from defaults import *
@@ -55,6 +56,7 @@ except:
 
 INSTALLED_APPS += (
     'debug_toolbar',
+    'memcache_toolbar',
     'storages',
 )
 MIDDLEWARE_CLASSES += (
@@ -107,6 +109,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.template.TemplateDebugPanel',
     'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
+    'memcache_toolbar.panels.pylibmc.PylibmcPanel',
 )
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
