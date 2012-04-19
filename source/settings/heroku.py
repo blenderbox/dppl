@@ -65,7 +65,7 @@ MIDDLEWARE_CLASSES += (
 CACHES = {
     'default': {
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': 'localhost:11211',
+        # 'LOCATION': env('MEMCACHE_SERVERS', ''),
         'TIMEOUT': 300,
         'BINARY': True,
         'OPTIONS': {
