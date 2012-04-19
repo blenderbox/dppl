@@ -11,7 +11,7 @@ from apps.accounts.models import Profile
 from apps.theleague.models import League, Team, Match
 
 
-@cache_page(60 * 30)
+@cache_page(60 * 60)
 def scoreboard(request):
     """ Display the scoreboard. """
     now = datetime.datetime.now()
@@ -51,6 +51,7 @@ def scoreboard(request):
     })
 
 
+@cache_page(60 * 60)
 def schedule(request):
     """ Display the schedule """
     league = League.objects.get(pk=settings.LEAGUE_ID)
@@ -63,6 +64,7 @@ def schedule(request):
     })
 
 
+@cache_page(60 * 60 * 2)
 def team(request, team_slug=None):
     """ Display the team. """
     league = League.objects.get(pk=settings.LEAGUE_ID)
@@ -82,6 +84,7 @@ def team(request, team_slug=None):
     })
 
 
+@cache_page(60 * 60 * 10)
 def team_member(request, team_slug, team_member_slug):
     """ Display the team """
     league = League.objects.get(pk=settings.LEAGUE_ID)

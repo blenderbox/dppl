@@ -1,11 +1,13 @@
 import datetime
 
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 from app_utils.tools import render_response
 from apps.theleague.models import League, Round
 
 
+@cache_page(60 * 60)
 def index(request):
     """ Display the current round """
     now = datetime.datetime.now()
@@ -25,6 +27,7 @@ def index(request):
         })
 
 
+@cache_page(60 * 60 * 24)
 def rules(request):
     """ Display the rules. """
     return render_response(request, 'pages/rules.html', {})
