@@ -54,7 +54,7 @@ except:
     print "Unexpected error:", exc_info()
 
 INSTALLED_APPS += (
-    'memcache_toolbar',
+    'debug_toolbar',
     'storages',
 )
 MIDDLEWARE_CLASSES += (
