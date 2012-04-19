@@ -7,7 +7,7 @@ from django.core.cache import cache
 from django.db.models import Sum
 
 from apps.accounts.models import Profile
-from apps.theleague.models import League, Team
+from apps.theleague.models import Team, the_league
 
 
 def cache_this(key):
@@ -39,7 +39,7 @@ def extra_context(request):
     """ This provides some extra context for the templates. """
     we_live_yo = False
     today = datetime.date.today()
-    league = League.objects.get(pk=settings.LEAGUE_ID)
+    league = the_league(settings.LEAGUE_ID)
     season = league.season_set.exclude(go_live_date__gt=today)\
                 .order_by('-go_live_date')[:1]
 
@@ -58,7 +58,7 @@ def extra_context(request):
 def scoreboard(request):
     """ Display the scoreboard. """
     today = datetime.datetime.today()
-    league = League.objects.get(pk=settings.LEAGUE_ID)
+    league = the_league(settings.LEAGUE_ID)
     season = league.current_season
 
     if season is None:  # Return empty lists
@@ -88,7 +88,7 @@ def scoreboard(request):
 @cache_this("the_standings")
 def standings(request):
     """ Display the standings """
-    league = League.objects.get(pk=settings.LEAGUE_ID)
+    league = the_league(settings.LEAGUE_ID)
     season = league.current_season
     division_standings = []
     add = lambda x, y: (x or 0) + (y or 0)

@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
@@ -10,8 +11,7 @@ from apps.accounts.elo import rank
 
 
 class Division(CommonModel):
-    """ The division.  Right now, there are two, Honey and Badger.
-    """
+    """ The division.  Right now, there are two, Honey and Badger. """
     name = models.CharField(_("Name"), max_length=255)
     # Leagues can have divisions w/ the same name
     slug = models.SlugField(_("Slug"), max_length=255)
@@ -287,3 +287,15 @@ class Team(CommonModel):
 
     def standing(self):
         pass
+
+
+def the_league(pk):
+    """ This returns the cached version of the league. """
+    KEY = "the_league_%s" % str(pk)
+    league = cache.get(KEY)
+
+    if not league:
+        league = League.objects.get(pk=pk)
+        cache.set(league, KEY, 60 * 60 * 24)
+
+    return league
