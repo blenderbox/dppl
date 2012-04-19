@@ -69,8 +69,8 @@ if 'MEMCACHE_SERVERS' in environ:
         'default': {
             'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
             'LOCATION': "%s:11211" % env('MEMCACHE_SERVERS', ''),
-            'username': env('MEMCACHE_USERNAME', ''),
-            'password': env('MEMCACHE_PASSWORD', ''),
+            # 'username': env('MEMCACHE_USERNAME', ''),
+            # 'password': env('MEMCACHE_PASSWORD', ''),
             'TIMEOUT': 300,
             'BINARY': True,
             'OPTIONS': {
