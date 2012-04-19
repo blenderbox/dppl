@@ -62,18 +62,21 @@ MIDDLEWARE_CLASSES += (
 )
 
 # Memcachedddd
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        # 'LOCATION': env('MEMCACHE_SERVERS', ''),
-        'TIMEOUT': 300,
-        'BINARY': True,
-        'OPTIONS': {
-                'tcp_nodelay': True,
-                'ketama': True,
-        }
-    },
-}
+if 'MEMCACHE_SERVERS' in environ:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+            'LOCATION': "%s:11211" % env('MEMCACHE_SERVERS', ''),
+            'username': env('MEMCACHE_USERNAME', ''),
+            'password': env('MEMCACHE_PASSWORD', ''),
+            'TIMEOUT': 300,
+            'BINARY': True,
+            'OPTIONS': {
+                    'tcp_nodelay': True,
+                    'ketama': True,
+            }
+        },
+    }
 # Only cache for anonymous users
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
