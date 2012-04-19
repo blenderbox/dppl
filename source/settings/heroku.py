@@ -2,7 +2,6 @@ from os import environ
 from sys import exc_info
 from urlparse import urlparse, uses_netloc
 
-import memcache_toolbar.panels.pylibmc
 from S3 import CallingFormat
 
 from defaults import *
@@ -55,7 +54,6 @@ except:
     print "Unexpected error:", exc_info()
 
 INSTALLED_APPS += (
-    'debug_toolbar',
     'memcache_toolbar',
     'storages',
 )
@@ -69,8 +67,8 @@ if 'MEMCACHE_SERVERS' in environ:
         'default': {
             'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
             'LOCATION': "%s:11211" % env('MEMCACHE_SERVERS', ''),
-            # 'username': env('MEMCACHE_USERNAME', ''),
-            # 'password': env('MEMCACHE_PASSWORD', ''),
+            'username': env('MEMCACHE_USERNAME', ''),
+            'password': env('MEMCACHE_PASSWORD', ''),
             'TIMEOUT': 300,
             'BINARY': True,
             'OPTIONS': {
@@ -109,7 +107,6 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.template.TemplateDebugPanel',
     'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
-    'memcache_toolbar.panels.pylibmc.PylibmcPanel',
 )
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
