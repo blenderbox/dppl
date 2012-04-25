@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from apps.theleague.models import Division, Game, League, Match, Round, Season, Team
+from apps.theleague.models import (Division, Game, League, Match, Round,
+                                   Season, Team)
 
 
 class DivisionAdmin(admin.ModelAdmin):
-    """ A class for the admin
-    """
+    """ A class for the admin """
     list_display = ('name', 'date_created', 'date_modified')
     list_display_links = ('name',)
     list_filter = ('date_created', 'date_modified')
@@ -27,8 +27,7 @@ class RoundInline(admin.StackedInline):
 
 
 class GameAdmin(admin.ModelAdmin):
-    """ A class for the admin
-    """
+    """ A class for the admin """
     list_display = ('player1', 'player2', 'date_created', 'date_modified')
     list_display_links = ('player1', 'player2',)
     list_filter = ('date_created', 'date_modified')
@@ -37,8 +36,7 @@ admin.site.register(Game, GameAdmin)
 
 
 class LeagueAdmin(admin.ModelAdmin):
-    """ A class for the admin
-    """
+    """ A class for the admin """
     list_display = ('name', 'date_created', 'date_modified')
     list_display_links = ('name',)
     list_filter = ('date_created', 'date_modified')
@@ -49,21 +47,18 @@ admin.site.register(League, LeagueAdmin)
 
 
 class MatchAdmin(admin.ModelAdmin):
-    """ A class for the admin
-    """
+    """ A class for the admin """
     fieldsets = (
         (None, {'fields': ('round', 'division', 'team1', 'team1_score',
             'team2', 'team2_score')}),
     )
-    list_display = ('team1', 'team2', 'round', 'date_created', 'date_modified')
+    list_display = ('team1', 'team2', 'round', 'complete', 'date_created',
+                    'date_modified')
     list_display_links = ('round',)
     list_filter = ('round', 'date_created', 'date_modified')
     search_fields = ('round',)
     save_on_top = True
-
-    inlines = [
-        GameInline,
-    ]
+    inlines = [GameInline]
 admin.site.register(Match, MatchAdmin)
 
 

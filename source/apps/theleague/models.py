@@ -123,9 +123,9 @@ class Match(CommonModel):
                 self.team2_score = team2_score
                 self.save()
 
-    @property
     def complete(self):
         return self.team1_score is not None and self.team2_score is not None
+    complete.boolean = True
 
     @property
     def loser(self):
