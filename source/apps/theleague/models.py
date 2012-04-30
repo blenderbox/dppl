@@ -137,7 +137,7 @@ class Match(CommonModel):
             team1 - If team1 is the winner
             "tied" - If the scores are equal
         """
-        if not self.complete:
+        if not self.complete():
             return None
 
         elif self.team1_score == self.team2_score:
@@ -159,7 +159,7 @@ class Match(CommonModel):
             team1 - If team1 is the winner
             "tied" - If the scores are equal
         """
-        if not self.complete:
+        if not self.complete():
             return None
 
         elif self.team1_score == self.team2_score:
@@ -173,15 +173,15 @@ class Match(CommonModel):
 
     @property
     def winning_score(self):
-        if not self.complete:
+        if not self.complete():
             return None
         return self.team1_score if self.team1_score > self.team2_score \
                 else self.team2_score
 
     @property
     def scored_match(self):
-        if self.round.in_past() and self.complete:
-            return "%s %s v %s %s" % (self.team1.abbr, self.team1_score,\
+        if self.round.in_past() and self.complete():
+            return "%s %s v %s %s" % (self.team1.abbr, self.team1_score,
                                       self.team2.abbr, self.team2_score)
         return self
 
