@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ruby_string="ruby-1.9.3"
-gemset_name="ddpl"
+gemset_name="dppl"
 
 workon dppl
 

@@ -1,9 +1,10 @@
 from datetime import datetime
+from operator import itemgetter
 
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.utils.translation import ugettext_lazy as _
 
 from apps.abstract.models import CommonModel
@@ -82,8 +83,7 @@ class League(CommonModel):
 
 
 class Match(CommonModel):
-    """ The match.
-    """
+    """ The match. """
     team1_score = models.IntegerField(blank=True, null=True,
         help_text=_("Set the score to mark the match completed."))
     team2_score = models.IntegerField(blank=True, null=True,
@@ -222,8 +222,7 @@ class Round(CommonModel):
 
 
 class Season(CommonModel):
-    """ The season.
-    """
+    """ The season. """
     name = models.CharField(_("Name"), max_length=255)
     # Don't make this unique because leagues can have seasons w/ the same name.
     slug = models.SlugField(_("Slug"), max_length=255)
@@ -239,10 +238,43 @@ class Season(CommonModel):
     def __unicode__(self):
         return self.name
 
+    def rounds(self):
+        """ Gets any rounds which are live. """
+        return self.round_set.filter(go_live_date__gte=datetime.now())
+
+    def get_standings(self):
+        """ Gets the standings for this season, split by divisions. """
+        round_ids = self.rounds().values_list('id', flat=True)
+        divisions = self.league.division_set.all()
+
+        div_standings = []
+
+        for division in divisions:
+            team_standings = []
+
+            for team in division.team_set.all():
+                wins, losses = team.standing(round_ids)
+                total = wins + losses
+                percent = (float(wins) / total) * 100 if total > 0 else 0
+
+                team_standings.append({
+                    'team': team,
+                    'wins': wins,
+                    'losses': losses,
+                    'percent': "%.0f" % percent,
+                    'key': percent,
+                })
+
+            team_standings.sort(key=itemgetter('key'), reverse=True)
+            div_standings.append({
+                'division': division, 'standings': team_standings,
+            })
+
+        return div_standings
+
 
 class Team(CommonModel):
-    """ The team model.
-    """
+    """ The team model. """
     name = models.CharField(_("Name"), max_length=255)
     slug = models.SlugField(_("Slug"), max_length=255, unique=True)
     abbr = models.CharField(_("Abbr"), max_length=5)
@@ -285,8 +317,20 @@ class Team(CommonModel):
             return self.name
         return "%s (%s)" % (self.name, self.abbr)
 
-    def standing(self):
-        pass
+    def standing(self, round_ids):
+        """ Returns a tuple of wins and losses for this team. """
+        tmpl, tscore = "team%d", "team%d_score"
+        wins = losses = 0
+        for i in (1, 2):
+            obj = getattr(self, tmpl % i)
+            agg = obj.filter(round__id__in=round_ids).aggregate(
+                    wins=Sum(tscore % i),
+                    losses=Sum(tscore % (2 if i == 1 else 1)),
+                )
+            wins += agg['wins'] or 0
+            losses += agg['losses'] or 0
+
+        return wins, losses
 
 
 def the_league(pk):
@@ -299,3 +343,7 @@ def the_league(pk):
         cache.set(league, KEY, 60 * 60 * 24)
 
     return league
+
+
+def current_season(pk):
+    return the_league(pk).current_season

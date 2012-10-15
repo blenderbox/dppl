@@ -60,73 +60,30 @@ def scoreboard(request):
     today = datetime.datetime.today()
     league = the_league(settings.LEAGUE_ID)
     season = league.current_season
+    matches = [[], []]
 
-    if season is None:  # Return empty lists
-        first_division_matches = second_division_matches = []
-
-    else:
+    if season:
         divisions = league.division_set.all()
-        rounds = season.round_set.filter(go_dead_date__lte=today)\
-                    .order_by('-go_live_date')[:1]
+        rounds = (season.round_set.filter(go_dead_date__lte=today)
+                  .values_list('id', flat=True).order_by('-go_live_date')[:1])
 
-        first_division_matches = []
-        second_division_matches = []
-
-        if len(rounds) > 0:
-            r = rounds[0]
-            # We're assuming there are two divisions
-            first_division_matches = divisions[0].match_set.filter(round=r)
-            second_division_matches = divisions[1].match_set.filter(
-                    round=r)
+        if rounds:
+            matches[0] = divisions[0].match_set.filter(round=rounds[0])
+            matches[1] = divisions[1].match_set.filter(round=rounds[0])
 
     return {
-            'FIRST_DIVISION_MATCHES': first_division_matches,
-            'SECOND_DIVISION_MATCHES': second_division_matches,
-            }
+        'FIRST_DIVISION_MATCHES': matches[0],
+        'SECOND_DIVISION_MATCHES': matches[1],
+    }
 
 
 @cache_this("the_standings")
 def standings(request):
     """ Display the standings """
-    league = the_league(settings.LEAGUE_ID)
-    season = league.current_season
-    division_standings = []
-    add = lambda x, y: (x or 0) + (y or 0)
-
-    if season:
-        divisions = league.division_set.all()
-
-        for division in divisions:
-            team_standings = []
-
-            for team in division.team_set.all():
-                s1 = team.team1.aggregate(wins=Sum('team1_score'),
-                                          losses=Sum('team2_score'))
-                s2 = team.team2.aggregate(wins=Sum('team2_score'),
-                                          losses=Sum('team1_score'))
-
-                wins = add(s1['wins'], s2['wins'])
-                losses = add(s1['losses'], s2['losses'])
-                total = wins + losses
-                percent = (float(wins) / total) * 100 if total > 0 else 0
-
-                team_standings.append({
-                        'team': team,
-                        'wins': wins,
-                        'losses': losses,
-                        'percent': "%.0f" % percent,
-                        'key': percent,
-                        })
-
-            team_standings.sort(key=itemgetter('key'), reverse=True)
-            division_standings.append({
-                'division': division,
-                'standings': team_standings,
-                })
-
+    season = the_league(settings.LEAGUE_ID).current_season
     return {
-            'STANDINGS': division_standings,
-            }
+        'STANDINGS': season.get_standings() if season else [],
+    }
 
 
 @cache_this("team_nav")
