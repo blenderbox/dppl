@@ -16,5 +16,4 @@ media/
 static/
 !media/avatars/default.jpg
 source/static/
-backups/
 public/CACHE/
