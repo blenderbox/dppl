@@ -81,14 +81,10 @@ def scoreboard(request):
 def standings(request):
     """ Display the standings """
     season = the_league(settings.LEAGUE_ID).current_season
-    return {
-        'STANDINGS': season.get_standings() if season else [],
-    }
+    return {'STANDINGS': season.get_standings() if season else []}
 
 
 @cache_this("team_nav")
 def team_nav(request):
     """ Set the teams in the app.  """
-    return {
-            'TEAMS': Team.objects.all(),
-            }
+    return {'TEAMS': Team.objects.all()}
