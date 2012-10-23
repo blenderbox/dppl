@@ -240,7 +240,7 @@ class Season(CommonModel):
 
     def rounds(self):
         """ Gets any rounds which are live. """
-        return self.round_set.filter(go_live_date__gte=datetime.now())
+        return self.round_set.filter(go_live_date__lte=datetime.now())
 
     def get_standings(self):
         """ Gets the standings for this season, split by divisions. """
