@@ -41,24 +41,6 @@ class GameAdmin(admin.ModelAdmin):
 
     def team2(self, obj):
         return obj.match.team2.name
-
-    def changelist_view(self, request, extra_context=None):
-        """ Sets the currents season to be the default filter. """
-        meta = request.META
-        bits = meta.get('HTTP_REFERER', '').split(meta.get('PATH_INFO', ''))
-        season = current_season(settings.LEAGUE_ID)
-
-        if season and not bits[-1].startswith('?'):
-            query = request.GET.copy()
-            query['match__round__season__id__exact'] = season.id
-            request.GET = query
-            request.META['QUERY_STRING'] = request.GET.urlencode()
-
-        return super(GameAdmin, self).changelist_view(
-            request, extra_context=extra_context
-        )
-
-
 admin.site.register(Game, GameAdmin)
 
 
