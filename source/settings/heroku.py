@@ -2,6 +2,7 @@ from os import environ
 from sys import exc_info
 from urlparse import urlparse, uses_netloc
 
+import dj_database_url
 from S3 import CallingFormat
 
 from defaults import *
@@ -43,11 +44,12 @@ try:
             'PASSWORD': url.password,
             'HOST': url.hostname,
             'PORT': url.port,
+            'ENGINE': 'django.db.backends.',
         }
 
-        DATABASES['default']['ENGINE'] = 'django.db.backends.'
         if url.scheme == 'postgres':
             DATABASES['default']['ENGINE'] += 'postgresql_psycopg2'
+
         elif url.scheme == 'mysql':
             DATABASES['default']['ENGINE'] += 'mysql'
 except:
