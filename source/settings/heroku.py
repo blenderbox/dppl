@@ -38,19 +38,15 @@ try:
     if 'DATABASE_URL' in environ:
         url = urlparse(environ['DATABASE_URL'])
         DATABASES['default'] = {
+            'ENGINE': 'dbpool.db.backends.postgresql_psycopg2',
+            'OPTIONS': {'MAX_CONNS': 1},
             'NAME': url.path[1:],
             'USER': url.username,
             'PASSWORD': url.password,
             'HOST': url.hostname,
             'PORT': url.port,
-            'ENGINE': 'django.db.backends.',
         }
 
-        if url.scheme == 'postgres':
-            DATABASES['default']['ENGINE'] += 'postgresql_psycopg2'
-
-        elif url.scheme == 'mysql':
-            DATABASES['default']['ENGINE'] += 'mysql'
 except:
     print "Unexpected error:", exc_info()
 
