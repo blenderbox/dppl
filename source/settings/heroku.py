@@ -50,6 +50,10 @@ try:
 except:
     print "Unexpected error:", exc_info()
 
+SOUTH_DATABASE_ADAPTERS = {
+    'default': 'south.db.postgresql_psycopg2',
+}
+
 INSTALLED_APPS += (
     'debug_toolbar',
     'storages',
