@@ -4,11 +4,15 @@
                 "2.pool.ntp.org", "3.pool.ntp.org"]
   },
 
+  "build_essential": {
+    "compiletime": true
+  },
+
   "authorization": {
     "sudo": {
-      "groups": ["admin", "sysadmin", "wheel"]
-    },
-    "passwordless": "true"
+      "groups": ["admin", "sysadmin", "wheel"],
+      "passwordless": "true"
+    }
   },
 
   "mysql": {
@@ -50,9 +54,11 @@
   "users": ["deploy"],
 
   "app": {
-    "sites": {
-      "pxlpng.com": {
-        "revision": "production",
+    "user_id": "deploy",
+    "sites": [{
+        "name": "pxlpng.com",
+        "repository": "https://github.com/blenderbox/dppl.git",
+        "revision": "chef",
         "django": {
           "requirements": "requirements.txt",
           "settings": {
@@ -65,8 +71,7 @@
         },
         "supervisor": "deploy/supervisor/pxlpng.com.conf",
         "nginx": "deploy/nginx/pxlpng.com"
-      }
-    }
+    }]
   },
 
   "run_list": [
@@ -76,7 +81,7 @@
     "recipe[git]",
     "recipe[nginx]",
     "recipe[memcached]",
-    "recipe[mysql::client]",
+    "recipe[mysql::ruby]",
     "recipe[mysql::server]",
     "recipe[mysql::server_ec2]",
     "recipe[supervisor]",

@@ -3,11 +3,10 @@
 
 site 'http://community.opscode.com/api/v1'
 
-cookbook "application"
 cookbook "apt"
 cookbook "build-essential"
 cookbook "database"
-cookbook "django_application",
+cookbook "django-application",
   :git => "https://github.com/blackrobot/chef-django-application.git"
 cookbook "dotfiles",
   :git => "https://github.com/blackrobot/chef-dotfiles.git"

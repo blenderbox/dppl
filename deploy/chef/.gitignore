@@ -2,3 +2,4 @@ cookbooks
 data_bags
 tmp
 .vagrant
+fabfile.py

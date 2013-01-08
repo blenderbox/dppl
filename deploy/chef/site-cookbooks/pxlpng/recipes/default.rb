@@ -13,7 +13,7 @@ db_conn = {
   :password => node['mysql']['server_root_password']
 }
 
-node['app']['sites'].values.each do |site|
+node['app']['sites'].each do |site|
   db = data_bag_item('databases', site['database']['name'])
   mysql_database_user db['user'] do
     connection db_conn
