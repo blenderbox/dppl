@@ -1,5 +1,5 @@
 server {
-  server_name pxlpng.com
+  server_name pxlpng.com;
   listen *:80;
 
   # Logs
