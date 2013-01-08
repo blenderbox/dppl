@@ -1,0 +1,89 @@
+{
+  "ntp": {
+    "servers": ["0.pool.ntp.org", "1.pool.ntp.org",
+                "2.pool.ntp.org", "3.pool.ntp.org"]
+  },
+
+  "authorization": {
+    "sudo": {
+      "groups": ["admin", "sysadmin", "wheel"]
+    },
+    "passwordless": "true"
+  },
+
+  "mysql": {
+    "server_root_password": "root",
+    "server_debian_password": "root",
+    "server_repl_password": "root",
+    "bind_address": "127.0.0.1",
+    "ec2_path": "/mnt/mysql"
+  },
+
+  "nginx": {
+    "default_site_enabled": false,
+    "gzip_comp_level": 5,
+    "gzip_types": [
+      "text/css",
+      "text/plain",
+      "text/x-component",
+      "application/javascript",
+      "application/json",
+      "application/xml",
+      "application/xhtml+xml",
+      "application/x-font-ttf",
+      "application/x-font-opentype",
+      "application/vnd.ms-fontobject",
+      "image/svg+xml",
+      "image/x-icon"
+    ]
+  },
+
+  "memcached": {
+    "memory": 256,
+    "listen": "127.0.0.1"
+  },
+
+  "user": {
+    "data_bag_name": "users"
+  },
+
+  "users": ["deploy"],
+
+  "app": {
+    "sites": {
+      "pxlpng.com": {
+        "revision": "production",
+        "django": {
+          "requirements": "requirements.txt",
+          "settings": {
+            "target": "source/settings/production.py",
+            "link": "source/settings/local.py"
+          }
+        },
+        "database": {
+          "name": "pxlpng"
+        },
+        "supervisor": "deploy/supervisor/pxlpng.com.conf",
+        "nginx": "deploy/nginx/pxlpng.com"
+      }
+    }
+  },
+
+  "run_list": [
+    "recipe[ntp]",
+    "recipe[apt]",
+    "recipe[build-essential]",
+    "recipe[git]",
+    "recipe[nginx]",
+    "recipe[memcached]",
+    "recipe[mysql::client]",
+    "recipe[mysql::server]",
+    "recipe[mysql::server_ec2]",
+    "recipe[supervisor]",
+    "recipe[sudo]",
+    "recipe[dotfiles]",
+    "recipe[user::data_bag]",
+    "recipe[django-application]",
+    "recipe[pxlpng]"
+  ]
+}
