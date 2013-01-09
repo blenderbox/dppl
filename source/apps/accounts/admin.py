@@ -45,6 +45,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name',
             'is_staff', 'is_active')
     readonly_fields = ('password', 'last_login', 'date_joined')
+    list_filter = ('profile__team',)
 
 
 admin.site.unregister(User)
