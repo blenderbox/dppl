@@ -64,7 +64,7 @@ class MatchAdmin(admin.ModelAdmin):
     list_display = ('team1', 'team2', 'round', 'complete', 'date_created',
                     'date_modified')
     list_display_links = ('round',)
-    list_filter = ('round', 'date_created', 'date_modified')
+    list_filter = ('round__season', 'round', 'date_created', 'date_modified')
     search_fields = ('round',)
     save_on_top = True
     inlines = [GameInline]
