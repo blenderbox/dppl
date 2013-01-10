@@ -2,7 +2,7 @@ from defaults import *
 from passwords import DB_USERNAME, DB_PASSWORD
 
 
-DEBUG = False
+DEBUG = True
 HEROKU = True
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
