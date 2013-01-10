@@ -57,7 +57,7 @@
     "user_id": "deploy",
     "sites": [{
         "name": "pxlpng.com",
-        "repository": "git://git@github.com:blenderbox/dppl.git",
+        "repository": "git@github.com:blenderbox/dppl.git",
         "reference": "chef",
         "django": {
           "requirements": "requirements.txt",
