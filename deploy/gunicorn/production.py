@@ -2,7 +2,7 @@ import multiprocessing
 from os import path
 
 base = path.realpath(path.join(path.dirname(__file__), "../../../"))
-pidfile = path.join(base, "pids/gunicorn.pid")
+pidfile = path.join(base, "pid/gunicorn.pid")
 errorlog = path.join(base, "log/gunicorn.error.log")
 
 # Lower this number if you have multiple production sites on the same server
