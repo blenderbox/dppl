@@ -9,7 +9,6 @@ errorlog = path.join(base, "log/gunicorn.error.log")
 workers = multiprocessing.cpu_count() * 2 + 1
 
 user = "deploy"
-group = "www-data"
 bind = "127.0.0.1:9000"
 accesslog = None
 loglevel = "info"
