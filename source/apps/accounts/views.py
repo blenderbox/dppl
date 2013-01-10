@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
-from app_utils.tools import render_json, render_response
-from apps.accounts.forms import ProfileForm, EmailForm
+from source.app_utils.tools import render_json, render_response
+from source.apps.accounts.forms import ProfileForm, EmailForm
 
 
 @require_POST

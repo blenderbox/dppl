@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, url
 
 
 urlpatterns = patterns('',
-    url(r"^authenticate/$", 'apps.accounts.views.authenticate',
+    url(r"^authenticate/$", 'source.apps.accounts.views.authenticate',
         name="authenticate"),
 
     url(r"^change-password/complete/$",
@@ -15,9 +15,9 @@ urlpatterns = patterns('',
          'post_change_redirect': "accounts:change_password_done"},
         name="change_password"),
 
-    url(r"^edit-profile/$", 'apps.accounts.views.update_profile',
+    url(r"^edit-profile/$", 'source.apps.accounts.views.update_profile',
         name="edit_profile"),
 
-    url(r"^login/$", 'apps.accounts.views.login', name="login"),
-    url(r"^logout/$", 'apps.accounts.views.logout', name="logout"),
+    url(r"^login/$", 'source.apps.accounts.views.login', name="login"),
+    url(r"^logout/$", 'source.apps.accounts.views.logout', name="logout"),
 )

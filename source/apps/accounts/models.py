@@ -7,9 +7,9 @@ from django.db import models
 from imagekit.models import ImageSpec
 from imagekit.processors import resize
 
-from apps.abstract.models import CommonModel
-from apps.theleague.models import Team
-from app_utils.image_processors import Pixelate
+from source.apps.abstract.models import CommonModel
+from source.apps.theleague.models import Team
+from source.app_utils.image_processors import Pixelate
 
 
 def get_path(instance, filename):

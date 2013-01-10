@@ -6,9 +6,9 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
-from app_utils.tools import render_response
-from apps.accounts.models import Profile
-from apps.theleague.models import League, Team, Match
+from source.app_utils.tools import render_response
+from source.apps.accounts.models import Profile
+from source.apps.theleague.models import League, Team, Match
 
 
 @cache_page(60 * 60)

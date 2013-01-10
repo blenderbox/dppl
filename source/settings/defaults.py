@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
+# vim: ft=python
 import os
-from sys import argv
-
-
-gettext = lambda s: s
 
 
 ########################
@@ -47,13 +44,7 @@ USE_I18N = False
 USE_L10N = False
 
 # Set DEBUG = True if on the production server
-LOCAL_SERVER_ARGS = (
-    'runserver', 'runserver_plus', 'runprofileserver', 'shell', 'shell_plus',
-)
-if len(set(argv) & set(LOCAL_SERVER_ARGS)) > 0:
-    DEBUG = True
-else:
-    DEBUG = False
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -61,11 +52,9 @@ TEMPLATE_DEBUG = DEBUG
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#    'django.template.loaders.eggs.Loader',
-#    'django.template.loaders.app_directories.load_template_source',
 )
 
-SECRET_KEY = 'localdev'
+SECRET_KEY = ''
 
 LOGGING = {
     'version': 1,
@@ -94,16 +83,19 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+
     # Project Context Processors
-    'app_utils.extra_context.elo_rankings',
-    'app_utils.extra_context.extra_context',
-    'app_utils.extra_context.scoreboard',
-    'app_utils.extra_context.standings',
-    'app_utils.extra_context.team_nav',
+    'source.app_utils.extra_context.elo_rankings',
+    'source.app_utils.extra_context.extra_context',
+    'source.app_utils.extra_context.scoreboard',
+    'source.app_utils.extra_context.standings',
+    'source.app_utils.extra_context.team_nav',
 )
 
 STATICFILES_FINDERS = (
@@ -116,29 +108,19 @@ STATICFILES_FINDERS = (
 if USE_I18N:
     TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.i18n',)
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'source.urls'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+
+WSGI_APPLICATION = 'source.wsgi.application'
+
 
 #############
 # DATABASES #
 #############
 
 DATABASES = {
-    'default': {
-        # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'ENGINE': '',
-        # DB name or path to database file if using sqlite3.
-        'NAME': '',
-        # Not used with sqlite3.
-        'USER': '',
-        # Not used with sqlite3.
-        'PASSWORD': '',
-        # Set to empty string for localhost. Not used with sqlite3.
-        'HOST': '',
-         # Set to empty string for default. Not used with sqlite3.
-        'PORT': '',
-    }
+    'default': {},
 }
 
 
@@ -153,28 +135,18 @@ PROJECT_DIR = get_path(os.path.dirname(__file__), "../")
 
 LOG_ROOT = get_path(PROJECT_DIR, '../logs')
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/media/'
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = get_path(PROJECT_DIR, "../", MEDIA_URL.strip("/"))
+MEDIA_ROOT = get_path(PROJECT_DIR, '../media/')
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = get_path(PROJECT_DIR, "../", STATIC_URL.strip("/"))
+STATIC_ROOT = get_path(PROJECT_DIR, '../static/')
 
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don"t forget to use absolute paths, not relative paths.
-    get_path(PROJECT_DIR, "../public"),
+    get_path(PROJECT_DIR, '../public/'),
 )
 
 TEMPLATE_DIRS = (
-    get_path(PROJECT_DIR, "templates"),
+    get_path(PROJECT_DIR, 'templates'),
 )
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -188,10 +160,10 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 ################
 
 PROJECT_APPS = (
-    'app_utils.bootstrap',
-    'apps.accounts',
-    'apps.pages',
-    'apps.theleague',
+    'source.app_utils.bootstrap',
+    'source.apps.accounts',
+    'source.apps.pages',
+    'source.apps.theleague',
 )
 
 INSTALLED_APPS = (
@@ -219,13 +191,13 @@ TEMPLATE_TAGS = (
     # Third Party
     'easy_thumbnails.templatetags.thumbnail',
     # Project
-    'templatetags.helper_tags',
-    'templatetags.verbatim',
+    'source.templatetags.helper_tags',
+    'source.templatetags.verbatim',
 )
 
 AUTHENTICATION_BACKENDS = (
     # For allowing email addresses as usernames. Must come before django stuff
-    'apps.accounts.backends.EmailBackend',
+    'source.apps.accounts.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 

@@ -2,7 +2,7 @@ import datetime
 
 from django.core.management.base import BaseCommand
 
-from apps.theleague.models import Match
+from source.apps.theleague.models import Match
 
 
 class Command(BaseCommand):

@@ -7,8 +7,8 @@ from django.db import models
 from django.db.models import Q, Sum
 from django.utils.translation import ugettext_lazy as _
 
-from apps.abstract.models import CommonModel
-from apps.accounts.elo import rank
+from source.apps.abstract.models import CommonModel
+from source.apps.accounts.elo import rank
 
 
 class Division(CommonModel):

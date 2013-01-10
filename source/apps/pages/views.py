@@ -3,8 +3,8 @@ import datetime
 from django.conf import settings
 from django.views.decorators.cache import cache_page
 
-from app_utils.tools import render_response
-from apps.theleague.models import League, Round
+from source.app_utils.tools import render_response
+from source.apps.theleague.models import League
 
 
 @cache_page(60 * 60)

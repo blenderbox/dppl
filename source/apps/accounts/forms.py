@@ -2,8 +2,8 @@ from django import forms
 
 from django.contrib.auth.models import User
 
-from apps.accounts.models import Profile
-from app_utils.widgets import BetterImageWidget
+from source.apps.accounts.models import Profile
+from source.app_utils.widgets import BetterImageWidget
 
 
 def stripped(obj, field, default=""):

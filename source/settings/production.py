@@ -1,5 +1,6 @@
-from defaults import *
-from passwords import DB_USERNAME, DB_PASSWORD
+from source.settings.defaults import *
+
+from source.settings.passwords import DB_USERNAME, DB_PASSWORD
 
 
 DEBUG = True

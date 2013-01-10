@@ -14,12 +14,12 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     # /
-    (r"^", include('apps.pages.urls')),
-
-    (r"^", include('apps.theleague.urls')),
+    (r"^", include('source.apps.pages.urls')),
+    (r"^", include('source.apps.theleague.urls')),
 
     # /accounts/
-    (r"^accounts/", include('apps.accounts.urls', namespace="accounts")),
+    (r"^accounts/", include('source.apps.accounts.urls',
+     namespace="accounts")),
 
     # /commander/ (django admin)
     (r"^commander/", include(admin.site.urls)),

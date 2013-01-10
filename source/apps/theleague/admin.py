@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.contrib import admin
 
-from apps.theleague.models import (Division, Game, League, Match, Round,
-                                   Season, Team, current_season)
+from source.apps.theleague.models import (
+    Division, Game, League, Match, Round, Season, Team, current_season,
+)
 
 
 class DivisionAdmin(admin.ModelAdmin):

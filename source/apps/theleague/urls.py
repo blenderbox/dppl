@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, url
 
 
-urlpatterns = patterns('apps.theleague.views',
+urlpatterns = patterns('source.apps.theleague.views',
     # /schedule
     url(r'^schedule/$', 'schedule', name='theleague_schedule'),
 

@@ -3,7 +3,7 @@ import datetime
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from apps.theleague.models import Game
+from source.apps.theleague.models import Game
 
 
 class Command(BaseCommand):

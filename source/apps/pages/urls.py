@@ -1,8 +1,7 @@
-from django.contrib import admin
 from django.conf.urls.defaults import patterns, url
 
 
-urlpatterns = patterns('apps.pages.views',
+urlpatterns = patterns('source.apps.pages.views',
     # /rules
     url(r'^rules/$', 'rules', name='pages_rules'),
     # /
