@@ -41,4 +41,8 @@ node['app']['sites'].each do |site|
       "password" => db['password']
     })
   end
+
+  gem_package "sass" do
+    action :install
+  end
 end

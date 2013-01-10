@@ -8,7 +8,7 @@ errorlog = path.join(base, "log/gunicorn.error.log")
 # Lower this number if you have multiple production sites on the same server
 workers = multiprocessing.cpu_count() * 2 + 1
 
-user = "www-data"
+user = "deploy"
 group = "www-data"
 bind = "127.0.0.1:9000"
 accesslog = None
