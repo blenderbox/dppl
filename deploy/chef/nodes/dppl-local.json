@@ -61,10 +61,7 @@
         "reference": "chef",
         "django": {
           "requirements": "requirements.txt",
-          "settings": {
-            "target": "source/settings/production.py",
-            "link": "source/settings/local.py"
-          }
+          "settings": "source.settings.production"
         },
         "database": {
           "name": "pxlpng"
@@ -75,8 +72,8 @@
   },
 
   "run_list": [
-    "recipe[ntp]",
     "recipe[apt]",
+    "recipe[ntp]",
     "recipe[build-essential]",
     "recipe[git]",
     "recipe[nginx]",
