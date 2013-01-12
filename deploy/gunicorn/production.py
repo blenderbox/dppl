@@ -13,4 +13,3 @@ bind = "127.0.0.1:9000"
 accesslog = None
 loglevel = "info"
 proc_title = "pxlpng.com"
-django_settings = "source.settings.production"

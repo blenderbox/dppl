@@ -61,7 +61,10 @@
         "reference": "chef",
         "django": {
           "requirements": "requirements.txt",
-          "settings": "source.settings.production"
+          "settings": {
+            "target": "source/settings/production.py",
+            "link": "source/settings/local.py"
+          }
         },
         "database": {
           "name": "pxlpng"
