@@ -181,7 +181,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'easy_thumbnails',
     'filer',
-    'gunicorn',
     'imagekit',
     'mptt',
     'south',

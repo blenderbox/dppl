@@ -15,12 +15,10 @@
     }
   },
 
-  "mysql": {
-    "server_root_password": "root",
-    "server_debian_password": "root",
-    "server_repl_password": "root",
-    "bind_address": "127.0.0.1",
-    "ec2_path": "/mnt/mysql"
+  "postgresql": {
+    "password": {
+      "postgres": "postgres"
+    }
   },
 
   "nginx": {
@@ -67,24 +65,26 @@
           }
         },
         "database": {
-          "name": "pxlpng"
+          "name": "pxlpng",
+          "type": "postgresql"
         },
-        "supervisor": "deploy/supervisor/pxlpng.com.conf",
+        "uwsgi": "deploy/uwsgi/pxlpng.com.ini",
         "nginx": "deploy/nginx/pxlpng.com"
     }]
   },
 
   "run_list": [
     "recipe[apt]",
-    "recipe[ntp]",
     "recipe[build-essential]",
+    "recipe[ntp]",
     "recipe[git]",
     "recipe[nginx]",
     "recipe[memcached]",
-    "recipe[mysql::ruby]",
-    "recipe[mysql::server]",
-    "recipe[mysql::server_ec2]",
-    "recipe[supervisor]",
+    "recipe[posgresql::client]",
+    "recipe[posgresql::server]",
+    "recipe[posgresql::ruby]",
+    "recipe[uwsgi]",
+    "recipe[virtualenvwrapper]",
     "recipe[sudo]",
     "recipe[dotfiles]",
     "recipe[user::data_bag]",

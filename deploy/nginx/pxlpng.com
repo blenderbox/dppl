@@ -40,8 +40,8 @@ server {
   }
 
   location / {
-    proxy_pass http://127.0.0.1:9000;
-    include /etc/nginx/proxy_params;
+    include uwsgi_params;
+    uwsgi_pass unix:///var/run/pxlpng.com.sock
     add_header "X-UA-Compatible" "IE=Edge,chrome=1";
   }
 }

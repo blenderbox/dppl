@@ -18,7 +18,8 @@ cookbook "nginx"
 cookbook "ntp"
 cookbook "python"
 cookbook "sudo"
-cookbook "supervisor"
+cookbook "uwsgi",
+  :git => "https://github.com/blackrobot/chef-uwsgi.git"
 cookbook "user",
-  :git => 'git://github.com/fnichol/chef-user.git'
+  :git => "https://github.com/fnichol/chef-user.git"
 cookbook "vim"
