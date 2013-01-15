@@ -105,6 +105,5 @@
     "recipe[uwsgi]",
     "recipe[virtualenvwrapper]",
     "recipe[django-app]"
-    // "recipe[pxlpng]"
   ]
 }

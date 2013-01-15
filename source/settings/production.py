@@ -1,7 +1,5 @@
 from source.settings.defaults import *
 
-from source.settings.passwords import DB_USERNAME, DB_PASSWORD
-
 
 DEBUG = True
 HEROKU = True
@@ -17,8 +15,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pxlpng',
-        'USER': DB_USERNAME,
-        'PASSWORD': DB_PASSWORD,
+        'USER': "postgres",
+        'PASSWORD': "postgres",
     },
 }
 

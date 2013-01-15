@@ -33,16 +33,4 @@ node['app']['sites'].each do |site|
     privileges [:all]
     action :grant
   end
-
-  template "/var/www/pxlpng.com/app/source/settings/passwords.py" do
-    source "passwords.py.erb"
-    mode 0660
-    owner "deploy"
-    group "www-data"
-    backup false
-    variables({
-      "username" => db['user'],
-      "password" => db['password']
-    })
-  end
 end
