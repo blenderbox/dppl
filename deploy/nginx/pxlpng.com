@@ -41,7 +41,7 @@ server {
 
   location / {
     include uwsgi_params;
-    uwsgi_pass unix:///var/www/pxlpng.com/tmp/uwsgi.sock;
+    uwsgi_pass unix:/var/www/pxlpng.com/tmp/uwsgi.sock;
     add_header "X-UA-Compatible" "IE=Edge,chrome=1";
   }
 }
