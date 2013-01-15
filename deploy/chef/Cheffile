@@ -7,19 +7,24 @@ cookbook "apt"
 cookbook "build-essential"
 cookbook "database",
   :git => "https://github.com/opscode-cookbooks/database.git"
-cookbook "django-application",
-  :git => "https://github.com/blackrobot/chef-django-application.git"
+# cookbook "django-app",
+#   :git => "https://github.com/blackrobot/chef-django-app.git"
 cookbook "dotfiles",
   :git => "https://github.com/blackrobot/chef-dotfiles.git"
 cookbook "git"
+# cookbook "git-ssh-wrapper",
+#   :git => "https://github.com/blackrobot/chef-git-ssh-wrapper.git"
 cookbook "memcached"
-cookbook "mysql"
+cookbook "postgresql"
 cookbook "nginx"
 cookbook "ntp"
 cookbook "python"
 cookbook "sudo"
-cookbook "uwsgi",
-  :git => "https://github.com/blackrobot/chef-uwsgi.git"
+cookbook "supervisor"
+# cookbook "uwsgi",
+#   :git => "https://github.com/blackrobot/chef-uwsgi.git"
 cookbook "user",
   :git => "https://github.com/fnichol/chef-user.git"
+# cookbook "virtualenvwrapper",
+#   :git => "https://github.com/blackrobot/chef-virtualenvwrapper.git"
 cookbook "vim"

@@ -7,6 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+gem_package "sass" do
+  action :install
+end
+
 db_conn = {
   :host => "localhost",
   :username => "root",
@@ -40,9 +44,5 @@ node['app']['sites'].each do |site|
       "username" => db['user'],
       "password" => db['password']
     })
-  end
-
-  gem_package "sass" do
-    action :install
   end
 end

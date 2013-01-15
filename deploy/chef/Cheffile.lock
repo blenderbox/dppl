@@ -29,41 +29,29 @@ SITE
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
     runit (0.16.2)
-    sudo (2.0.2)
-    supervisor (0.3.0)
+    sudo (2.0.4)
+    supervisor (0.4.0)
       python (>= 0.0.0)
     vim (1.0.2)
     windows (1.7.0)
       chef_handler (>= 0.0.0)
     xfs (1.1.0)
-    yum (2.0.6)
-
-GIT
-  remote: git://github.com/fnichol/chef-user.git
-  ref: master
-  sha: 1b52f8d41c0a320d29fa5e695393bef583e87ca8
-  specs:
-    user (0.3.1)
-
-GIT
-  remote: https://github.com/blackrobot/chef-django-application.git
-  ref: master
-  sha: a479cd9836b4c688f6eb509dd4a1b77c0310046d
-  specs:
-    django-application (0.1.0)
-      database (>= 0.0.0)
-      mysql (>= 0.0.0)
-      nginx (>= 0.0.0)
-      python (>= 0.0.0)
-      supervisor (>= 0.0.0)
+    yum (2.1.0)
 
 GIT
   remote: https://github.com/blackrobot/chef-dotfiles.git
   ref: master
-  sha: d246fec32d0c2bc4055402ff60f8848b8479bf2c
+  sha: 6fb67d198ae72396e09e4270b69a5efb101994f5
   specs:
-    dotfiles (0.1.0)
+    dotfiles (0.1.1)
       git (>= 0.0.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-user.git
+  ref: master
+  sha: 1b52f8d41c0a320d29fa5e695393bef583e87ca8
+  specs:
+    user (0.3.1)
 
 GIT
   remote: https://github.com/opscode-cookbooks/database.git
@@ -80,13 +68,12 @@ DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
   database (>= 0)
-  django-application (>= 0)
   dotfiles (>= 0)
   git (>= 0)
   memcached (>= 0)
-  mysql (>= 0)
   nginx (>= 0)
   ntp (>= 0)
+  postgresql (>= 0)
   python (>= 0)
   sudo (>= 0)
   supervisor (>= 0)

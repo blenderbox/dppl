@@ -51,6 +51,13 @@
 
   "users": ["deploy"],
 
+  "virtualenvwrapper": {
+    "workon_home": "/var/www/envs",
+    "user": "deploy",
+    "group": "www-data",
+    "profile": "/home/deploy/.profile"
+  },
+
   "app": {
     "user_id": "deploy",
     "sites": [{
@@ -74,21 +81,30 @@
   },
 
   "run_list": [
+    // Base building blocks
     "recipe[apt]",
     "recipe[build-essential]",
     "recipe[ntp]",
     "recipe[git]",
-    "recipe[nginx]",
-    "recipe[memcached]",
-    "recipe[posgresql::client]",
-    "recipe[posgresql::server]",
-    "recipe[posgresql::ruby]",
-    "recipe[uwsgi]",
-    "recipe[virtualenvwrapper]",
-    "recipe[sudo]",
+
+    // Users recipes
     "recipe[dotfiles]",
     "recipe[user::data_bag]",
-    "recipe[django-application]",
-    "recipe[pxlpng]"
+    "recipe[sudo]",
+
+    // Server recipes
+    "recipe[nginx]",
+    "recipe[memcached]",
+
+    // Database recipes
+    "recipe[postgresql::client]",
+    "recipe[postgresql::server]",
+    "recipe[postgresql::ruby]",
+
+    // Python recipes
+    "recipe[uwsgi]",
+    "recipe[virtualenvwrapper]",
+    "recipe[django-app]"
+    // "recipe[pxlpng]"
   ]
 }
