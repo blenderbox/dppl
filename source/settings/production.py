@@ -83,7 +83,8 @@ DEBUG_TOOLBAR_CONFIG = {
     # 'TAG': 'div',
 }
 
-COMPRESS_ROOT = PUBLIC_ROOT
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_OUTPUT_DIR = "cache"
 
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
