@@ -6,7 +6,7 @@ HEROKU = True
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
-PUBLIC_ROOT = get_path(PROJECT_DIR, '..', 'public')
+PUBLIC_ROOT = get_path(PROJECT_DIR, '..', '..', 'public')
 MEDIA_ROOT = get_path(PUBLIC_ROOT, 'media')
 STATIC_ROOT = get_path(PUBLIC_ROOT, 'static')
 
