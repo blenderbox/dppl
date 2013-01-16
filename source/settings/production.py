@@ -6,7 +6,10 @@ HEROKU = True
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
-# Temporarily overriding admins for error mailing
+PUBLIC_ROOT = get_path(PROJECT_DIR, '..', 'public')
+MEDIA_ROOT = get_path(PUBLIC_ROOT, 'media')
+STATIC_ROOT = get_path(PUBLIC_ROOT, 'static')
+
 ADMINS = (
     ("Damon Jablons", 'djablons@blenderbox.com'),
 )
@@ -80,9 +83,10 @@ DEBUG_TOOLBAR_CONFIG = {
     # 'TAG': 'div',
 }
 
+COMPRESS_ROOT = PUBLIC_ROOT
+
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter',
 ]
 
-COMPRESS_ROOT = get_path(PROJECT_DIR, "../public")
