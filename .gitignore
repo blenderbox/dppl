@@ -14,6 +14,7 @@ deploy/chef/cookbooks
 deploy/chef/tmp
 
 # ignore environment and local settings files
+tmp/
 source/settings/local.py
 source/settings/passwords.py
 media/

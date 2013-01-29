@@ -80,14 +80,17 @@
         "reference": "chef",
         "django": {
           "requirements": "requirements.txt",
+          "collectstatic": true,
           "settings": {
             "target": "source/settings/production.py",
             "link": "source/settings/local.py"
           }
         },
         "database": {
+          "type": "postgresql",
           "name": "pxlpng",
-          "type": "postgresql"
+          "encoding": "UTF8",
+          "template": "template0"
         },
         "uwsgi": "deploy/uwsgi/pxlpng.com.ini",
         "nginx": "deploy/nginx/pxlpng.com"
@@ -111,9 +114,10 @@
     "recipe[memcached]",
 
     // Database recipes
-    "recipe[postgresql::client]",
-    "recipe[postgresql::server]",
-    "recipe[postgresql::ruby]",
+    // "recipe[postgresql::client]",
+    // "recipe[postgresql::server]",
+    // "recipe[postgresql::ruby]",
+    "recipe[pxlpng::database]",
 
     // Python recipes
     "recipe[uwsgi]",

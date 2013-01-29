@@ -1,23 +1,24 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apt (1.8.0)
+    apt (1.8.4)
     aws (0.100.6)
     build-essential (1.3.2)
     chef_handler (1.1.4)
     dmg (1.1.0)
-    git (2.1.2)
+    git (2.1.4)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
-      runit (>= 0.0.0)
+      runit (<= 0.16.2)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
-    memcached (1.1.2)
-      runit (>= 0.0.0)
+    memcached (1.2.0)
+      runit (<= 0.16.2)
+      yum (>= 0.0.0)
     mysql (2.1.0)
       build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
-    nginx (1.1.4)
+    nginx (1.2.0)
       build-essential (>= 0.0.0)
       ohai (>= 1.1.4)
     ntp (1.3.2)
@@ -39,12 +40,48 @@ SITE
     yum (2.1.0)
 
 GIT
+  remote: https://github.com/blackrobot/chef-django-app.git
+  ref: master
+  sha: a3d3bd88be03b614274b5d3ccb2a67a5dd52fc09
+  specs:
+    django-app (0.1.0)
+      database (>= 0.0.0)
+      mysql (>= 0.0.0)
+      nginx (>= 0.0.0)
+      postgresql (>= 0.0.0)
+      python (>= 0.0.0)
+      supervisor (>= 0.0.0)
+
+GIT
   remote: https://github.com/blackrobot/chef-dotfiles.git
   ref: master
-  sha: 6fb67d198ae72396e09e4270b69a5efb101994f5
+  sha: f2b06bd99980ce322f5e236656ee85d06d137569
   specs:
-    dotfiles (0.1.1)
+    dotfiles (0.1.2)
       git (>= 0.0.0)
+
+GIT
+  remote: https://github.com/blackrobot/chef-git-ssh-wrapper.git
+  ref: master
+  sha: 4b6d78ef748ea7ce22cab42d5b42f7922eced878
+  specs:
+    git-ssh-wrapper (0.1.0)
+
+GIT
+  remote: https://github.com/blackrobot/chef-uwsgi.git
+  ref: master
+  sha: a05b5e550290d76869a71eb9b401587784ce5cde
+  specs:
+    uwsgi (0.1.0)
+      python (>= 0.0.0)
+
+GIT
+  remote: https://github.com/blackrobot/chef-virtualenvwrapper.git
+  ref: master
+  sha: 57bdecd83a4c8fea6837f3921ed98bac70f9fbf0
+  specs:
+    virtualenvwrapper (0.1.0)
+      python (>= 0.0.0)
 
 GIT
   remote: https://github.com/fnichol/chef-user.git
@@ -56,9 +93,9 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/database.git
   ref: master
-  sha: 614c4d2eaba94e78132fa5305b0d18ceb72396fe
+  sha: cc6b4d746841acf321ff69b3b5e8f120e00f1db6
   specs:
-    database (1.3.10)
+    database (1.3.12)
       aws (>= 0.0.0)
       mysql (>= 1.3.0)
       postgresql (>= 1.0.0)
@@ -68,8 +105,10 @@ DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
   database (>= 0)
+  django-app (>= 0)
   dotfiles (>= 0)
   git (>= 0)
+  git-ssh-wrapper (>= 0)
   memcached (>= 0)
   nginx (>= 0)
   ntp (>= 0)
@@ -78,5 +117,7 @@ DEPENDENCIES
   sudo (>= 0)
   supervisor (>= 0)
   user (>= 0)
+  uwsgi (>= 0)
   vim (>= 0)
+  virtualenvwrapper (>= 0)
 
