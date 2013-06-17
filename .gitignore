@@ -17,4 +17,5 @@ static/
 !media/avatars/default.jpg
 source/static/
 public/CACHE/
+deploy/chef/
 tmp/
