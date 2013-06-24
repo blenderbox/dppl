@@ -37,7 +37,7 @@ try:
     if 'DATABASE_URL' in environ:
         url = urlparse(environ['DATABASE_URL'])
         DATABASES['default'] = {
-            'ENGINE': 'dbpool.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'OPTIONS': {'MAX_CONNS': 1},
             'NAME': url.path[1:],
             'USER': url.username,
