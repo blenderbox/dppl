@@ -1,5 +1,4 @@
 Django==1.4.5
-MySQL-python==1.2.3
 PIL==1.1.7
 Pygments==1.4
 South==0.7.3
@@ -8,20 +7,19 @@ argparse==1.2.1
 boto==2.2.2
 django-appconf==0.4.1
 django-compressor==1.1.2
-django-db-pool==0.0.7
 django-debug-toolbar==0.8.5
 django-extensions==0.7.1
 -e git://github.com/stefanfoulis/django-filer.git@19c416905cf1dfe492aed6ae8f1963cccb5517e5#egg=django_filer-dev
 django-imagekit==1.1
--e git+https://github.com/bartTC/django-memcache-status.git@e63d52a66df1e1c4a243de8e8f2d5dc18d34ef5d#egg=django_memcache_status-dev
+-e git://github.com/bartTC/django-memcache-status.git@32820fb8c1241f20bef7dbef295cf8c4421f721d#egg=django_memcache_status-dev
 django-mptt==0.5.2
 django-polymorphic==0.2
 django-pylibmc-sasl==0.2.4
 -e hg+https://bitbucket.org/david/django-storages@3a53e65bf4cc95a2cd312348db780d3713ee07be#egg=django_storages-dev
 easy-thumbnails==1.0-alpha-21
-gunicorn==0.13.4
-psycopg2==2.4.5
-pylibmc==1.2.2
+psycopg2==2.4.6
 python-dateutil==1.2
+python-memcached==1.48
+setproctitle==1.1.6
 -e git+https://github.com/sublee/trueskill.git@753b57c3abeb7cb147523031cf0b1276133d9590#egg=trueskill-dev
 wsgiref==0.1.2

@@ -7,16 +7,15 @@ from S3 import CallingFormat
 from defaults import *
 
 
-env = lambda e, d: environ[e] if e in environ else d
+env = lambda e, d: environ.get(e, d)
 
-# DEBUG = True
 DEBUG = False
 HEROKU = True
 LOCAL_SERVE = False
 TEMPLATE_DEBUG = True
 
 # Temporarily overriding admins for error mailing
-ADMINS = (
+ADMINS = MANAGERS = (
     ("Damon Jablons", 'djablons@blenderbox.com'),
 )
 
@@ -56,30 +55,56 @@ SOUTH_DATABASE_ADAPTERS = {
 
 INSTALLED_APPS += (
     'debug_toolbar',
+    'johnny_panel',
     'storages',
-)
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 # Memcachedddd
 if 'MEMCACHE_SERVERS' in environ:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-            'LOCATION': "%s:11211" % env('MEMCACHE_SERVERS', ''),
-            'username': env('MEMCACHE_USERNAME', ''),
-            'password': env('MEMCACHE_PASSWORD', ''),
-            'TIMEOUT': 300,
-            'BINARY': True,
-            'OPTIONS': {
-                    'tcp_nodelay': True,
-                    'ketama': True,
-            }
+    MIDDLEWARE_CLASSES = (
+        # Cache Update
+        'django.middleware.cache.UpdateCacheMiddleware',
+        'johnny.middleware.LocalStoreClearMiddleware',
+        'johnny.middleware.QueryCacheMiddleware',
+    ) + MIDDLEWARE_CLASSES + (
+        # Cache Fetch
+        'django.middleware.cache.FetchFromCacheMiddleware',
+    )
+
+    cache_common = {
+        'LOCATION': "%s:11211" % env('MEMCACHE_SERVERS', ''),
+        'username': env('MEMCACHE_USERNAME', ''),
+        'password': env('MEMCACHE_PASSWORD', ''),
+        'BINARY': True,
+        'OPTIONS': {
+            'tcp_nodelay': True,
+            'ketama': True,
         },
     }
+
+    default_cache = {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'TIMEOUT': 300,
+    }
+    default_cache.update(cache_common)
+
+    johnny_cache = {
+        'BACKEND': 'johnny.backends.memcached.MemcachedCache',
+        'JOHNNY_CACHE': True,
+    }
+    johnny_cache.update(cache_common)
+
+    CACHES = {'default': default_cache, 'johnny': johnny_cache}
+
 # Only cache for anonymous users
+JOHNNY_MIDDLEWARE_KEY_PREFIX = 'johnny'
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 300
+
+MIDDLEWARE_CLASSES += (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
 
 # DB backed sessions for testing since cache dumps itself
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
@@ -108,6 +133,8 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.template.TemplateDebugPanel',
     'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
+    'debug_toolbar.panels.cache.CacheDebugPanel',
+    'johnny_panel.panel.JohnnyPanel',
 )
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
@@ -131,9 +158,9 @@ AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
 AWS_QUERYSTRING_AUTH = False
 # AWS_IS_GZIPPED = True
 COMPRESS_CSS_FILTERS = [
-        'compressor.filters.css_default.CssAbsoluteFilter',
-        'compressor.filters.cssmin.CSSMinFilter',
-    ]
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
 
 STATIC_URL = 'http://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
