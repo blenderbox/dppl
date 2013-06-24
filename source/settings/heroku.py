@@ -38,7 +38,6 @@ try:
         url = urlparse(environ['DATABASE_URL'])
         DATABASES['default'] = {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'OPTIONS': {'MAX_CONNS': 1},
             'NAME': url.path[1:],
             'USER': url.username,
             'PASSWORD': url.password,
