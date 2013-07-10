@@ -1,8 +1,17 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 
 from apps.accounts.models import Profile
+
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = User
+
+    def clean_password(self):
+        return self.initial.get('password', "")
 
 
 class ProfileInline(admin.StackedInline):
@@ -20,30 +29,27 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {
             'fields': ('username', 'password', 'email'),
-            },
-        ),
+        }),
         ("Personal Information", {
             'classes': collapse,
             'fields': (('first_name', 'last_name'),),
-            },
-        ),
+        }),
         ("Permissions", {
             'classes': collapse, 'fields': (
-                'is_active', 'is_staff', 'is_superuser', 'user_permissions'),
-            },
-        ),
+                'is_active', 'is_staff', 'is_superuser', 'user_permissions',
+            ),
+        }),
         ("Dates", {
             'classes': collapse, 'fields': (('last_login', 'date_joined'),),
-            },
-        ),
+        }),
         ("Groups", {
             'classes': collapse, 'fields': ('groups',),
-            },
-        ),
+        }),
     )
+    form = CustomUserChangeForm
     inlines = (ProfileInline,)
     list_display = ('username', 'email', 'first_name', 'last_name',
-            'is_staff', 'is_active')
+                    'is_staff', 'is_active')
     readonly_fields = ('password', 'last_login', 'date_joined')
     list_filter = ('profile__team',)
 
